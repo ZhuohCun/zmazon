@@ -16,10 +16,10 @@
     flex-wrap: wrap;
 }
 .container .header{
-    height:10vw;
+    height:12vw;
     width:100%;
     background-color: #fff;
-    top:2vw;
+    top:0;
     left:0;
     position: fixed;
     justify-content: space-around;
@@ -262,6 +262,7 @@
     display: flex;
     position: fixed;
     bottom: 14vw;
+    background-color: white;
 }
 .container .main .subfooter .left{
     width: 15vw;

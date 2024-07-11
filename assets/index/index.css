@@ -15,10 +15,10 @@
     flex-wrap: wrap;
 }
 .container .header{
-    height:10vw;
+    height:12vw;
     width:100%;
     background-color: #fff;
-    top:2vw;
+    top:0;
     left:0;
     position: fixed;
     justify-content: space-around;
@@ -78,7 +78,7 @@
     height: 85%;
     width: 100%;
     background-color: white;
-    margin-bottom: 10vw;
+    margin-bottom: 12vw;
     margin-top: 12vw;
     display: flex;
     box-sizing: border-box;
