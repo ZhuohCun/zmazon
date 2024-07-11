@@ -149,6 +149,7 @@ body{
     align-items: center;
     justify-content: left;
     column-gap: 2vw;
+    overflow-x: scroll;
 }
 .container .main .part1 .subitem .item{
     width: 15vw;
@@ -192,7 +193,7 @@ body{
     font-size: 5vw;
     color: red;
     align-items: center;
-    text-align: left;
+    justify-content: left;
 }
 .container .main .part1 .title{
     height:auto;
@@ -201,6 +202,7 @@ body{
     font-size: 5vw;
     color: black;
     align-items: center;
+    justify-content: left;
 }
 .container .main .part2{
     height:auto;
@@ -376,7 +378,7 @@ body{
 }
 .container .main .comment .item .text{
     width: 100%;
-    height: auto;
+    height: 3.5vw;
     font-size: 4vw;
 }
 .container .main .itemdetail{
@@ -481,9 +483,10 @@ body{
 }
 .container .footer .left .item{
     height: 9vw;
-    width: 9vw;
+    width: 11vw;
     flex-wrap: wrap;
     margin-top: 1.5vw;
+    margin-left: 1vw;
     display: flex;
     justify-content: center;
     align-items: center;

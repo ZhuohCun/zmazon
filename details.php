@@ -300,7 +300,7 @@ if($act=="add"){
                     $year=$commentrow[3];
                     $month=$commentrow[4];
                     $day=$commentrow[5];
-                    echo "<div class='item'><div class='detail'><div class='left'><i class='ico'></i><div class='wrap'><div class='text'>$user</div><div class='text'>购入 $sub</div></div></div><div class='right'>$year 年$month 月$day 日</div></div><div class='text'>$text</div></div>";
+                    echo "<div class='item'><div class='detail'><div class='left'><i class='ico'></i><div class='wrap'><div class='text'>$user</div><div class='text'>购入 $sub</div></div></div><div class='right'>".$year."年".$month."月".$day."日</div></div><div class='text'>$text</div></div>";
                 }
                 echo "</div>";
             }

@@ -167,22 +167,23 @@
     height: 14vw;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1vw;
 }
 .container .main .item .body .right .p2 .lft .vendor{
-    min-height: 5vw;
-    max-height: 5vw;
+    min-height: 4.3vw;
+    max-height: 4.3vw;
     min-width: 15vw;
     max-width: 15vw;
     font-size: 3vw;
     display: flex;
-    text-align: center;
-    align-content: center;
+    justify-content: center;
     align-items: center;
     background-color: #000;
     color: #fff;
 }
 .container .main .item .body .right .p2 .lft .subinfo{
-    height: 5vw;
+    height: 4vw;
     min-width: 15vw;
     font-size: 3vw;
     display: flex;
@@ -202,11 +203,11 @@
 .container .main .item .body .right .p2 .lft .subinfo .ico{
     width: 3vw;
     height: 3vw;
-    margin-top: 2.3vw;
+    margin-top: 2.5vw;
     content: url("../icons/right.svg");
 }
 .container .main .item .body .right .p2 .lft .price{
-    height: 5vw;
+    height: 4vw;
     width: 15vw;
     font-size: 4vw;
     color: #e21540;

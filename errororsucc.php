@@ -111,12 +111,12 @@ if(isset($_GET['text'])){
             echo "<div class=\"backbutton\" onclick=\"location.href='".$back."?usid=".$usid."&usr=".$usr."&veri=".$veri."'\">";
             if($back!='index.php'){
                 if($text==0){
-                    echo "<button>返回</button></div>";
+                    echo "<div class='button'>返回</div></div>";
                 }else{
-                    echo "<button>$text</button></div>";
+                    echo "<div class='button'>$text</button></div>";
                 }
             }else{
-                echo "<button>回首页</button></div>";
+                echo "<div class='button'>回首页</button></div>";
             }
         ?>
     </div>

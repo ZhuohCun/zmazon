@@ -264,6 +264,8 @@ body{
 .container .main .part6 .body .item .tag{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 .container .main .part6 .body .item .tag img{
     width: 38vw;
