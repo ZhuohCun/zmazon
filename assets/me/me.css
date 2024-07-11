@@ -10,6 +10,8 @@
 body{
     background-image: url("background.jpg");
     background-size:cover;
+    width: 100%;
+    height: 100%;
 }
 .container{
     width:100%;
@@ -23,7 +25,7 @@ body{
 }
 .container .main {
     left:0;
-    height: 93%;
+    height: 93.9%;
     width: 100%;
     margin-top: -3vw;
     display: flex;
@@ -31,6 +33,7 @@ body{
     position: fixed;
     justify-content: center;
     align-content: flex-start;
+    row-gap: 2vw;
     overflow-y: scroll;
 }
 .container .main .part1{
@@ -172,7 +175,6 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-top: 2vw;
 }
 .container .main .part4 .item{
     width:16vw;
@@ -202,7 +204,6 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-top: 2vw;
 }
 .container .main .part5 .item{
     width:16vw;
@@ -229,7 +230,6 @@ body{
     width: 95vw;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 2vw;
     justify-content:flex-start;
     height: auto;
     align-items: center;
@@ -309,7 +309,7 @@ body{
     width: 45vw;
     display: flex;
     color: red;
-    align-items: center;
+    align-items: flex-start;
     justify-content: right;
 }
 .container .main .part6 .body .item .last .ico{
