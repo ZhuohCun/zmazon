@@ -77,7 +77,7 @@ if($type=='sub'){
     }
     $back="category.php";
 }elseif ($type=='index'){
-    $titlequery = mysqli_query($conn, "select icname from indexcategories where id=$id and checked=0");
+    $titlequery = mysqli_query($conn, "select icname from indexcategories where id=$id");
     while ($titlerow = mysqli_fetch_row($titlequery)) {
         $title = $titlerow[0];
         $categorychosen=0;
