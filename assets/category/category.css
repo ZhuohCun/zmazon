@@ -1,0 +1,175 @@
+@font-face {
+    font-family: "Iconify Explorer Font";
+    src: url("../icons/down.svg") format("svg");
+    src: url("../icons/right.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+.container{
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    top:0;
+    left:0;
+    flex-wrap: wrap;
+}
+.container .header{
+    height:12vw;
+    width:100%;
+    background-color: #fff;
+    left:0;
+    top:0;
+    position: fixed;
+    border-bottom: solid 1px #DDD;
+    display: flex;
+    font-size: 5vw;
+    justify-content: center;
+    align-items: center;
+}
+.container .main {
+    height: 85%;
+    width: 100%;
+    background-color: white;
+    margin-bottom: 10vw;
+    margin-top: 12vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+.container .main .left{
+    width:22vw;
+    height:196vw;
+    margin-top: -2vw;
+    margin-left: -2vw;
+    background-color: #c5c5c5;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+.container .main .left .item{
+    align-items: center;
+    justify-content: center;
+    background-color: #c5c5c5;
+    color: #404040;
+    height: 15vw;
+    width: 100%;
+}
+.container .main .left .item h2{
+    font-size: 4vw;
+    text-align: center;
+}
+.container .main .left .itemchosen{
+    align-items: center;
+    justify-content: center;
+    font-size: 4vw;
+    background-color: #fff;
+    color: #404040;
+    height: 13vw;
+    width: 100%;
+}
+.container .main .left .itemchosen h2{
+    font-size: 4vw;
+    text-align: center;
+}
+.container .main .right{
+    width:77vw;
+    height:196vw;
+    top:14vw;
+    left:22vw;
+    display: flex;
+    justify-content: left;
+    align-content: flex-start;
+    background-color: white;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    position: fixed;
+}
+.container .main .right .head{
+    height:9vw;
+    width:78vw;
+    left:22vw;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    display: flex;
+    margin-top: -1vw;
+}
+.container .main .right .head .hleft{
+    background-color: white;
+    min-width:71vw;
+    max-width: 71vw;
+    height:9vw;
+    left: 22vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex:0 0;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+.container .main .right .head .hleft .item{
+    min-width:16vw;
+    height: 9vw;
+    font-size: 3.5vw;
+    text-align: center;
+    align-content: center;
+    display: flex;
+    color: #404040;
+}
+.container .main .right .head .hright{
+    width:4vw;
+    height: 8vw;
+}
+.container .main .right .head .hright .ico{
+    width: 4vw;
+    height: 4vw;
+    margin-top: 1.5vw;
+    content: url("../icons/down.svg");
+}
+.container .main .right .itemhead{
+    height:4.5vw;
+    width:78vw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.container .main .right .itemhead .ileft{
+    width: 63vw;
+    height: 4vw;
+    font-size: 3.7vw;
+    justify-content: left;
+    margin-top: -0.5vw;
+}
+.container .main .right .itemhead .iright{
+    width: 12vw;
+    height: 4vw;
+    font-size: 3.5vw;
+    display: flex;
+    margin-top: -0.5vw;
+}
+.container .main .right .itemhead .iright .ico{
+    width: 3vw;
+    height: 3vw;
+    font-size: 3.5vw;
+    margin-top: 1vw;
+    content: url("../icons/right.svg");
+}
+.container .main .right .item{
+    width:24.6vw;
+    height:32vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content:center;
+    padding: 0.5vw;
+}
+.container .main .right .item img{
+    width: 24vw;
+    height: 24vw;
+}
+.container .main .right .item h3{
+    font-size: 3vw;
+    height: 6vw;
+    text-align: center;
+    margin-top: -1vw;
+}
