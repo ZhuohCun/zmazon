@@ -163,7 +163,7 @@ if($act=="add"){
         <?PHP
         $cartitem=0;
         $footerquery=mysqli_query($conn,"select id,text,href,icon from footer");
-        $cartitemquery=mysqli_query($conn,"select sum(quantity) from cart where uid=$usid and checked=0 and quantity>0");
+        $cartitemquery=mysqli_query($conn,"select sum(quantity) from cart where uid=$usid and checked=0 and quantity>0 and valid=1");
         while ($cartitemrow=mysqli_fetch_row($cartitemquery)) {
             $cartitem=$cartitemrow[0];
         }
