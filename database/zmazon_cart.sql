@@ -29,12 +29,13 @@ CREATE TABLE `cart` (
   `quantity` int NOT NULL,
   `chosen` int NOT NULL DEFAULT '0',
   `checked` int NOT NULL DEFAULT '0',
+  `valid` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `cart.siid` (`siid`),
   KEY `cart.uid` (`uid`),
   CONSTRAINT `cart.siid` FOREIGN KEY (`siid`) REFERENCES `subitems` (`id`),
   CONSTRAINT `cart.uid` FOREIGN KEY (`uid`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +44,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1,1,1,3,1,1),(2,3,1,1,0,0),(3,1,2,1,1,1),(4,2,2,1,1,0),(5,1,4,2,0,0),(6,2,4,1,0,0),(7,2,5,1,0,0),(8,2,1,1,1,1),(9,4,2,0,1,0),(10,1,7,0,1,0),(11,1,1,3,0,0),(12,2,1,1,1,1),(13,4,1,1,0,0),(14,5,1,1,1,1),(15,6,1,1,0,0),(16,5,1,1,1,1),(17,2,1,2,0,0),(18,5,1,1,0,0);
+INSERT INTO `cart` VALUES (1,1,1,2,1,1,1),(2,3,1,1,1,0,0),(3,1,2,1,1,1,1),(4,2,2,1,1,0,1),(5,1,4,2,0,0,1),(6,2,4,1,0,0,1),(7,2,5,1,0,0,1),(8,2,1,1,1,1,1),(9,4,2,0,1,0,0),(10,1,7,0,1,0,0),(11,1,1,2,0,0,0),(12,2,1,1,1,1,1),(13,4,1,0,0,0,0),(14,5,1,1,1,1,1),(15,6,1,0,0,0,0),(16,5,1,1,1,1,1),(17,2,1,1,0,0,1),(18,5,1,1,0,0,1),(19,4,1,1,0,0,1),(20,1,1,0,0,0,0),(21,6,1,1,1,0,0),(22,3,1,1,0,0,1),(23,1,1,1,0,0,1),(24,6,1,1,0,0,1);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-12 18:14:43
+-- Dump completed on 2024-07-12 19:55:04
