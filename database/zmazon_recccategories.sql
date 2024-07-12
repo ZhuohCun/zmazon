@@ -27,7 +27,7 @@ CREATE TABLE `recccategories` (
   `rcname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `bgcolor` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `recccategories` (
 
 LOCK TABLES `recccategories` WRITE;
 /*!40000 ALTER TABLE `recccategories` DISABLE KEYS */;
-INSERT INTO `recccategories` VALUES (1,'今日特惠','#ff4848'),(2,'服饰鞋靴','orange'),(3,'电子家居','#1ba1ff'),(4,'美妆个护','pink');
+INSERT INTO `recccategories` VALUES (0,'不推荐','/'),(1,'今日特惠','#ff4848'),(2,'服饰鞋靴','orange'),(3,'电子家居','#1ba1ff'),(4,'美妆个护','pink');
 /*!40000 ALTER TABLE `recccategories` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-11 17:10:02
+-- Dump completed on 2024-07-12 18:14:45

@@ -85,6 +85,7 @@ if($type=='sub'){
     $back="index.php";
 }else{
     header("Location:errororsucc.php?reason=paraloss?usid=".$usid."&veri=".$veri."&usr=".$usr);
+    die;
 }
 $current="items.php&type=$type&id=$id";
 $iscart=0;

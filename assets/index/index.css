@@ -91,6 +91,7 @@
 }
 .container .main .part1 .picbar{
     height: 45vw;
+    width: 100%;
     display: flex;
     overflow-x: scroll;
 }
@@ -98,7 +99,7 @@
     width: 100%;
 }
 .container .main .part2{
-    height:30vw;
+    height:60vw;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -128,7 +129,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 1vw;
-    margin-top: 27vw;
 }
 .container .main .part3 .item{
     border-radius: 5vw;

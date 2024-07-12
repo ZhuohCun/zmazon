@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>zmazon首页</title>
+    <title>欢迎光临zmazon</title>
     <link rel="stylesheet" href="assets/index/index.css">
     <link rel="stylesheet" href="assets/icons/footer.css">
 </head>
@@ -122,7 +122,7 @@ if($act=="add"){
         </div>
         <div class="part3">
             <?PHP
-            $rcquery=mysqli_query($conn,"select id,rcname,bgcolor from recccategories");
+            $rcquery=mysqli_query($conn,"select id,rcname,bgcolor from recccategories where id!=0");
             while($rcqueryrow=mysqli_fetch_row($rcquery)){
                 $rcid=$rcqueryrow[0];
                 $rcname=$rcqueryrow[1];
@@ -152,7 +152,7 @@ if($act=="add"){
                     while ($picrow=mysqli_fetch_row($picquery)) {
                         $pic=$picrow[0];
                     }
-                    echo "<div class='item'><div class='tag' onclick=\"location.href='details.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&subid=".$subid."&back=me.php'\"><img src='$pic'><h5>$name</h5><div class='price'>&#165 $price</div><div class='detail'><div class='detailleft'>$vendor</div><div class='detailright'>满300元免运费</div></div></div><div class='last' onclick=\"location.href='index.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&actid=".$subid."&act=add&rcchosen=".$rcchosen."'\"><svg class='ico' xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 1024 1024'><path fill='currentColor' d='M352 480h320a32 32 0 1 1 0 64H352a32 32 0 0 1 0-64'/><path fill='currentColor' d='M480 672V352a32 32 0 1 1 64 0v320a32 32 0 0 1-64 0'/><path fill='currentColor' d='M512 896a384 384 0 1 0 0-768a384 384 0 0 0 0 768m0 64a448 448 0 1 1 0-896a448 448 0 0 1 0 896'/></svg></div></div>";
+                    echo "<div class='item'><div class='tag' onclick=\"location.href='details.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&subid=".$subid."&rcchosen=".$rcchosen."&back=index.php'\"><img src='$pic'><h5>$name</h5><div class='price'>&#165 $price</div><div class='detail'><div class='detailleft'>$vendor</div><div class='detailright'>满300元免运费</div></div></div><div class='last' onclick=\"location.href='index.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&actid=".$subid."&act=add&rcchosen=".$rcchosen."'\"><svg class='ico' xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 1024 1024'><path fill='currentColor' d='M352 480h320a32 32 0 1 1 0 64H352a32 32 0 0 1 0-64'/><path fill='currentColor' d='M480 672V352a32 32 0 1 1 64 0v320a32 32 0 0 1-64 0'/><path fill='currentColor' d='M512 896a384 384 0 1 0 0-768a384 384 0 0 0 0 768m0 64a448 448 0 1 1 0-896a448 448 0 0 1 0 896'/></svg></div></div>";
                 }
                 ?>
             </div>

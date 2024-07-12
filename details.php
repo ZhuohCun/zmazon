@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>zmazon商品详情</title>
+    <title>商品详情--zmazon</title>
     <link rel="stylesheet" href="assets/details/details.css">
 </head>
 <body>
@@ -42,7 +42,12 @@ if(isset($_GET['id'])){
 
 }
 if(isset($_GET['manage'])){
-    $manage=$_GET['manage'];
+    $backmanage=$_GET['manage'];
+}else{
+
+}
+if(isset($_GET['rcchosen'])){
+    $backrcchosen=$_GET['rcchosen'];
 }else{
 
 }
@@ -73,9 +78,9 @@ if(isset($_GET['back'])){
     }elseif($back=="me.php"){
         $back1="";
     }elseif ($back=="index.php"){
-        $back1="";
+        $back1="rcchosen=$backrcchosen";
     }elseif ($back=="cart.php"){
-        $back1="manage=$manage";
+        $back1="manage=$backmanage";
     }
 }else{
     $back="index.php?usid=$usid&usr=$usr&veri=$veri";

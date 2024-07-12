@@ -32,7 +32,7 @@ CREATE TABLE `ordertosubitem` (
   KEY `ordertosubitem.siid` (`siid`),
   CONSTRAINT `ordertosubitem.oid` FOREIGN KEY (`oid`) REFERENCES `orders` (`id`),
   CONSTRAINT `ordertosubitem.siid` FOREIGN KEY (`siid`) REFERENCES `subitems` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `ordertosubitem` (
 
 LOCK TABLES `ordertosubitem` WRITE;
 /*!40000 ALTER TABLE `ordertosubitem` DISABLE KEYS */;
-INSERT INTO `ordertosubitem` VALUES (1,2,2,'1'),(2,4,1,'1'),(3,5,1,'1'),(4,6,1,'2'),(5,7,1,'1'),(6,8,1,'1');
+INSERT INTO `ordertosubitem` VALUES (1,2,2,'1'),(2,4,1,'1'),(3,5,1,'1'),(4,6,1,'2'),(5,7,1,'1'),(6,8,1,'1'),(7,9,2,'1'),(8,9,5,'1'),(9,10,1,'1'),(10,11,5,'1');
 /*!40000 ALTER TABLE `ordertosubitem` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-11 17:10:03
+-- Dump completed on 2024-07-12 18:14:44

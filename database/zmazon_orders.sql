@@ -35,7 +35,7 @@ CREATE TABLE `orders` (
   CONSTRAINT `orders.aid` FOREIGN KEY (`aid`) REFERENCES `usertoaddress` (`id`),
   CONSTRAINT `orders.status` FOREIGN KEY (`status`) REFERENCES `status` (`id`),
   CONSTRAINT `orders.uid` FOREIGN KEY (`uid`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (2,1,2,399.43,1),(4,2,1,441.88,2),(5,1,1,397.67,1),(6,1,1,883.76,1),(7,2,1,397.67,2),(8,1,1,397.67,1);
+INSERT INTO `orders` VALUES (2,1,2,399.43,1),(4,2,1,441.88,2),(5,1,1,397.67,1),(6,1,1,883.76,1),(7,2,1,397.67,2),(8,1,1,397.67,1),(9,1,1,710.02,1),(10,1,1,397.67,1),(11,1,1,235.71,1);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-11 17:10:03
+-- Dump completed on 2024-07-12 18:14:44

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>zmazon购物车</title>
+    <title>购物车--zmazon</title>
     <link rel="stylesheet" href="assets/cart/cart.css">
     <link rel="stylesheet" href="assets/icons/footer.css">
 </head>
@@ -69,7 +69,7 @@ if($usid==-1){
     $cartitem=0;
 }
 $haslocation=0;
-$dlocationquery=mysqli_query($conn,"select address from usertoaddress where uid=$usid and isdefault = 1");
+$dlocationquery=mysqli_query($conn,"select address from usertoaddress where uid=$usid and isdefault = 1 limit 1");
 while ($dlocationrow=mysqli_fetch_row($dlocationquery)) {
     $location=$dlocationrow[0];
     $haslocation=1;
@@ -140,7 +140,7 @@ if($actid>=0){
         }
     }elseif ($act=='minus'){
         mysqli_query($conn,"start transaction");
-        $minusquery=mysqli_query($conn,"select quantity from cart where id=$actid for update");
+        $minusquery=mysqli_query($conn,"select quantity from cart where id=$actid and for update");
         while ($minusrow=mysqli_fetch_row($minusquery)){
             $minusquantity=$minusrow[0];
         }
@@ -169,7 +169,7 @@ if($actid>=0){
     }
 }
 if($act=='del'){
-    mysqli_query($conn,"update cart set quantity=0 where checked=0 and quantity>0 and chosen=1 and uid=$usid");
+    mysqli_query($conn,"update cart set quantity=0,chosen=0 where checked=0 and quantity>0 and chosen=1 and uid=$usid");
     header("location:cart.php?usid=$usid&usr=$usr&veri=$veri&manage=1");
 }elseif ($act=='buy'){
     $buyaddress=-1;

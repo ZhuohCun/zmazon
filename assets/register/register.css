@@ -156,12 +156,15 @@ body{
     width: 100%;
     height: 9vw;
     font-size: 4vw;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .container .main .part5 .text{
     width: auto;
     height: 9vw;
     color: blue;
+    font-size: 4vw;
     text-underline: none;
 }
 .container .main .part6{

@@ -44,9 +44,9 @@ if(isset($_GET['text'])){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?PHP
         if($succ==1){
-            echo "成功了";
+            echo "成功了--zmazon";
         }else{
-            echo "出错了";
+            echo "出错了--zmazon";
         }
         ?></title>
     <link rel="stylesheet" href="assets/errororsucc/errororsucc.css">
@@ -109,14 +109,14 @@ if(isset($_GET['text'])){
         </div>
         <?PHP
             echo "<div class=\"backbutton\" onclick=\"location.href='".$back."?usid=".$usid."&usr=".$usr."&veri=".$veri."'\">";
-            if($back!='index.php'){
-                if($text==0){
-                    echo "<div class='button'>返回</div></div>";
+            if($text==0){
+                if($back=='index.php'){
+                    echo "<div class='button'>回首页</button></div>";
                 }else{
-                    echo "<div class='button'>$text</button></div>";
+                    echo "<div class='button'>返回</div></div>";
                 }
             }else{
-                echo "<div class='button'>回首页</button></div>";
+                echo "<div class='button'>$text</button></div>";
             }
         ?>
     </div>

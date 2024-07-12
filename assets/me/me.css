@@ -61,6 +61,7 @@ body{
     width: 25vw;
     height: 8vw;
     display: flex;
+    align-items:stretch;
     flex-direction: column;
 }
 .container .main .part1 .left .detail .user{
@@ -78,6 +79,7 @@ body{
 }
 .container .main .part1 .left .detail .logorreg h1{
     font-size: 3vw;
+    height: 3vw;
     width: 25vw;
     display: flex;
     align-items: center;
@@ -107,7 +109,7 @@ body{
 }
 .container .main .part2{
     height: 30vw;
-    width: 90vw;
+    width: 90vw;;
 }
 .container .main .part3{
     background-color: white;
@@ -159,7 +161,6 @@ body{
     background-color: red;
     color: white;
     border-radius: 15vw;
-    text-align: center;
     align-items: center;
     justify-content: center;
 }

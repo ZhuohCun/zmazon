@@ -50,14 +50,14 @@
     row-gap:1vw;
 }
 .container .main .ichead{
-    height: 40vw;
+    height: auto;
     width: 97vw;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .container .main .ichead img{
-    height: 40vw;
+    height: auto;
     width: 97vw;
 }
 .container .main .item{

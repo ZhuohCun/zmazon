@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>zmazon分类</title>
+    <title>商品分类--zmazon</title>
     <link rel="stylesheet" href="assets/category/category.css">
     <link rel="stylesheet" href="assets/icons/footer.css">
 </head>
@@ -128,23 +128,23 @@ $footerchosen=2;
             $fhref=$footerrow[2];
             $ficon=$footerrow[3];
             if($fid==$footerchosen&&$fid!=3) {
-                echo "<div class='item' onclick=\"location.href='".$fhref."?usid=".$usid."&usr=".$usr."&veri=".$veri."'\"><i style='background-color: cornflowerblue' class='$ficon'></i><h3>$ftext</h3></div>";
+                echo "<div class='item' onclick=\"location.href='".$fhref."?usid=".$usid."&usr=".$usr."&veri=".$veri."&categorychosen=".$categorychosen."'\"><i style='background-color: cornflowerblue' class='$ficon'></i><h3>$ftext</h3></div>";
             }elseif ($fid==3) {
                 if($fid==$footerchosen){
                     if($cartitem>0){
-                        echo "<div class='item' onclick=\"location.href='".$fhref."?usid=".$usid."&usr=".$usr."&veri=".$veri."'\"><i style='background-color: cornflowerblue' class='$ficon'></i><div class='carticon'><p>$cartitem</p></div><h3>$ftext</h3></div>";
+                        echo "<div class='item' onclick=\"location.href='".$fhref."?usid=".$usid."&usr=".$usr."&veri=".$veri."&categorychosen=".$categorychosen."'\"><i style='background-color: cornflowerblue' class='$ficon'></i><div class='carticon'><p>$cartitem</p></div><h3>$ftext</h3></div>";
                     }else{
-                        echo "<div class='item' onclick=\"location.href='".$fhref."?usid=".$usid."&usr=".$usr."&veri=".$veri."'\"><i style='background-color: cornflowerblue' class='$ficon'></i><h3>$ftext</h3></div>";
+                        echo "<div class='item' onclick=\"location.href='".$fhref."?usid=".$usid."&usr=".$usr."&veri=".$veri."&categorychosen=".$categorychosen."'\"><i style='background-color: cornflowerblue' class='$ficon'></i><h3>$ftext</h3></div>";
                     }
                 }else{
                     if($cartitem>0){
-                        echo "<div class='item' onclick=\"location.href='".$fhref."?usid=".$usid."&usr=".$usr."&veri=".$veri."'\"><i class='$ficon'></i><div class='carticon'><p>$cartitem</p></div><h3>$ftext</h3></div>";
+                        echo "<div class='item' onclick=\"location.href='".$fhref."?usid=".$usid."&usr=".$usr."&veri=".$veri."&categorychosen=".$categorychosen."'\"><i class='$ficon'></i><div class='carticon'><p>$cartitem</p></div><h3>$ftext</h3></div>";
                     }else{
-                        echo "<div class='item' onclick=\"location.href='".$fhref."?usid=".$usid."&usr=".$usr."&veri=".$veri."'\"><i class='$ficon'></i><h3>$ftext</h3></div>";
+                        echo "<div class='item' onclick=\"location.href='".$fhref."?usid=".$usid."&usr=".$usr."&veri=".$veri."&categorychosen=".$categorychosen."'\"><i class='$ficon'></i><h3>$ftext</h3></div>";
                     }
                 }
             }else {
-                echo "<div class='item' onclick=\"location.href='".$fhref."?usid=".$usid."&usr=".$usr."&veri=".$veri."'\"><i class='$ficon'></i><h3>$ftext</h3></div>";
+                echo "<div class='item' onclick=\"location.href='".$fhref."?usid=".$usid."&usr=".$usr."&veri=".$veri."&categorychosen=".$categorychosen."'\"><i class='$ficon'></i><h3>$ftext</h3></div>";
             }
         }
         ?>
