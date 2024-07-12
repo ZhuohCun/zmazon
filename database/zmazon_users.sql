@@ -31,7 +31,7 @@ CREATE TABLE `users` (
   `role` int NOT NULL,
   `verify` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'testuser','test','123456','123456',3,'tester'),(2,'testuser1','test','1','1',3,'551698.3825263552'),(3,'testuser2','test','1','1',3,'491594.45659405965'),(4,'testuser4','test','1','1',3,'957705.2946739879'),(5,'testuser6','test','1','2',3,'7833189235.844825'),(6,'testuser7','test','1','2',3,'6.651183326403781e15'),(7,'testuser8','test','1','2',3,'2126837635530.939');
+INSERT INTO `users` VALUES (1,'testuser','test','123456','123456',3,'tester'),(2,'testuser1','test','1','1',3,'551698.3825263552'),(3,'testuser2','test','2','2',3,'491594.45659405965'),(4,'testuser4','test','3','3',3,'957705.2946739879'),(5,'testuser6','test','4','4',3,'7833189235.844825'),(6,'testuser7','test','5','5',3,'6.651183326403781'),(7,'testuser8','test','6','6',3,'2126837635530.939'),(8,'myuser','myuser','123','456',3,'5006726183934.813'),(9,'testuser10','test','10','10',3,'2856387554534.1406');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-12 19:55:04
+-- Dump completed on 2024-07-12 20:41:47

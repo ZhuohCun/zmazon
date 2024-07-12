@@ -108,13 +108,11 @@ if($act=="add"){
                 <div class="logorreg" <?PHP
                     if($usid==-1){
                         echo "onclick=location.href='login.php'";
-                    }
-                ?>>
-                    <h1 <?php
-                    if($usid!=-1){
+                    }else{
                         echo "onclick='logout()'";
                     }
-                    ?>>
+                ?>>
+                    <h1>
                             <?PHP
                             if($usid==-1){
                                 echo "登录/注册";
