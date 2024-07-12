@@ -16,31 +16,28 @@
         var password2 = document.getElementById("password2");
         var email = document.getElementById("email");
         var phone = document.getElementById("phone");
-        if (check1.checked&&check2.checked) {
-            if(username.value===''){
-                alert("请输入用户名");
-                return false;
-            }
-            if(phone.value===''){
-                alert("请输入电话号码");
-                return false;
-            }
-            if(email.value===''){
-                alert("请输入电子邮箱");
-                return false;
-            }
-            if(password1.value===''){
-                alert("请输入密码");
-                return false;
-            }else {
-                if(password1.value!==password2.value){
-                    alert("两次输入的密码不匹配");
-                    return false;
-                }
-            }
-        } else {
-            alert("请同意使用协议");
+        if(username.value===''){
+            alert("请输入用户名");
             return false;
+        }else if(phone.value===''){
+            alert("请输入电话号码");
+            return false;
+        }else if(email.value===''){
+            alert("请输入电子邮箱");
+            return false;
+        }else if(password1.value===''){
+            alert("请输入密码");
+            return false;
+        }else if(password1.value!==password2.value){
+            alert("两次输入的密码不匹配");
+            return false;
+        }else {
+            if (check1.checked&&check2.checked){
+                return true;
+            }else {
+                alert("请同意使用协议");
+                    return false;
+            }
         }
     }
     function showpw(){

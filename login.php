@@ -12,18 +12,20 @@
         var check = document.getElementById("accept");
         var username=document.getElementById("username");
         var password=document.getElementById("password");
-        if (check.checked) {
-            if(username.value===''){
-                alert("请输入用户名");
-                return false;
-            }
-            if(password.value===''){
-                alert("请输入密码");
-                return false;
-            }
-        } else {
-            alert("请同意使用协议");
+        if(username.value===''){
+            alert("请输入用户名");
             return false;
+        }
+        if(password.value===''){
+            alert("请输入密码");
+            return false;
+        }else {
+            if (check.checked) {
+                return true;
+            } else {
+                alert("请同意使用协议");
+                return false;
+            }
         }
     }
     function showpw(){

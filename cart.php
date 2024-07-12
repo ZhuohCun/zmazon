@@ -61,7 +61,7 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
 }
 $footerchosen=3;
 $cartitem=0;
-$cartitemquery=mysqli_query($conn,"select sum(quantity) from cart where uid=$usid and checked=0 and quantity>0");
+$cartitemquery=mysqli_query($conn,"select sum(quantity) from cart where uid=$usid and checked=0 and quantity>0 and valid=1");
 while ($cartitemrow=mysqli_fetch_row($cartitemquery)) {
     $cartitem=$cartitemrow[0];
 }
@@ -79,14 +79,14 @@ if($haslocation==0){
 }
 $totalprice=0;
 $totalquantity=0;
-$totalquery=mysqli_query($conn,"select sum(cart.quantity*subitems.siprice),sum(cart.quantity) from subitems,cart where uid=$usid and cart.siid=subitems.id and checked=0 and quantity>0 and chosen=1");
+$totalquery=mysqli_query($conn,"select sum(cart.quantity*subitems.siprice),sum(cart.quantity) from subitems,cart where uid=$usid and cart.siid=subitems.id and checked=0 and quantity>0 and chosen=1 and valid=1");
 while ($totalrow=mysqli_fetch_row($totalquery)) {
     $totalprice=number_format($totalrow[0],2);
     $totalquantity=number_format($totalrow[1],0);
 }
 $allcheck=1;
 $hasallcheck=0;
-$allcheckquery=mysqli_query($conn,"select chosen from cart where uid=$usid and quantity>0 and checked=0");
+$allcheckquery=mysqli_query($conn,"select chosen from cart where uid=$usid and quantity>0 and checked=0 and valid=1");
 while ($allcheckrow=mysqli_fetch_row($allcheckquery)){
     $hasallcheck=1;
     if($allcheckrow[0]<=0){
@@ -99,7 +99,7 @@ if($hasallcheck==0){
 if($actid>=0){
     $verify=0;
     if($actid!=0){
-        $verifyquery=mysqli_query($conn,"select count(*) from cart where id=$actid and uid=$usid and quantity>0 and checked=0");
+        $verifyquery=mysqli_query($conn,"select count(*) from cart where id=$actid and uid=$usid and quantity>0 and checked=0 and valid=1");
         while ($verifyrow=mysqli_fetch_row($verifyquery)){
             if($verifyrow[0]>0){
                 $verify=1;
@@ -130,17 +130,17 @@ if($actid>=0){
             die;
         }else{
             if($allcheck==0){
-                mysqli_query($conn,"update cart set chosen=1 where uid=$usid and quantity>0 and checked=0");
+                mysqli_query($conn,"update cart set chosen=1 where uid=$usid and quantity>0 and checked=0 and valid=1");
                 header("location:cart.php?usid=$usid&usr=$usr&veri=$veri&manage=$manage");
                 die;
             }else{
-                mysqli_query($conn,"update cart set chosen=0 where uid=$usid  and quantity>0 and checked=0");
+                mysqli_query($conn,"update cart set chosen=0 where uid=$usid  and quantity>0 and checked=0 and valid=1");
                 header("location:cart.php?usid=$usid&usr=$usr&veri=$veri&manage=$manage");
             }
         }
     }elseif ($act=='minus'){
         mysqli_query($conn,"start transaction");
-        $minusquery=mysqli_query($conn,"select quantity from cart where id=$actid and for update");
+        $minusquery=mysqli_query($conn,"select quantity from cart where id=$actid for update");
         while ($minusrow=mysqli_fetch_row($minusquery)){
             $minusquantity=$minusrow[0];
         }
@@ -169,7 +169,7 @@ if($actid>=0){
     }
 }
 if($act=='del'){
-    mysqli_query($conn,"update cart set quantity=0,chosen=0 where checked=0 and quantity>0 and chosen=1 and uid=$usid");
+    mysqli_query($conn,"update cart set valid=0 where checked=0 and quantity>0 and chosen=1 and uid=$usid");
     header("location:cart.php?usid=$usid&usr=$usr&veri=$veri&manage=1");
 }elseif ($act=='buy'){
     $buyaddress=-1;
@@ -188,7 +188,7 @@ if($act=='del'){
         die;
     }
     mysqli_query($conn,"start transaction");
-    $buytotalquery=mysqli_query($conn,"select sum(cart.quantity*subitems.siprice),sum(cart.quantity),sum(subitems.siimportfee*cart.quantity),sum(subitems.transportfee*cart.quantity) from subitems,cart where uid=$usid and cart.siid=subitems.id and checked=0 and quantity>0 and chosen=1 for update");
+    $buytotalquery=mysqli_query($conn,"select sum(cart.quantity*subitems.siprice),sum(cart.quantity),sum(subitems.siimportfee*cart.quantity),sum(subitems.transportfee*cart.quantity) from subitems,cart where uid=$usid and cart.siid=subitems.id and checked=0 and quantity>0 and chosen=1 and valid=1 for update");
     while ($buytotalrow=mysqli_fetch_row($buytotalquery)) {
         $buytotalprice = $buytotalrow[0];
         $buytotalquantity = $buytotalrow[1];
@@ -204,13 +204,13 @@ if($act=='del'){
     while ($orderrow=mysqli_fetch_row($orderidquery)) {
         $orderid=$orderrow[0];
     }
-    $buysubitemquery=mysqli_query($conn,"select siid,quantity from cart where uid=$usid and quantity>0 and chosen=1 and checked=0");
+    $buysubitemquery=mysqli_query($conn,"select siid,quantity from cart where uid=$usid and quantity>0 and chosen=1 and checked=0 and valid=1");
     while ($buysubitemrow=mysqli_fetch_row($buysubitemquery)) {
         $buysubitemid=$buysubitemrow[0];
         $buysubitemquantity=$buysubitemrow[1];
         mysqli_query($conn,"insert into ordertosubitem (oid,siid,quantity) values ($orderid,$buysubitemid,$buysubitemquantity)");
     }
-    mysqli_query($conn,"update cart set checked=1 where checked=0 and quantity>0 and chosen=1 and uid=$usid");
+    mysqli_query($conn,"update cart set checked=1 where checked=0 and quantity>0 and chosen=1 and valid=1 and uid=$usid");
     mysqli_query($conn,"commit");
     header("location:payment.php?usid=$usid&usr=$usr&veri=$veri&orderid=$orderid");
     die;
@@ -243,7 +243,7 @@ if($act=='del'){
     <div class="main">
         <?php
         $isempty=1;
-        $subitemquery=mysqli_query($conn,"select subitems.id,subitems.sitext,subitems.subname,subitems.siprice,subitems.siimportfee,subitems.transportfee,cart.chosen,cart.id from cart,subitems where subitems.id=cart.siid and cart.uid=$usid and cart.quantity>0 and cart.checked=0");
+        $subitemquery=mysqli_query($conn,"select subitems.id,subitems.sitext,subitems.subname,subitems.siprice,subitems.siimportfee,subitems.transportfee,cart.chosen,cart.id from cart,subitems where subitems.id=cart.siid and cart.uid=$usid and cart.quantity>0 and valid=1 and cart.checked=0");
         while ($subitemrow=mysqli_fetch_row($subitemquery)) {
             $subid=$subitemrow[0];
             $subtext=$subitemrow[1];
@@ -267,7 +267,7 @@ if($act=='del'){
             while ($subnumrow=mysqli_fetch_row($subnumquery)){
                 $subnum=$subnumrow[0];
             }
-            $quantityquery=mysqli_query($conn,"select quantity from cart where siid=$subid and uid=$usid");
+            $quantityquery=mysqli_query($conn,"select quantity from cart where siid=$subid and checked=0 and valid=1 and quantity>0 and uid=$usid");
             while ($quantityrow=mysqli_fetch_row($quantityquery)){
                 $subquantity=$quantityrow[0];
             }

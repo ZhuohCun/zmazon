@@ -92,22 +92,22 @@ if($act=="add"){
         header("location:login.php");
         die;
     }else{
-        $cartquery=mysqli_query($conn,"select * from cart where uid=$usid and siid=$subid and checked=0");
+        $cartquery=mysqli_query($conn,"select * from cart where uid=$usid and siid=$subid and checked=0 and quantity>0 and valid=1");
         while($cartrow=mysqli_fetch_assoc($cartquery)){
             $iscart=1;
         }
         if($iscart==0){
-            mysqli_query($conn,"insert into cart (siid,uid,quantity) values ($subid,$usid,1)");
+            mysqli_query($conn,"insert into cart (siid,uid,quantity,valid) values ($subid,$usid,1,1)");
             header("location:errororsucc.php?reason=addcart&succ=1&text=去购物车&back=cart.php&usid=$usid&veri=$veri&usr=$usr");
             die;
         }elseif($iscart==1){
             mysqli_query($conn,"start transaction");
-            $quantityquery=mysqli_query($conn,"select quantity from cart where uid=$usid and siid=$subid for update");
+            $quantityquery=mysqli_query($conn,"select quantity from cart where uid=$usid and siid=$subid and valid=1 and checked=0 and quantity>0 for update");
             while ($quantityrow=mysqli_fetch_row($quantityquery)){
                 $quantity=$quantityrow[0];
             }
             $quantity=$quantity+1;
-            mysqli_query($conn,"update cart set quantity=$quantity where uid=$usid and siid=$subid");
+            mysqli_query($conn,"update cart set quantity=$quantity where uid=$usid and siid=$subid and valid=1 and checked=0 and quantity>0");
             mysqli_query($conn,"commit");
             header("location:errororsucc.php?reason=addcart&succ=1&text=去购物车&back=cart.php&usid=$usid&veri=$veri&usr=$usr");
             die;

@@ -94,22 +94,22 @@ if($act=="add"){
         header("location:login.php");
         die;
     }else{
-        $cartquery=mysqli_query($conn,"select * from cart where uid=$usid and siid=$actid and checked=0");
+        $cartquery=mysqli_query($conn,"select * from cart where uid=$usid and siid=$actid and checked=0 and quantity>0 and valid=1");
         while($cartrow=mysqli_fetch_assoc($cartquery)){
             $iscart=1;
         }
         if($iscart==0){
-            mysqli_query($conn,"insert into cart (siid,uid,quantity) values ($actid,$usid,1)");
+            mysqli_query($conn,"insert into cart (siid,uid,quantity,valid) values ($actid,$usid,1,1)");
             header("location:items.php?usid=$usid&veri=$veri&usr=$usr&type=$type&id=$id");
             die;
         }elseif($iscart==1){
             mysqli_query($conn,"start transaction");
-            $quantityquery=mysqli_query($conn,"select quantity from cart where uid=$usid and siid=$actid for update");
+            $quantityquery=mysqli_query($conn,"select quantity from cart where uid=$usid and siid=$actid and checked=0 and quantity>0 and valid=1 for update");
             while ($quantityrow=mysqli_fetch_row($quantityquery)){
                 $quantity=$quantityrow[0];
             }
             $quantity=$quantity+1;
-            mysqli_query($conn,"update cart set quantity=$quantity where uid=$usid and siid=$actid");
+            mysqli_query($conn,"update cart set quantity=$quantity where uid=$usid and siid=$actid and checked=0 and quantity>0 and valid=1");
             mysqli_query($conn,"commit");
             header("location:items.php?usid=$usid&veri=$veri&usr=$usr&type=$type&id=$id");
             die;
@@ -126,7 +126,6 @@ if($act=="add"){
         <?PHP
         if($type=='sub'){
             $itemquery=mysqli_query($conn,"select distinct subitems.id from thirdcategories,subitems,items where thirdcategories.scid=$id and thirdcategories.id=items.thcid and items.id=subitems.iid order by subitems.id");
-            //$itemquery=mysqli_query($conn,"select distinct subitems.id from subcategories,thirdcategories,subitems,items where subcategories.id=thirdcategories.scid and thirdcategories.id=items.thcid and subcategories.id=$id order by subitems.id");
             while ($itemrow=mysqli_fetch_row($itemquery)) {
                 $subid=$itemrow[0];
                 $detailquery=mysqli_query($conn,"select subitems.siprice,subitems.sitext,vendors.vname from subitems,items,vendors where subitems.iid=items.id and items.vid=vendors.id and subitems.id=$subid");
