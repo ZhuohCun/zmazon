@@ -1,0 +1,74 @@
+@font-face {
+    font-family: "Iconify Explorer Font";
+    src: url("./cart.svg") format("svg");
+    src: url("./category.svg") format("svg");
+    src: url("./main.svg") format("svg");
+    src: url("./me.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+.container .footer{
+    width: 100%;
+    height: 14vw;
+    border-top: solid 1px #DDD;
+    background-color: #fff;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+.container .footer .item{
+    height: 9vw;
+    width: 9vw;
+    flex-wrap: wrap;
+    margin-top: 1.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .footer .item i{
+    border-radius: 15vw;
+    align-items: center;
+    justify-content: center;
+}
+.container .footer .item .fmain{
+    content:url("./main.svg");
+}
+.container .footer .item .fcategory{
+    content:url("./category.svg");
+}
+.container .footer .item .fcart{
+    content:url("./cart.svg");
+}
+.container .footer .item .fme{
+    content:url("./me.svg");
+}
+.container .footer .item h3{
+    margin-top: -0.4vw;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 2.5vw;
+    width: 10vw;
+}
+.container .footer .item .carticon{
+    width: 4.2vw;
+    height: 4.2vw;
+    background-color: red;
+    color: #fff;
+    font-size: 3.6vw;
+    border-radius: 2.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin-top: -6vw;
+    margin-left: 6vw;
+}
+.container .footer .item .carticon p{
+    font-size: 3.5vw;
+    color: white;
+}
