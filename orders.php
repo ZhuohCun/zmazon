@@ -52,7 +52,7 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
         </div>
     </div>
     <div class="header2">
-        <div <?php if($status==0){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "href=\"orders.php?usid=$usid&usr=$usr&veri=$veri&typeid=0\""?>>全部订单</div>
+        <div <?php if($status==0){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "onclick=\"location.href'orders.php?usid=$usid&usr=$usr&veri=$veri&typeid=0'\""?>>全部订单</div>
         <div <?php if($status==1){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";}?>>待支付</div>
         <div <?php if($status==2){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";}?>>待发货</div>
         <div <?php if($status==3){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";}?>>待收货</div>
