@@ -83,3 +83,40 @@ body{
     box-sizing: border-box;
     flex-wrap: wrap;
 }
+.container .main .itembox{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction:column ;
+}
+.container .main .itembox .item{
+    width: 97vw;
+    max-height: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.container .main .itembox .item .itemhead{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    color: #2d2d2d;
+    height: 8vw;
+}
+.container .main .itembox .item .itembody{
+    width: 100%;
+    height: 22vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.container .main .itembox .item .itembody .p1{
+    width: 100%;
+    height: 8vw;
+    display: flex;
+    justify-content: left;
+}
+.container .main .itembox .item .itembody .p2{}

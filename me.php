@@ -117,11 +117,11 @@ if($act=="add"){
                             if($usid==-1){
                                 echo "登录/注册";
                             }else{
-                                $tocommentquery=mysqli_query($conn,"select count(*) from orders,ordertosubitem where orders.id=ordertosubitem.oid and orders.uid=$usid and status=4");
+                                $tocommentquery=mysqli_query($conn,"select count(*) from orders where orders.uid=$usid and status=4");
                                 while ($tocommentrow=mysqli_fetch_row($tocommentquery)){
                                     $tonum=$tocommentrow[0];
                                 }
-                                $hascommentquery=mysqli_query($conn,"select count(*) from orders,ordertosubitem where orders.id=ordertosubitem.oid and orders.uid=$usid and status=5");
+                                $hascommentquery=mysqli_query($conn,"select count(*) from orders where orders.uid=$usid and status=5");
                                 while ($hascommentrow=mysqli_fetch_row($hascommentquery)){
                                     $hasnum=$hascommentrow[0];
                                 }
@@ -162,7 +162,7 @@ if($act=="add"){
                     $statusid=$statusrow[0];
                     $statusname=$statusrow[1];
                     if($usid!=-1){
-                        $dotquery=mysqli_query($conn,"select count(*) from orders,ordertosubitem where orders.uid=$usid and orders.status=$statusid and orders.id=ordertosubitem.oid");
+                        $dotquery=mysqli_query($conn,"select count(*) from orders where orders.uid=$usid and orders.status=$statusid");
                         while($dotrow=mysqli_fetch_row($dotquery)){
                             $dotnum=$dotrow[0];
                         }

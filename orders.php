@@ -63,15 +63,14 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
         <div class="itembox">
         <?php
         if($status==0){
-            $orderquery=mysqli_query($conn,"select order.id,orders.price,order.quantity,subitems.sitext,vendors.vname,orders.status from orders,subitems,items,vendors where orders.uid=$usid and orders.siid=subitems.id and subitems.iid=items.id and items.vid=vendors.id");
+            $orderquery=mysqli_query($conn,"select orders.id,orders.price,orders.quantity,subitems.sitext,vendors.vname,orders.status from orders,subitems,items,vendors where orders.uid=$usid and orders.siid=subitems.id and subitems.iid=items.id and items.vid=vendors.id");
         }else{
-            $orderquery=mysqli_query($conn,"select order.id,orders.price,order.quantity,subitems.sitext,vendors.vname,orders.status from orders,subitems,items,vendors where orders.uid=$usid and orders.status=$status and orders.siid=subitems.id and subitems.iid=items.id and items.vid=vendors.id");
+            $orderquery=mysqli_query($conn,"select orders.id,orders.price,orders.quantity,subitems.sitext,vendors.vname,orders.status from orders,subitems,items,vendors where orders.uid=$usid and orders.status=$status and orders.siid=subitems.id and subitems.iid=items.id and items.vid=vendors.id");
         }
-        $orderquery=mysqli_query($conn,"select order.id,orders.price,order.quantity,subitems.sitext,vendors.vname,orders.status from orders,subitems,items,vendors where orders.uid=$usid and orders.status=$status and orders.siid=subitems.id and subitems.iid=items.id and items.vid=vendors.id");
         while($orderrow=mysqli_fetch_row($orderquery)){
-            $picquery=mysqli_query($conn,"select top subitemtopic.pic from subitemtopic where subitemtopic.siid=subitems.id");
-            while (mysqli_fetch_row($picquery)) {
-                $pic=$picquery[0];
+            $picquery=mysqli_query($conn,"select subitemtopic.pic from subitemtopic,subitems where subitemtopic.siid=subitems.id limit 1");
+            while ($picrow=mysqli_fetch_row($picquery)) {
+                $pic=$picrow[0];
             }
             $id=$orderrow[0];
             $price=$orderrow[1];
@@ -93,6 +92,12 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
             echo "<div class='item'>";
             echo "<div class='itemhead'>订单号 $id</div>";
             echo "<div class='itembody'>";
+            echo "<div class='p1'>$realststus</div>";
+            echo "<div class='p2'>";
+            echo "<div class='left'><img src='$pic'></div>";
+            echo "<div class='middle'><div class='itemtitle'>$sitext</div><div class='vendor'>$vname</div></div>";
+            echo "<div class='right'><div class='price'>$price</div><div class='quantity'>$quantity</div></div>";
+            echo "</div>";
             echo "</div>";
             echo "</div>";
         }
