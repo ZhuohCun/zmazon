@@ -51,6 +51,11 @@ if(isset($_GET['rcchosen'])){
 }else{
 
 }
+if(isset($_GET['status'])){
+    $backstatus=$_GET['status'];
+}else{
+
+}
 if(isset($_GET['subid'])){
     $subid=$_GET['subid'];
 }else{
@@ -81,6 +86,8 @@ if(isset($_GET['back'])){
         $back1="rcchosen=$backrcchosen";
     }elseif ($back=="cart.php"){
         $back1="manage=$backmanage";
+    }elseif ($back=="orders.php"){
+        $back1="status=$backstatus";
     }
 }else{
     $back="index.php?usid=$usid&usr=$usr&veri=$veri";

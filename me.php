@@ -157,7 +157,7 @@ if($act=="add"){
             </div>
             <div class="body">
                 <?PHP
-                $statusquery=mysqli_query($conn,"select * from status where id!=7 and id!=5");
+                $statusquery=mysqli_query($conn,"select * from status where id!=7");
                 while($statusrow=mysqli_fetch_row($statusquery)){
                     $statusid=$statusrow[0];
                     $statusname=$statusrow[1];
