@@ -76,7 +76,7 @@ body{
 .container .main {
     height: 85%;
     width: 98%;
-    background-color: #bbb;
+    background-color: #f0f2f1;
     margin-bottom: 10vw;
     margin-top: 20vw;
     display: flex;
@@ -85,11 +85,37 @@ body{
 }
 .container .main .itembox{
     max-width: 97vw;
+    min-height: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction:column ;
+    background-color: #fff;
     row-gap: 2vw;
+}
+.container .main .itembox .noitem{
+    width: 97vw;
+    height: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10vw;
+}
+.container .main .itembox .noitem img{
+    width: 25vw;
+    height: 25vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .main .itembox .noitem .noitemtitle{
+    width: 95vw;
+    height: 5vw;
+    display: flex;
+    font-size: 3vw;
+    justify-content: center;
+    align-items: center;
 }
 .container .main .itembox .item{
     width: 97vw;
@@ -98,7 +124,7 @@ body{
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    background-color: #fff;
+    background-color:#fff;
 }
 .container .main .itembox .item .itemhead{
     width: 100%;

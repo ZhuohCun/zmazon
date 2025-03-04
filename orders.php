@@ -32,6 +32,7 @@ if(isset($_GET['status'])){
     $status=0;
 }
 $current="orders.php";
+$hasitem=0;
 $usrv=mysqli_query($conn,'set names utf8');
 $usrv=mysqli_query($conn,'select username,verify from users where id = '.$usid);
 $usrqry=0;
@@ -44,6 +45,9 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
 
 }elseif($usid!=-1){
     header("Location:"."errororsucc.php?reason=incorrectuser");
+    die;
+}else{
+    header("Location:"."login.php");
     die;
 }?>
 <div class="container">
@@ -69,6 +73,7 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
             $orderquery=mysqli_query($conn,"select orders.id,orders.price,orders.quantity,subitems.sitext,vendors.vname,orders.status,subitems.id from orders,subitems,items,vendors where orders.uid=$usid and orders.status=$status and orders.siid=subitems.id and subitems.iid=items.id and items.vid=vendors.id");
         }
         while($orderrow=mysqli_fetch_row($orderquery)){
+            $hasitem=1;
             $siid=$orderrow[6];
             $picquery=mysqli_query($conn,"select subitemtopic.pic from subitemtopic,subitems where subitemtopic.siid=subitems.id and subitems.id=$siid limit 1");
             while ($picrow=mysqli_fetch_row($picquery)) {
@@ -102,6 +107,9 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
             echo "</div>";
             echo "</div>";
             echo "</div>";
+        }
+        if($hasitem==0){
+            echo "<div class='noitem'><img src='assets/orders/empty.png'><div class='noitemtitle'>暂无订单信息</div></div>";
         }
         ?>
         </div>
