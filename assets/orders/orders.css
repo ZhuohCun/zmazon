@@ -119,7 +119,7 @@ body{
 }
 .container .main .itembox .item{
     width: 97vw;
-    max-height: 40vw;
+    max-height: 45vw;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -135,7 +135,7 @@ body{
 }
 .container .main .itembox .item .itembody{
     width: 100%;
-    height: 32vw;
+    height: 38vw;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -150,7 +150,7 @@ body{
 }
 .container .main .itembox .item .itembody .p2{
     max-width: 100vw;
-    height: 26vw;
+    height: 30vw;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -200,15 +200,29 @@ body{
 }
 .container .main .itembox .item .itembody .p2 .right{
     max-width: 17vw;
-    max-height: 24vw;
+    max-height: 28vw;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 .container .main .itembox .item .itembody .p2 .right .price{
-
+    max-width: 17vw;
+    max-height: 5vw;
+    display: flex;
 }
 .container .main .itembox .item .itembody .p2 .right .quantity{
-
+    max-width: 17vw;
+    max-height: 5vw;
+    display: flex;
+}
+.container .main .itembox .item .itembody .p2 .right .pay{
+    min-width: 14vw;
+    min-height: 7vw;
+    background-color: dodgerblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 10vw;
 }

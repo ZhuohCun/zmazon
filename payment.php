@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>支付--zmazon</title>
-    <link rel="stylesheet" href="assets/orders/orders.css">
+    <link rel="stylesheet" href="assets/payment/payment.css">
+    <title>在线支付</title>
 </head>
 <body>
 <?PHP
@@ -26,8 +26,8 @@ if(isset($_GET['veri'])){
 }else{
     $veri='null';
 }
-if(isset($_GET['status'])){
-    $status=$_GET['status'];
+if(isset($_GET['orderid'])){
+    $status=$_GET['orderid'];
 }else{
     $status=0;
 }
@@ -50,70 +50,89 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
     header("Location:"."login.php");
     die;
 }?>
-<div class="container">
-    <div class="header">
-        <div>
-            <div class="item">订单详情</div>
-        </div>
+<div class="wrapper">
+    <header>
+        <p>在线支付</p>
+    </header>
+    <h3>订单信息：</h3>
+    <div class="order-info">
+        <?PHP
+        global $vname;
+        global $vfee;
+        $info=mysqli_query($conn,'select vname,vfee from vendor where vno = '.$vendor);
+        while($inforow=mysqli_fetch_row($info)){
+            $vname=$inforow[0];
+            $vfee=$inforow[1];
+        }
+        ?>
+        <p>
+            <?PHP echo $vname; ?>
+            <i class="fa fa-caret-down" id="showBtn"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 10l5 5l5-5"/></svg></i>
+        </p>
+        <?PHP
+        global $total;
+        $totalseek=mysqli_query($conn,"select sum(food.fprice * orders.num) from orders,vendor,food where orders.fno=food.fno and food.vno=vendor.vno and vendor.vno=".$vendor." and orders.userno = ".$usid." and orders.checked=0 and orders.paid=0");
+        while($totalrow=mysqli_fetch_row($totalseek)){
+            $total=$totalrow[0];
+        }
+        ?>
+        <p>&#165;<?PHP echo $total+$vfee; ?></p>
     </div>
-    <div class="header2">
-        <div <?php if($status==0){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=0'\""?>>全部订单</div>
-        <div <?php if($status==1){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=1'\""?>>待支付</div>
-        <div <?php if($status==2){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=2'\""?>>待发货</div>
-        <div <?php if($status==3){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=3'\""?>>待收货</div>
-        <div <?php if($status==4){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=4'\""?>>已完成</div>
-        <div <?php if($status==5){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=5'\""?>>已取消</div>
-    </div>
-    <div class="main">
-        <div class="itembox">
-            <?php
-            if($status==0){
-                $orderquery=mysqli_query($conn,"select orders.id,orders.price,orders.quantity,subitems.sitext,vendors.vname,orders.status,subitems.id from orders,subitems,items,vendors where orders.uid=$usid and orders.siid=subitems.id and subitems.iid=items.id and items.vid=vendors.id");
+    <ul class="order-detailet" id="detailetBox">
+        <?PHP
+        $order=mysqli_query($conn,"select orders.num,food.fname,food.fpic,food.fprice from orders,vendor,food where orders.fno=food.fno and food.vno=vendor.vno and vendor.vno=".$vendor." and orders.userno = ".$usid." and orders.checked=0 and orders.paid=0 and orders.num>0");
+        while($orderrow=mysqli_fetch_row($order)) {
+            $fnum = $orderrow[0];
+            $fname = $orderrow[1];
+            $fpic = $orderrow[2];
+            $fprice = $orderrow[3];
+            echo "<li>\n";
+            echo "<p>$fname x$fnum</p>\n";
+            echo "<p>&#165;$fprice</p>\n<li>\n";
+        }
+        ?>
+        <li>
+            <p>配送费</p>
+            <p>&#165;<?PHP echo $vfee; ?></p>
+        </li>
+    </ul>
+    <ul class="payment-type">
+        <?PHP
+        $payment=mysqli_query($conn,'select no,pic from paymethod');
+        while($paymentrow=mysqli_fetch_row($payment)){
+            $payno=$paymentrow[0];
+            $paypic=$paymentrow[1];
+            echo "<li>\n";
+            echo "<img src=\"$paypic\">\n";
+            if($payno==$chosen){
+                echo "<i class=\"fa fa-check-circle\"></i>\n";
             }else{
-                $orderquery=mysqli_query($conn,"select orders.id,orders.price,orders.quantity,subitems.sitext,vendors.vname,orders.status,subitems.id from orders,subitems,items,vendors where orders.uid=$usid and orders.status=$status and orders.siid=subitems.id and subitems.iid=items.id and items.vid=vendors.id");
+                echo "<i onclick=\"location.href='payment.php?id=$usid&usr=$usr&ver=$veri&vno=$vendor&chosen=$payno&sub=0'\" class=\"fa fa-check-grey\"></i>\n";
             }
-            while($orderrow=mysqli_fetch_row($orderquery)){
-                $hasitem=1;
-                $siid=$orderrow[6];
-                $picquery=mysqli_query($conn,"select subitemtopic.pic from subitemtopic,subitems where subitemtopic.siid=subitems.id and subitems.id=$siid limit 1");
-                while ($picrow=mysqli_fetch_row($picquery)) {
-                    $pic=$picrow[0];
-                }
-                $id=$orderrow[0];
-                $price=$orderrow[1];
-                $quantity=$orderrow[2];
-                $sitext=$orderrow[3];
-                $vname=$orderrow[4];
-                $status=$orderrow[5];
-                if($status==1){
-                    $realststus="待支付";
-                }elseif ($status==2) {
-                    $realststus="待发货";
-                }elseif ($status==3) {
-                    $realststus="待收货";
-                }elseif ($status==4) {
-                    $realststus="已完成";
-                }elseif ($status==5) {
-                    $realststus="已取消";
-                }
-                echo "<div class='item'>";
-                echo "<div class='itemhead'>订单号: $id</div>";
-                echo "<div class='itembody'>";
-                echo "<div class='p1'>$realststus</div>";
-                echo "<div class='p2' onclick=\"location.href='details.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&subid=".$siid."&back=".$current."&status=$status'\">";
-                echo "<div class='left'><img src='$pic'></div>";
-                echo "<div class='middle'><div class='itemtitle'>$sitext</div><div class='vendor'>$vname</div></div>";
-                echo "<div class='right'><div class='price'>&#165 $price</div><div class='quantity'>$quantity 个</div></div>";
-                echo "</div>";
-                echo "</div>";
-                echo "</div>";
-            }
-            if($hasitem==0){
-                echo "<div class='noitem'><img src='assets/orders/empty.png'><div class='noitemtitle'>暂无订单信息</div></div>";
-            }
-            ?>
-        </div>
-    </div>
+            echo "</li>\n";
+        }
+        echo "<div class=\"payment-button\" onclick=\"location.href='payment.php?id=$usid&usr=$usr&ver=$veri&vno=$vendor&chosen=$chosen&sub=1'\">\n";
+        ?>
+        <button>确认支付</button>
 </div>
-</body>
-</html>
+</ul>
+<footer class="footer">
+    <?PHP echo "<div onclick=\"location.href='index.php?id=".$usid."&usr=".$usr."&ver=".$veri."'\">";?>
+    <i class="i material-symbols:house-outline"></i>
+    <span>首页</span>
+    </div>
+    <?PHP echo "<div onclick=\"location.href='discover.php?id=".$usid."&usr=".$usr."&ver=".$veri."'\">";?>
+    <i class="i material-symbols:assistant-navigation-outline"></i>
+    <span>发现</span>
+    </div>
+    <?PHP echo "<div onclick=\"location.href='orderlist.php?id=".$usid."&usr=".$usr."&ver=".$veri."'\">";?>
+    <i class="i material-symbols:apk-document-outline"></i>
+    <span>订单</span>
+    </div>
+    <div>
+        <i class="i material-symbols:person-4-outline-rounded"></i>
+        <span>我的</span>
+    </div>
+</footer>
+</div>
+</body></html>

@@ -199,16 +199,19 @@ if($act=='del'){
         }
         $buytotal=$buytotalprice+$buytotalimportfee+$buytotaltransportfee;
     }
-    mysqli_query($conn,"insert into orders (uid,status,price,aid) values ($usid,1,$buytotal,$buyaddress)");
+    mysqli_query($conn,"insert into orders (uid,status,price,aid,pid) values ($usid,1,$buytotal,$buyaddress,0)");
     $orderidquery=mysqli_query($conn,"select id from orders where uid=$usid");
     while ($orderrow=mysqli_fetch_row($orderidquery)) {
         $orderid=$orderrow[0];
     }
-    $buysubitemquery=mysqli_query($conn,"select siid,quantity from cart where uid=$usid and quantity>0 and chosen=1 and checked=0 and valid=1");
+    $buysubitemquery=mysqli_query($conn,"select cart.siid,cart.quantity,subitem.siprice,subitem.siimportfee,subitem.transportfee from cart,subitems where uid=$usid and cart.siid=subitems.id and quantity>0 and chosen=1 and checked=0 and valid=1");
     while ($buysubitemrow=mysqli_fetch_row($buysubitemquery)) {
         $buysubitemid=$buysubitemrow[0];
         $buysubitemquantity=$buysubitemrow[1];
-        mysqli_query($conn,"insert into ordertosubitem (oid,siid,quantity) values ($orderid,$buysubitemid,$buysubitemquantity)");
+        $siprice=$buysubitemrow[2];
+        $siimportfee=$buysubitemrow[3];
+        $transportfee=$buysubitemrow[4];
+        mysqli_query($conn,"insert into ordertosubitem (oid,siid,quantity,subprice) values ($orderid,$buysubitemid,$buysubitemquantity,$siprice,$transportfee,$transportfee)");  //下单固定价格
     }
     mysqli_query($conn,"update cart set checked=1 where checked=0 and quantity>0 and chosen=1 and valid=1 and uid=$usid");
     mysqli_query($conn,"commit");

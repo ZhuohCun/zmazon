@@ -68,18 +68,23 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
         <div class="itembox">
         <?php
         if($status==0){
-            $orderquery=mysqli_query($conn,"select orders.id,orders.price,orders.quantity,subitems.sitext,vendors.vname,orders.status,subitems.id from orders,subitems,items,vendors where orders.uid=$usid and orders.siid=subitems.id and subitems.iid=items.id and items.vid=vendors.id");
+            //$orderquery=mysqli_query($conn,"select orders.id,orders.price,orders.quantity,subitems.sitext,vendors.vname,orders.status,subitems.id from orders,subitems,items,vendors where orders.uid=$usid and orders.siid=subitems.id and subitems.iid=items.id and items.vid=vendors.id");
+            $orderquery=mysqli_query($conn,"select orders.id,orders.price,orders.status from orders where orders.uid=$usid");
         }else{
             $orderquery=mysqli_query($conn,"select orders.id,orders.price,orders.quantity,subitems.sitext,vendors.vname,orders.status,subitems.id from orders,subitems,items,vendors where orders.uid=$usid and orders.status=$status and orders.siid=subitems.id and subitems.iid=items.id and items.vid=vendors.id");
         }
         while($orderrow=mysqli_fetch_row($orderquery)){
             $hasitem=1;
+            $id=$orderrow[0];
+            $siquery=mysqli_query($conn,"select ordertosubitem.quantity,ordertosubitem.price,subitems.sitext,vendors.vname,subitems.id from subitems,ordertosubitems,items,vendors where ordertosubitem.oid=$id and subitems.id=ordertosubitem.siid and vendors.id=items.vid and subitems.iid=items.id");
+            while ($siqueryrow=mysqli_fetch_row($siquery)){
+
+            }
             $siid=$orderrow[6];
             $picquery=mysqli_query($conn,"select subitemtopic.pic from subitemtopic,subitems where subitemtopic.siid=subitems.id and subitems.id=$siid limit 1");
             while ($picrow=mysqli_fetch_row($picquery)) {
                 $pic=$picrow[0];
             }
-            $id=$orderrow[0];
             $price=$orderrow[1];
             $quantity=$orderrow[2];
             $sitext=$orderrow[3];
@@ -100,10 +105,14 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
             echo "<div class='itemhead'>订单号: $id</div>";
             echo "<div class='itembody'>";
             echo "<div class='p1'>$realststus</div>";
-            echo "<div class='p2' onclick=\"location.href='details.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&subid=".$siid."&back=".$current."&status=$status'\">";
-            echo "<div class='left'><img src='$pic'></div>";
-            echo "<div class='middle'><div class='itemtitle'>$sitext</div><div class='vendor'>$vname</div></div>";
-            echo "<div class='right'><div class='price'>&#165 $price</div><div class='quantity'>$quantity 个</div></div>";
+            echo "<div class='p2'>";
+            echo "<div class='left' onclick=\"location.href='details.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&subid=".$siid."&back=".$current."&status=$status'\"><img src='$pic'></div>";
+            echo "<div class='middle' onclick=\"location.href='details.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&subid=".$siid."&back=".$current."&status=$status'\"><div class='itemtitle'>$sitext</div><div class='vendor'>$vname</div></div>";
+            echo "<div class='right'><div class='price'>&#165 $price</div><div class='quantity'>$quantity 个</div>";
+            if ($status==1) {
+                echo "<div class='pay' onclick=\"location.href='payment.php?usid=$usid&usr=$usr&veri=$veri&orderid=$id'\">去支付</div>";
+            }
+            echo "</div>";
             echo "</div>";
             echo "</div>";
             echo "</div>";
