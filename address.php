@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>订单详情--zmazon</title>
-    <link rel="stylesheet" href="assets/orders/orders.css">
+    <title>地址管理--zmazon</title>
+    <link rel="stylesheet" href="assets/address/address.css">
 </head>
 <body>
 <?PHP
@@ -26,12 +26,22 @@ if(isset($_GET['veri'])){
 }else{
     $veri='null';
 }
-if(isset($_GET['status'])){
-    $status=$_GET['status'];
+if(isset($_GET['chosen'])){
+    $chosen=$_GET['chosen'];
 }else{
-    $status=0;
+    $chosen=0;
 }
-$current="orders.php";
+if(isset($_GET['back'])){
+    $back=$_GET['back'];
+}else{
+    $back=0;
+}
+if(isset($_GET['cartmanage'])){
+    $cartmanage=$_GET['cartmanage'];
+}else{
+    $cartmanage=0;
+}
+$current="address.php";
 $hasitem=0;
 $usrv=mysqli_query($conn,'set names utf8');
 $usrv=mysqli_query($conn,'select username,verify from users where id = '.$usid);
@@ -52,8 +62,8 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
 }?>
 <div class="container">
     <div class="header">
-            <div class="back" <?php echo "onclick=\"location.href='me.php?usid=$usid&usr=$usr&veri=$veri'\""; ?>></div>
-            <div class="item">订单详情</div>
+        <div class="back" <?php echo "onclick=\"location.href='me.php?usid=$usid&usr=$usr&veri=$veri'\""; ?>></div>
+        <div class="item">地址管理</div>
     </div>
     <div class="header2">
         <div <?php if($status==0){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=0'\""?>>全部订单</div>
@@ -111,11 +121,11 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
                 echo "</div>";
                 echo "</div>";
             }
-                echo "<div class='paybox'><div class='itemprice'>订单总额：&#165 $orderprice</div>";
+            echo "<div class='paybox'><div class='itemprice'>订单总额：&#165 $orderprice</div>";
             if ($status==1) {
                 echo "<div class='pay' onclick=\"location.href='payment.php?usid=$usid&usr=$usr&veri=$veri&orderid=$id'\">去支付</div>";
             }
-                echo "</div>";
+            echo "</div>";
             echo "</div>";
             if($hasitem==0){
                 echo "</div>";
@@ -127,8 +137,9 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
         }
         ?>
 
-        </div>
     </div>
+</div>
 </div>
 </body>
 </html>
+<?php
