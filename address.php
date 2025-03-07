@@ -29,17 +29,27 @@ if(isset($_GET['veri'])){
 if(isset($_GET['chosen'])){
     $chosen=$_GET['chosen'];
 }else{
-    $chosen=0;
+    $chosen=-1;
 }
 if(isset($_GET['back'])){
     $back=$_GET['back'];
 }else{
-    $back=0;
+    $back=-1;
 }
 if(isset($_GET['cartmanage'])){
     $cartmanage=$_GET['cartmanage'];
 }else{
-    $cartmanage=0;
+    $cartmanage=-1;
+}
+if(isset($_GET['opt'])){
+    $opt=$_GET['opt'];
+}else{
+    $opt=-1;
+}
+if(isset($_GET['optid'])){
+    $optid=$_GET['optid'];
+}else{
+    $optid=-1;
 }
 $current="address.php";
 $hasitem=0;
@@ -69,18 +79,30 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
         <div class="itembox">
         <?php
         $hasaddr=0;
-        $addquery="select id,address,isdefault from address where usid=$usid";
-        while($addr=mysqli_fetch_row($addr)){
+        $addquery=mysqli_query($conn,"select id,address1,address2,receiver,phoneofreceiver,isdefault from usertoaddress where uid=$usid");
+        while($addr=mysqli_fetch_row($addquery)){
+            $hasaddr=1;
             $addrid=$addr[0];
-            $addrname=$addr[1];
-            $isdefault=$addr[2];
+            $addrname1=$addr[1];
+            $addrname2=$addr[2];
+            $recerver=$addr[3];
+            $por=$addr[4];
+            $isdefault=$addr[5];
             echo "<div class='item'>";
+            echo "<div class='p1'>$addrname1</div>";
+            echo "<div class='p2'>";if($isdefault==1){echo "<div class='ifdefault'>默认</div>";} echo "<div class='addr'>$addrname2</div><div class='edit'></div></div>";
+            echo "<div class='p3'>$recerver  $por</div>";
+            echo "</div>";
+        }
+        if($hasaddr==0){
+            echo "<div class='noitembox'><div class='noitem'><img src='assets/address/empty.png'><div class='noitemtitle'>暂无订单信息</div></div></div>";
         }
         ?>
         </div>
     </div>
-</div>
+    <div class="footer">
+        <div class="button">添加收货地址</div>
+    </div>
 </div>
 </body>
 </html>
-<?php

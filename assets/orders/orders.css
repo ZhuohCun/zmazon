@@ -130,6 +130,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 2vw;
 }
 .container .main .noitembox .noitem .noitemtitle{
     width: 95vw;
@@ -148,6 +149,7 @@ body{
     flex-direction: column;
     background-color:#fff;
     margin-left: -3vw;
+    border-radius: 2vw;
 }
 .container .main .itembox .item .itemhead{
     min-width: 97vw;

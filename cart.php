@@ -42,6 +42,21 @@ if(isset($_GET['actid'])){
 }else{
     $actid=-1;
 }
+if(isset($_GET['address'])){
+    $address=$_GET['address'];
+}else{
+    $address=-1;
+}
+if($address!=-1){
+    $addveri=mysqli_query($conn,"select count(*) from usertoaddress where uid=$usid and id='$address'");
+    while($addverirow=mysqli_fetch_row($addveri)){
+        $addcount=$addverirow[0];
+    }
+    if($addcount==0){
+        header("Location:"."errororsucc.php?reason=incorrectuser");
+        die;
+    }
+}
 $usrv=mysqli_query($conn,'set names utf8');
 $usrv=mysqli_query($conn,'select username,verify from users where id = '.$usid);
 $usrqry=0;
@@ -69,10 +84,18 @@ if($usid==-1){
     $cartitem=0;
 }
 $haslocation=0;
-$dlocationquery=mysqli_query($conn,"select address from usertoaddress where uid=$usid and isdefault = 1 limit 1");
-while ($dlocationrow=mysqli_fetch_row($dlocationquery)) {
-    $location=$dlocationrow[0];
-    $haslocation=1;
+if($address==-1){
+    $dlocationquery=mysqli_query($conn,"select address1,address2 from usertoaddress where uid=$usid and isdefault = 1 limit 1");
+    while ($dlocationrow=mysqli_fetch_row($dlocationquery)) {
+        $location=$dlocationrow[0].$dlocationrow[1];
+        $haslocation=1;
+    }
+}else{
+    $dlocationquery=mysqli_query($conn,"select address1,address2 from usertoaddress where uid=$usid and id=$address limit 1");
+    while ($dlocationrow=mysqli_fetch_row($dlocationquery)) {
+        $location=$dlocationrow[0].$dlocationrow[1];
+        $haslocation=1;
+    }
 }
 if($haslocation==0){
     $location="还未添加默认地址";
