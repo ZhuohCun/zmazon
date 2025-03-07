@@ -141,7 +141,7 @@ body{
     align-items: center;
 }
 .container .main .itembox .item{
-    width: 98vw;
+    width: 97vw;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -179,8 +179,17 @@ body{
     align-items: center;
     font-size: 4vw;
 }
+.container .main .itembox .item .p2 .ifdefault2{
+    min-width: 9.4vw;
+    min-height: 5.4vw;
+    display: flex;
+    border-radius: 1vw;
+    justify-content: center;
+    align-items: center;
+    font-size: 4vw;
+}
 .container .main .itembox .item .p2 .addr{
-    min-width: 77.6vw;
+    min-width: 60vw;
     min-height: 5.4vw;
     display: flex;
     border-radius: 1vw;
@@ -195,12 +204,33 @@ body{
     border-radius: 1vw;
     justify-content:left;
     right: 3vw;
-    position: fixed;
     align-items: center;
     content: url("../icons/edit.svg");
 }
+.container .main .itembox .item .p2 .delete{
+    min-width: 5vw;
+    min-height: 5.4vw;
+    display: flex;
+    border-radius: 1vw;
+    justify-content:left;
+    align-items: center;
+    content: url("../icons/xmark.svg");
+}
+.container .main .itembox .item .p2 .setdefault{
+    min-width: 5vw;
+    min-height: 5.4vw;
+    display: flex;
+    border-radius: 1vw;
+    justify-content:left;
+    align-items: center;
+}
+.container .main .itembox .item .p2 .setdefault img{
+    max-width: 5vw;
+    max-height: 5.4vw;
+}
 .container .main .itembox .item .p3{
-    min-width: 97vw;
+    min-width: 95vw;
+    max-width: 95vw;
     min-height: 7vw;
     display: flex;
     justify-content: space-between;
@@ -226,4 +256,79 @@ body{
     justify-content: center;
     align-items: center;
     font-size: 6vw;
+}
+.container .panel {
+    position: fixed;
+    top: 20vh;
+    left: 10vw;
+    display: flex;
+    min-width: 80vw;
+    max-width: 80vw;
+    min-height: 50vh;
+    max-height: 50vh;
+    background-color: #ccc;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 2vh;
+    column-gap: 2vh;
+}
+.container .panel .x{
+    min-width: 8vw;
+    max-width: 8vw;
+    max-height: 8vw;
+    display: flex;
+    position: fixed;
+    top: 21vh;
+    left: 80vw;
+    content: url("../icons/xmark.svg");
+}
+.container .panel .title{
+    min-width: 80vw;
+    min-height: 4vh;
+    font-size: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top:21vh;
+    left: 11vw;
+    position: fixed;
+}
+.container .panel .p{
+    min-width: 80vw;
+    min-height: 5vh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 1vw;
+}
+.container .panel .p .i{
+    min-width: 50vw;
+    min-height: 4.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10vw;
+    border: none;
+}
+.container .panel .pb{
+    min-width: 80vw;
+    min-height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vw;
+}
+.container .panel .pb .button{
+    min-width: 22vw;
+    min-height: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    border-radius: 10vw;
+    font-size: 4vw;
 }
