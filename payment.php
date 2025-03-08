@@ -27,11 +27,11 @@ if(isset($_GET['veri'])){
     $veri='null';
 }
 if(isset($_GET['orderid'])){
-    $status=$_GET['orderid'];
+    $orderid=$_GET['orderid'];
 }else{
-    $status=0;
+    $orderid=0;
 }
-$current="orders.php";
+$current="payment.php";
 $hasitem=0;
 $usrv=mysqli_query($conn,'set names utf8');
 $usrv=mysqli_query($conn,"select username,verify from users where id = $usid and valid=1");
@@ -57,12 +57,9 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
     <h3>订单信息：</h3>
     <div class="order-info">
         <?PHP
-        global $vname;
-        global $vfee;
-        $info=mysqli_query($conn,'select vname,vfee from vendor where vno = '.$vendor);
-        while($inforow=mysqli_fetch_row($info)){
-            $vname=$inforow[0];
-            $vfee=$inforow[1];
+        $orderquery=mysqli_query($conn,"select orders.price from orders where orders.uid=$usid and id=$orderid and valid=1");
+        while($orderrow=mysqli_fetch_row($orderquery)){
+            $price=$orderrow[0];
         }
         ?>
         <p>

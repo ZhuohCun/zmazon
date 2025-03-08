@@ -166,7 +166,7 @@ if($act=="add"){
                         while($dotrow=mysqli_fetch_row($dotquery)){
                             $dotnum=$dotrow[0];
                         }
-                        if($dotnum!=0){
+                        if($dotnum!=0 && ($statusid==1 || $statusid==2 || $statusid==3)){
                             echo "<div class='item' onclick=\"location.href='orders.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&status=".$statusid."'\"><img src='assets/me/part3/".$statusid.".jpg'><h2>$statusname</h2><div class='dot'>$dotnum</div></div>";
                         }else{
                             echo "<div class='item' onclick=\"location.href='orders.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&status=".$statusid."'\"><img src='assets/me/part3/".$statusid.".jpg'><h2>$statusname</h2></div>";

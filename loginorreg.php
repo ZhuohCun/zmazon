@@ -24,19 +24,24 @@ if($opt=='log'){
         header("Location:"."errororsucc.php?reason=paraloss&back=login.php");
         die;
     }
-    $loginquery=mysqli_query($conn,"select id,username,password,verify from users where username = '$loginname'");
-    $valid=0;
+    $loginquery=mysqli_query($conn,"select id,username,password,verify,valid from users where username = '$loginname'");
+    $hasuser=0;
     while ($loginrow = mysqli_fetch_row($loginquery)) {
         $usid = $loginrow[0];
         $realname = $loginrow[1];
         $realpass = $loginrow[2];
         $verify = $loginrow[3];
-        $valid = 1;
+        $valid = $loginrow[4];
+        $hasuser=1;
     }
-    if ($valid == 0) {
-        header("Location:"."errororsucc.php?reason=uservalid&back=login.php");
+    if ($hasuser == 0) {
+        header("Location:"."errororsucc.php?reason=hasuser&back=login.php");
         die;
-    } elseif ($realname == $loginname && $realpass == $loginpass) {
+    }elseif ($valid!=1){
+        header("Location:"."errororsucc.php?reason=uservalid&back=login.php");
+
+    }
+    elseif ($realname == $loginname && $realpass == $loginpass) {
         header("location:index.php?usid=$usid&usr=$loginname&veri=$verify");
         die;
     } else {

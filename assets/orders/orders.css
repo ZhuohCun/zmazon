@@ -271,7 +271,7 @@ body{
     margin-left: 4vw;
 }
 .container .main .itembox .item .paybox .pay{
-    min-width: 14vw;
+    min-width: 19vw;
     min-height: 7vw;
     background-color: dodgerblue;
     display: flex;
@@ -280,4 +280,72 @@ body{
     color: white;
     border-radius: 10vw;
     margin-right: 3vw;
+}
+.container .dltpanel {
+    position: fixed;
+    top: 35vh;
+    left: 10vw;
+    display: flex;
+    min-width: 80vw;
+    max-width: 80vw;
+    min-height: 30vh;
+    max-height: 30vh;
+    background-color: #ccc;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 2vh;
+    column-gap: 2vh;
+}
+.container .dltpanel .x{
+    min-width: 8vw;
+    max-width: 8vw;
+    max-height: 8vw;
+    display: flex;
+    position: fixed;
+    top: 36vh;
+    left: 80vw;
+    content: url("../icons/xmark.svg");
+}
+.container .dltpanel .title{
+    min-width: 80vw;
+    min-height: 4vh;
+    font-size: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top:40vh;
+    left: 11vw;
+    position: fixed;
+}
+.container .dltpanel .buttons{
+    min-width: 80vw;
+    min-height: 5vh;
+    top:54vh;
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1vw;
+    column-gap: 2vw;
+    margin-left: -1vw;
+}
+.container .dltpanel .buttons .confirm{
+    min-width: 35vw;
+    min-height: 5vh;
+    background-color:red ;
+    border-radius: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .dltpanel .buttons .cancel{
+    min-width: 35vw;
+    min-height: 5vh;
+    background-color:darkseagreen ;
+    border-radius: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

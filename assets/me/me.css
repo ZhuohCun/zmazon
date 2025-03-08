@@ -165,6 +165,7 @@ body{
     justify-content: center;
 }
 .container .main .part3 .body .item .dot p{
+    margin-top:0.3vw;
     font-size: 3.5vw;
     color: white;
 }

@@ -31,6 +31,16 @@ if(isset($_GET['status'])){
 }else{
     $status=0;
 }
+if(isset($_GET['opt'])){
+    $opt=$_GET['opt'];
+}else{
+    $opt=-1;
+}
+if(isset($_GET['optid'])){
+    $optid=$_GET['optid'];
+}else{
+    $optid=-1;
+}
 $current="orders.php";
 $hasitem=0;
 $usrv=mysqli_query($conn,'set names utf8');
@@ -49,7 +59,33 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
 }else{
     header("Location:"."login.php");
     die;
-}?>
+}
+if($opt!=-1 && $optid!=-1){
+    $optvalid=0;
+    $optvalidquery=mysqli_query($conn,"select * from orders where uid=$usid and id=$optid and valid=1");
+    while ($optvalidrow=mysqli_fetch_row($optvalidquery)){
+        $optvalid=1;
+    }
+    if($optvalid==0){
+        header("Location:"."errororsucc.php?reason=paraloss");
+        die;
+    }elseif($opt=="ccr"){
+        mysqli_query($conn,"start transaction");
+        mysqli_query($conn,"select status from orders where uid=$usid and id=$optid and valid=1 for update");
+        mysqli_query($conn,"update orders set status=4 where uid=$usid and id=$optid and valid=1");
+        mysqli_query($conn,"commit");
+        header("Location:"."errororsucc.php?reason=确认收货成功&succ=1&usid=$usid&usr=$usr&veri=$veri&back=index.php&text=回首页");
+        die;
+    }elseif ($opt=="cco"){
+        mysqli_query($conn,"start transaction");
+        mysqli_query($conn,"select status from orders where uid=$usid and id=$optid and valid=1 for update");
+        mysqli_query($conn,"update orders set status=5 where uid=$usid and id=$optid and valid=1");
+        mysqli_query($conn,"commit");
+        header("Location:"."orders.php?usid=$usid&usr=$usr&veri=$veri&status=$status");
+        die;
+    }
+}
+?>
 <div class="container">
     <div class="header">
             <div class="back" <?php echo "onclick=\"location.href='me.php?usid=$usid&usr=$usr&veri=$veri'\""; ?>></div>
@@ -77,16 +113,16 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
             $hasitem=1;
             $id=$orderrow[0];
             $orderprice=$orderrow[1];
-            $status=$orderrow[2];
-            if($status==1){
+            $itemstatus=$orderrow[2];
+            if($itemstatus==1){
                 $realststus="待支付";
-            }elseif ($status==2) {
+            }elseif ($itemstatus==2) {
                 $realststus="待发货";
-            }elseif ($status==3) {
+            }elseif ($itemstatus==3) {
                 $realststus="待收货";
-            }elseif ($status==4) {
+            }elseif ($itemstatus==4) {
                 $realststus="已完成";
-            }elseif ($status==5) {
+            }elseif ($itemstatus==5) {
                 $realststus="已取消";
             }
             echo "<div class='item'>";
@@ -112,8 +148,11 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
                 echo "</div>";
             }
                 echo "<div class='paybox'><div class='itemprice'>订单总额：&#165 $orderprice</div>";
-            if ($status==1) {
-                echo "<div class='pay' onclick=\"location.href='payment.php?usid=$usid&usr=$usr&veri=$veri&orderid=$id'\">去支付</div>";
+            if ($itemstatus==1) {
+                echo "<div class='pay' onclick=\"location.href='payment.php?usid=$usid&usr=$usr&veri=$veri&orderid=$id&status=$status'\">去支付</div>";
+                echo "<div class='pay' onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&optid=$id&opt=co&status=$status'\">取消订单</div>";
+            }elseif ($itemstatus==3) {
+                echo "<div class='pay' onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&optid=$id&opt=cr&status=$status'\">确认收货</div>";
             }
                 echo "</div>";
             echo "</div>";
@@ -124,6 +163,19 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
         }
         if($hasitem==0){
             echo "<div class='noitembox'><div class='noitem'><img src='assets/orders/empty.png'><div class='noitemtitle'>暂无订单信息</div></div></div>";
+        }
+        if($opt=="co" && $optid!=-1){
+            echo "<div class='dltpanel'>";
+            echo "<div class='x' onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=$status'\"></div>";
+            echo "<div class='title'>是否确认删除该订单？</div>";
+            echo "<div class='buttons'><div class='confirm' onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=$status&opt=cco&optid=$optid'\">确认</div><div class='cancel' onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=$status'\">取消</div></div>";
+            echo "</div>";
+        }elseif ($opt=="cr" && $optid!=-1){
+            echo "<div class='dltpanel'>";
+            echo "<div class='x' onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=$status'\"></div>";
+            echo "<div class='title'>是否确认收货该订单？</div>";
+            echo "<div class='buttons'><div class='confirm' onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=$status&opt=ccr&optid=$optid'\">确认</div><div class='cancel' onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=$status'\">取消</div></div>";
+            echo "</div>";
         }
         ?>
 

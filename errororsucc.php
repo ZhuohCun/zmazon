@@ -91,7 +91,7 @@ if(isset($_GET['text'])){
                         echo "手机号已被注册";
                     }elseif ($rea=='email'){
                         echo "E-mail已被注册";
-                    }elseif ($rea=='uservalid'){
+                    }elseif ($rea=='hasuser'){
                         echo "用户不存在";
                     }elseif ($rea=='addcart'){
                         echo "加入购物车成功";
@@ -101,7 +101,10 @@ if(isset($_GET['text'])){
                         echo "未添加收货地址";
                     } elseif ($rea=='balance'){
                         echo "余额不足";
-                    }elseif ($rea!=-1){
+                    }elseif ($rea=='uservalid'){
+                        echo "用户状态不正常";
+                    }
+                    elseif ($rea!=-1){
                         echo $rea;
                     }else{
                         echo "未知错误";
