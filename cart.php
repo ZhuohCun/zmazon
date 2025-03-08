@@ -47,18 +47,20 @@ if(isset($_GET['aid'])){
 }else{
     $address=-1;
 }
+$current="cart.php";
+$addcount=0;
 if($address!=-1){
-    $addveri=mysqli_query($conn,"select count(*) from usertoaddress where uid=$usid and id='$address'");
+    $addveri=mysqli_query($conn,"select count(*) from usertoaddress where uid=$usid and id='$address' and valid=1");
     while($addverirow=mysqli_fetch_row($addveri)){
         $addcount=$addverirow[0];
     }
     if($addcount==0){
-        header("Location:"."errororsucc.php?reason=incorrectuser");
+        header("Location:"."errororsucc.php?reason=paraloss&back=$current&usid=$usid&usr=$usr&veri=$veri");
         die;
     }
 }
 $usrv=mysqli_query($conn,'set names utf8');
-$usrv=mysqli_query($conn,'select username,verify from users where id = '.$usid);
+$usrv=mysqli_query($conn,"select username,verify from users where id = $usid and valid=1");
 $usrqry=0;
 while($usrvr=mysqli_fetch_row($usrv)){
     $realname=$usrvr[0];
@@ -85,13 +87,13 @@ if($usid==-1){
 }
 $haslocation=0;
 if($address==-1){
-    $dlocationquery=mysqli_query($conn,"select address1,address2 from usertoaddress where uid=$usid and isdefault = 1 limit 1");
+    $dlocationquery=mysqli_query($conn,"select address1,address2 from usertoaddress where uid=$usid and isdefault = 1 and valid=1 limit 1");
     while ($dlocationrow=mysqli_fetch_row($dlocationquery)) {
         $location=$dlocationrow[0].$dlocationrow[1];
         $haslocation=1;
     }
 }else{
-    $dlocationquery=mysqli_query($conn,"select address1,address2 from usertoaddress where uid=$usid and id=$address limit 1");
+    $dlocationquery=mysqli_query($conn,"select address1,address2 from usertoaddress where uid=$usid and id=$address and valid=1 limit 1");
     while ($dlocationrow=mysqli_fetch_row($dlocationquery)) {
         $location=$dlocationrow[0].$dlocationrow[1];
         $haslocation=1;
@@ -102,7 +104,7 @@ if($haslocation==0){
 }
 $totalprice=0;
 $totalquantity=0;
-$totalquery=mysqli_query($conn,"select sum(cart.quantity*subitems.siprice),sum(cart.quantity) from subitems,cart where uid=$usid and cart.siid=subitems.id and checked=0 and quantity>0 and chosen=1 and valid=1");
+$totalquery=mysqli_query($conn,"select sum(cart.quantity*subitems.siprice),sum(cart.quantity) from subitems,cart where uid=$usid and cart.siid=subitems.id and cart.checked=0 and cart.quantity>0 and cart.chosen=1 and cart.valid=1");
 while ($totalrow=mysqli_fetch_row($totalquery)) {
     $totalprice=number_format($totalrow[0],2);
     $totalquantity=number_format($totalrow[1],0);
@@ -211,7 +213,7 @@ if($act=='del'){
         die;
     }
     mysqli_query($conn,"start transaction");
-    $buytotalquery=mysqli_query($conn,"select sum(cart.quantity*subitems.siprice),sum(cart.quantity),sum(subitems.siimportfee*cart.quantity),sum(subitems.transportfee*cart.quantity) from subitems,cart where uid=$usid and cart.siid=subitems.id and checked=0 and quantity>0 and chosen=1 and valid=1 for update");
+    $buytotalquery=mysqli_query($conn,"select sum(cart.quantity*subitems.siprice),sum(cart.quantity),sum(subitems.siimportfee*cart.quantity),sum(subitems.transportfee*cart.quantity) from subitems,cart where uid=$usid and cart.siid=subitems.id and cart.checked=0 and cart.quantity>0 and cart.chosen=1 and cart.valid=1 for update");
     while ($buytotalrow=mysqli_fetch_row($buytotalquery)) {
         $buytotalprice = $buytotalrow[0];
         $buytotalquantity = $buytotalrow[1];
@@ -222,19 +224,28 @@ if($act=='del'){
         }
         $buytotal=$buytotalprice+$buytotalimportfee+$buytotaltransportfee;
     }
-    mysqli_query($conn,"insert into orders (uid,status,price,aid,pid) values ($usid,1,$buytotal,$buyaddress,0)");
+    mysqli_query($conn,"insert into orders (uid,status,price,aid,pid,valid) values ($usid,1,$buytotal,$buyaddress,0,1)");
     $orderidquery=mysqli_query($conn,"select id from orders where uid=$usid");
     while ($orderrow=mysqli_fetch_row($orderidquery)) {
         $orderid=$orderrow[0];
     }
-    $buysubitemquery=mysqli_query($conn,"select cart.siid,cart.quantity,subitems.siprice,subitems.siimportfee,subitems.transportfee from cart,subitems where uid=$usid and cart.siid=subitems.id and quantity>0 and chosen=1 and checked=0 and valid=1");
+    $buysubitemquery=mysqli_query($conn,"select cart.siid,cart.quantity,subitems.siprice,subitems.siimportfee,subitems.transportfee from cart,subitems where uid=$usid and cart.siid=subitems.id and cart.quantity>0 and cart.chosen=1 and cart.checked=0 and cart.valid=1");
     while ($buysubitemrow=mysqli_fetch_row($buysubitemquery)) {
         $buysubitemid=$buysubitemrow[0];
+        $buyitemvalidquery=mysqli_query($conn,"select valid from subitems where id=$buysubitemid");
+        while ($buyitemvalidrow=mysqli_fetch_row($buyitemvalidquery)) {
+            $buysubitemvalid=$buyitemvalidrow[0];
+            if($buysubitemvalid==0){
+                mysqli_query($conn,"rollback");
+                header("location:errororsucc.php?reason=含有已下架商品&text=返回购物车&usid=$usid&usr=$usr&veri=$veri&back=$current");
+                die;
+            }
+        }
         $buysubitemquantity=$buysubitemrow[1];
         $siprice=$buysubitemrow[2];
         $siimportfee=$buysubitemrow[3];
         $transportfee=$buysubitemrow[4];
-        mysqli_query($conn,"insert into ordertosubitem (oid,siid,quantity,siprice,siimportfee,transportfee) values ($orderid,$buysubitemid,$buysubitemquantity,$siprice,$siimportfee,$transportfee)");  //下单固定价格
+        mysqli_query($conn,"insert into ordertosubitem (oid,siid,quantity,siprice,siimportfee,transportfee,valid) values ($orderid,$buysubitemid,$buysubitemquantity,$siprice,$siimportfee,$transportfee,1)");  //下单固定价格
     }
     mysqli_query($conn,"update cart set checked=1 where checked=0 and quantity>0 and chosen=1 and valid=1 and uid=$usid");
     mysqli_query($conn,"commit");
@@ -269,7 +280,7 @@ if($act=='del'){
     <div class="main">
         <?php
         $isempty=1;
-        $subitemquery=mysqli_query($conn,"select subitems.id,subitems.sitext,subitems.subname,subitems.siprice,subitems.siimportfee,subitems.transportfee,cart.chosen,cart.id from cart,subitems where subitems.id=cart.siid and cart.uid=$usid and cart.quantity>0 and valid=1 and cart.checked=0");
+        $subitemquery=mysqli_query($conn,"select subitems.id,subitems.sitext,subitems.subname,subitems.siprice,subitems.siimportfee,subitems.transportfee,cart.chosen,cart.id from cart,subitems where subitems.id=cart.siid and cart.uid=$usid and cart.quantity>0 and cart.valid=1 and cart.checked=0");
         while ($subitemrow=mysqli_fetch_row($subitemquery)) {
             $subid=$subitemrow[0];
             $subtext=$subitemrow[1];
@@ -369,7 +380,7 @@ if($act=='del'){
     </div>
     <div class="footer">
         <?PHP
-        $footerquery=mysqli_query($conn,"select id,text,href,icon from footer");
+        $footerquery=mysqli_query($conn,"select id,text,href,icon from footer where valid=1");
         while($footerrow=mysqli_fetch_row($footerquery)){
             $fid=$footerrow[0];
             $ftext=$footerrow[1];

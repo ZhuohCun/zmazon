@@ -95,10 +95,15 @@ if(isset($_POST['por'])){
 }else{
     $postpor=-1;
 }
+if(isset($_GET['backsubid'])){
+    $backsubid=$_GET['backsubid'];
+}else{
+    $backsubid=-1;
+}
 $current="address.php";
 $hasitem=0;
 $usrv=mysqli_query($conn,'set names utf8');
-$usrv=mysqli_query($conn,'select username,verify from users where id = '.$usid);
+$usrv=mysqli_query($conn,"select username,verify from users where id = $usid and valid=1");
 $usrqry=0;
 while($usrvr=mysqli_fetch_row($usrv)){
     $realname=$usrvr[0];
@@ -131,7 +136,7 @@ if($opt=="cedit" && $optid!=-1 && $postaddress1!=-1 && $postaddress2!=-1 && $pos
     $ceditquery=mysqli_query($conn,"select address1,address2,receiver,phoneofreceiver from usertoaddress where id=$optid for update");
     $ceditquery=mysqli_query($conn,"update usertoaddress set address1='$postaddress1', address2='$postaddress2', receiver='$postreceiver', phoneofreceiver='$postpor' where id=$optid");
     $ceditquery=mysqli_query($conn,"commit");
-    header("Location:"."address.php?usid=$usid&usr=$usr&veri=$veri");
+    header("Location:"."address.php?usid=$usid&usr=$usr&veri=$veri&back=$back&cartmanage=$cartmanage&backsubid=$backsubid");
 }elseif($opt=="cedit"){
     header("Location:"."errororsucc.php?reason=paraloss&back=$current&usid=$usid&usr=$usr&veri=$veri");
     die;
@@ -151,7 +156,7 @@ if($opt=="cadd" && $postaddress1!=-1 && $postaddress2!=-1 && $postreceiver!=-1 &
     }
     $ceditquery=mysqli_query($conn,"insert into usertoaddress (uid,address1,address2,receiver,phoneofreceiver,isdefault,valid) values ('$usid','$postaddress1','$postaddress2','$postreceiver','$postpor','$addisdefault',1)");
     $ceditquery=mysqli_query($conn,"commit");
-    header("Location:"."address.php?usid=$usid&usr=$usr&veri=$veri");
+    header("Location:"."address.php?usid=$usid&usr=$usr&veri=$veri&back=$back&cartmanage=$cartmanage&backsubid=$backsubid");
 }elseif($opt=="cadd"){
     header("Location:"."errororsucc.php?reason=paraloss&back=$current&usid=$usid&usr=$usr&veri=$veri");
     die;
@@ -163,7 +168,7 @@ if($opt=="csd" && $optid!=-1){
     $csdquery=mysqli_query($conn,"update usertoaddress set isdefault='0' where uid=$usid and valid=1");
     $csdquery=mysqli_query($conn,"update usertoaddress set isdefault='1' where uid=$usid and valid=1 and id=$optid");
     $csdquery=mysqli_query($conn,"commit");
-    header("Location:"."address.php?usid=$usid&usr=$usr&veri=$veri");
+    header("Location:"."address.php?usid=$usid&usr=$usr&veri=$veri&back=$back&cartmanage=$cartmanage&backsubid=$backsubid");
 }elseif($opt=="csd"){
     header("Location:"."errororsucc.php?reason=paraloss&back=$current&usid=$usid&usr=$usr&veri=$veri");
     die;
@@ -189,7 +194,7 @@ if($opt=="cdlt" && $optid!=-1){
         $cdltquery=mysqli_query($conn,"update usertoaddress set isdefault='1' where uid=$usid and valid=1 and id=$cdltfirstid");
     }
     $cdltquery=mysqli_query($conn,"commit");
-    header("Location:"."address.php?usid=$usid&usr=$usr&veri=$veri");
+    header("Location:"."address.php?usid=$usid&usr=$usr&veri=$veri&back=$back&cartmanage=$cartmanage&backsubid=$backsubid");
 }elseif($opt=="cdlt"){
     header("Location:"."errororsucc.php?reason=paraloss&back=$current&usid=$usid&usr=$usr&veri=$veri");
     die;
@@ -212,25 +217,30 @@ if($opt=="cdlt" && $optid!=-1){
             $por=$addr[4];
             $isdefault=$addr[5];
             echo "<div class='item'>";
-            echo "<div class='p1'";if($opt==-1 and $back=="cart.php"){echo "onclick=\"location.href='cart.php?usid=$usid&usr=$usr&veri=$veri&manage=$cartmanage&aid=$addrid'\"";} echo ">$addrname1</div>";
+            echo "<div class='p1'";if($opt==-1 and ($back=="cart.php" || $back=="details.php")){echo "onclick=\"location.href='$back?usid=$usid&usr=$usr&veri=$veri&manage=$cartmanage&aid=$addrid&subid=$backsubid'\"";} echo ">$addrname1</div>";
 
             echo "<div class='p2'>";
             if($isdefault==1){echo "<div class='ifdefault'";}
-            if($opt==-1 && $back=="cart.php" && $isdefault==1){echo "onclick=\"location.href='cart.php?usid=$usid&usr=$usr&veri=$veri&manage=$cartmanage&aid=$addrid'\"";}
+            if($opt==-1 && ($back=="cart.php" || $back=="details.php") && $isdefault==1){echo "onclick=\"location.href='$back?usid=$usid&usr=$usr&veri=$veri&manage=$cartmanage&aid=$addrid&subid=$backsubid'\"";}
             if($isdefault==1){echo ">默认</div>";}
-            echo "<div class='addr'>$addrname2</div>";
-            if($isdefault!=1){echo "<div class='ifdefault2'></div>";}
+            echo "<div class='addr'";
+            if($opt==-1 and ($back=="cart.php" || $back=="details.php")){echo "onclick=\"location.href='$back?usid=$usid&usr=$usr&veri=$veri&manage=$cartmanage&aid=$addrid&subid=$backsubid'\"";}
+            echo ">$addrname2</div>";
+            if($isdefault!=1){echo "<div class='ifdefault2'";}
+            if($isdefault!=1&&($back=="cart.php" || $back=="details.php")){echo "onclick=\"location.href='$back?usid=$usid&usr=$usr&veri=$veri&manage=$cartmanage&aid=$addrid&subid=$backsubid'\"";}
+            if($isdefault!=1){echo "></div>";}
             echo "<div class='delete'";
-            if($opt==-1){echo "onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&opt=dlt&optid=$addrid'\"";}
+            if($opt==-1){echo "onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&opt=dlt&optid=$addrid&back=$back&cartmanage=$cartmanage&backsubid=$backsubid'\"";}
             echo "></div><div class='setdefault'";
-            if($opt==-1 && $isdefault==0){echo "onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&opt=csd&optid=$addrid'\"";}
+            if($opt==-1 && $isdefault==0){echo "onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&opt=csd&optid=$addrid&back=$back&cartmanage=$cartmanage&backsubid=$backsubid'\"";}
             echo ">";
             if($isdefault==0){echo "<img src='assets/address/default.png'>";}
             echo "</div><div class='edit'";
-            if($opt==-1){echo "onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&opt=edit&optid=$addrid'\"";}
+            if($opt==-1){echo "onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&opt=edit&optid=$addrid&back=$back&cartmanage=$cartmanage&backsubid=$backsubid'\"";}
             echo "></div></div>";
 
-            echo "<div class='p3'";if($opt==-1 and $back=="cart.php"){echo "onclick=\"location.href='cart.php?usid=$usid&usr=$usr&veri=$veri&manage=$cartmanage&aid=$addrid'\"";} echo ">$recerver  $por</div>";
+            echo "<div class='p3'";if($opt==-1 and ($back=="cart.php" || $back=="details.php")){echo "onclick=\"location.href='$back?usid=$usid&usr=$usr&veri=$veri&manage=$cartmanage&aid=$addrid&subid=$backsubid'\"";}
+            echo ">$recerver  $por</div>";
             echo "</div>";
         }
         if($hasaddr==0){
@@ -251,8 +261,8 @@ if($opt=="cdlt" && $optid!=-1){
                 $editpor=$editrow[5];
                 $editisdefault=$editrow[6];
                 echo "<div class='title'>修改地址</div>";
-                echo "<div class='x' onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri'\"></div>";
-                echo "<form action=\"address.php?usid=$usid&usr=$usr&veri=$veri&opt=cedit&optid=$optid\" id=\"form1\" method=\"post\" onsubmit=\"return onedit();\" accept-charset='UTF-8'>";
+                echo "<div class='x' onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&back=$back&cartmanage=$cartmanage&backsubid=$backsubid'\"></div>";
+                echo "<form action=\"address.php?usid=$usid&usr=$usr&veri=$veri&opt=cedit&optid=$optid&back=$back&cartmanage=$cartmanage&backsubid=$backsubid\" id=\"form1\" method=\"post\" onsubmit=\"return onedit();\" accept-charset='UTF-8'>";
                 echo "<div class='p'>地区：<input class=\"i\" type=\"text\" id=\"address1\" name=\"address1\" value=\"$editaddress1\"/></div>";
                 echo "<div class='p'>地址：<input class=\"i\" type=\"text\" id=\"address2\" name=\"address2\" value=\"$editaddress2\"/></div>";
                 echo "<div class='p'>收件人姓名：<input class=\"i\" type=\"text\" id=\"receiver\" name=\"receiver\" value=\"$editreceiver\"/></div>";
@@ -263,7 +273,7 @@ if($opt=="cdlt" && $optid!=-1){
         }else if($opt=="add"){
             echo "<div class='panel'>";
             echo "<div class='title'>添加地址</div>";
-            echo "<div class='x' onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri'\"></div>";
+            echo "<div class='x' onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&back=$back&cartmanage=$cartmanage&backsubid=$backsubid'\"></div>";
             echo "<form action=\"address.php?usid=$usid&usr=$usr&veri=$veri&opt=cadd\" id=\"form1\" method=\"post\" onsubmit=\"return onedit();\" accept-charset='UTF-8'>";
             echo "<div class='p'>地区：<input class=\"i\" type=\"text\" id=\"address1\" name=\"address1\" placeholder=\"请输入地区\"/></div>";
             echo "<div class='p'>地址：<input class=\"i\" type=\"text\" id=\"address2\" name=\"address2\" placeholder=\"请输入地址\"/></div>";
@@ -273,15 +283,15 @@ if($opt=="cdlt" && $optid!=-1){
             echo "</div>";
         }else if($opt=="dlt"){
             echo "<div class='dltpanel'>";
-            echo "<div class='x' onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri'\"></div>";
+            echo "<div class='x' onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&back=$back&cartmanage=$cartmanage&backsubid=$backsubid'\"></div>";
             echo "<div class='title'>是否确认删除该条地址？</div>";
-            echo "<div class='buttons'><div class='confirm' onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&opt=cdlt&optid=$optid'\">确认</div><div class='cancel' onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri'\">取消</div></div>";
+            echo "<div class='buttons'><div class='confirm' onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&opt=cdlt&optid=$optid&back=$back&cartmanage=$cartmanage&backsubid=$backsubid'\">确认</div><div class='cancel' onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&back=$back&cartmanage=$cartmanage&backsubid=$backsubid'\">取消</div></div>";
             echo "</div>";
         }
         ?>
     </div>
     <div class="footer">
-        <div class="button" <?php if($opt==-1){echo "onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&opt=add'\"";} ?>>添加收货地址</div>
+        <div class="button" <?php if($opt==-1){echo "onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&opt=add&back=$back&cartmanage=$cartmanage&backsubid=$backsubid'\"";} ?>>添加收货地址</div>
     </div>
 </div>
 </body>

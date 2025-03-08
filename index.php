@@ -62,7 +62,7 @@ if(isset($_GET['actid'])){
     $actid=-1;
 }
 $usrv=mysqli_query($conn,'set names utf8');
-$usrv=mysqli_query($conn,'select username,verify from users where id = '.$usid);
+$usrv=mysqli_query($conn,"select username,verify from users where id =$usid and valid=1");
 $usrqry=0;
 while($usrvr=mysqli_fetch_row($usrv)){
     $realname=$usrvr[0];
@@ -130,7 +130,7 @@ if($act=="add"){
         </div>
         <div class="part2">
             <?PHP
-            $indexcategory=mysqli_query($conn,"select icpic,icname,id from indexcategories");
+            $indexcategory=mysqli_query($conn,"select icpic,icname,id from indexcategories where valid=1");
             while($indexcategoryrow=mysqli_fetch_row($indexcategory)){
                 $icpic=$indexcategoryrow[0];
                 $icname=$indexcategoryrow[1];
@@ -141,7 +141,7 @@ if($act=="add"){
         </div>
         <div class="part3">
             <?PHP
-            $rcquery=mysqli_query($conn,"select id,rcname,bgcolor from recccategories where id!=0");
+            $rcquery=mysqli_query($conn,"select id,rcname,bgcolor from recccategories where id!=0 and valid=1");
             while($rcqueryrow=mysqli_fetch_row($rcquery)){
                 $rcid=$rcqueryrow[0];
                 $rcname=$rcqueryrow[1];
@@ -157,17 +157,17 @@ if($act=="add"){
         <div class="part4">
             <div class="body">
                 <?PHP
-                $itemquery=mysqli_query($conn,"select distinct subitems.id from subcategories,thirdcategories,items,subitems where subcategories.id=thirdcategories.scid and thirdcategories.id=items.thcid and subitems.rcid=$rcchosen order by subitems.id");
+                $itemquery=mysqli_query($conn,"select distinct subitems.id from subcategories,thirdcategories,items,subitems where subcategories.id=thirdcategories.scid and thirdcategories.id=items.thcid and subitems.rcid=$rcchosen and subitems.valid=1 order by subitems.id");
                 while ($itemrow=mysqli_fetch_row($itemquery)) {
                     $subid=$itemrow[0];
-                    $detailquery=mysqli_query($conn,"select subitems.siprice,subitems.sitext,vendors.vname from subitems,items,vendors where subitems.iid=items.id and items.vid=vendors.id and subitems.id=$subid");
+                    $detailquery=mysqli_query($conn,"select subitems.siprice,subitems.sitext,vendors.vname from subitems,items,vendors where subitems.iid=items.id and items.vid=vendors.id and subitems.id=$subid and subitems.valid=1 and vendors.valid=1");
                     while ($detailrow=mysqli_fetch_row($detailquery)) {
                         $price=$detailrow[0];
                         $name=$detailrow[1];
                         $vendor=$detailrow[2];
                     }
                     $pic="assets/items/itempic/nopic.jpg";
-                    $picquery=mysqli_query($conn,"select pic from subitemtopic where siid=$subid limit 1");
+                    $picquery=mysqli_query($conn,"select pic from subitemtopic where siid=$subid and valid=1 limit 1");
                     while ($picrow=mysqli_fetch_row($picquery)) {
                         $pic=$picrow[0];
                     }
@@ -181,7 +181,7 @@ if($act=="add"){
     <div class="footer">
         <?PHP
         $cartitem=0;
-        $footerquery=mysqli_query($conn,"select id,text,href,icon from footer");
+        $footerquery=mysqli_query($conn,"select id,text,href,icon from footer where valid=1");
         $cartitemquery=mysqli_query($conn,"select sum(quantity) from cart where uid=$usid and checked=0 and quantity>0 and valid=1");
         while ($cartitemrow=mysqli_fetch_row($cartitemquery)) {
             $cartitem=$cartitemrow[0];

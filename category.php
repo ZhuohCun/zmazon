@@ -35,7 +35,7 @@ if(isset($_GET['categorychosen'])){
     $categorychosen=1;
 }
 $usrv=mysqli_query($conn,'set names utf8');
-$usrv=mysqli_query($conn,'select username,verify from users where id = '.$usid);
+$usrv=mysqli_query($conn,"select username,verify from users where id = $usid and valid=1");
 $usrqry=0;
 while($usrvr=mysqli_fetch_row($usrv)){
     $realname=$usrvr[0];
@@ -55,7 +55,7 @@ $footerchosen=2;
     <div class="main">
         <div class="left">
             <?PHP
-            $categoryquery=mysqli_query($conn,'select id,ctext from categories');
+            $categoryquery=mysqli_query($conn,'select id,ctext from categories where valid=1');
             while($categoryrow=mysqli_fetch_row($categoryquery)){
                 $cid=$categoryrow[0];
                 $ctext=$categoryrow[1];
@@ -69,7 +69,7 @@ $footerchosen=2;
         </div>
         <div class="right">
             <?PHP
-            $subquery=mysqli_query($conn,"select id,scname from subcategories where cid=$categorychosen");
+            $subquery=mysqli_query($conn,"select id,scname from subcategories where cid=$categorychosen and valid=1");
             while($subrow=mysqli_fetch_row($subquery)){
                 $subid=$subrow[0];
                 $subtext=$subrow[1];
@@ -88,7 +88,7 @@ $footerchosen=2;
                 for ($i = 0; $i < count($subarr); $i++) {
                     echo "<div class='itemhead' ><div class='ileft'>$subarr[$i]</div>";
                     echo "<div class='iright' onclick=\"location.href='items.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&id=".$subidarr[$i]."&type=sub'\">全部<i class='ico'></i></div></div>";
-                    $trdquery = mysqli_query($conn, "select thirdcategories.thcname,thirdcategories.thcpic,thirdcategories.id from categories,subcategories,thirdcategories where categories.id=subcategories.cid and subcategories.id=thirdcategories.scid and categories.id=$categorychosen and subcategories.id=$subidarr[$i]");
+                    $trdquery = mysqli_query($conn, "select thirdcategories.thcname,thirdcategories.thcpic,thirdcategories.id from categories,subcategories,thirdcategories where categories.id=subcategories.cid and subcategories.id=thirdcategories.scid and categories.id=$categorychosen and subcategories.id=$subidarr[$i] and thirdcategories.valid=1");
                     while ($trdrow = mysqli_fetch_row($trdquery)) {
                         $trdname = $trdrow[0];
                         $trdpic = $trdrow[1];
@@ -98,7 +98,7 @@ $footerchosen=2;
                     }
                 }
             }else{
-                $trdquery=mysqli_query($conn,"select thirdcategories.thcname,thirdcategories.thcpic,thirdcategories.id from categories,subcategories,thirdcategories where categories.id=subcategories.cid and subcategories.id=thirdcategories.scid and categories.id=$categorychosen");
+                $trdquery=mysqli_query($conn,"select thirdcategories.thcname,thirdcategories.thcpic,thirdcategories.id from categories,subcategories,thirdcategories where categories.id=subcategories.cid and subcategories.id=thirdcategories.scid and categories.id=$categorychosen and thirdcategories.valid=1");
                 while($trdrow=mysqli_fetch_row($trdquery)){
                     $trdname=$trdrow[0];
                     $trdpic=$trdrow[1];

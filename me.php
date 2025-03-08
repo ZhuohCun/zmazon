@@ -47,7 +47,7 @@ if(isset($_GET['actid'])){
     $actid=-1;
 }
 $usrv=mysqli_query($conn,'set names utf8');
-$usrv=mysqli_query($conn,'select username,verify from users where id = '.$usid);
+$usrv=mysqli_query($conn,"select username,verify from users where id = $usid and valid=1");
 $usrqry=0;
 while($usrvr=mysqli_fetch_row($usrv)){
     $realname=$usrvr[0];

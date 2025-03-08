@@ -101,6 +101,8 @@ if(isset($_GET['text'])){
                         echo "未添加收货地址";
                     } elseif ($rea=='balance'){
                         echo "余额不足";
+                    }elseif ($rea!=-1){
+                        echo $rea;
                     }else{
                         echo "未知错误";
                     }
