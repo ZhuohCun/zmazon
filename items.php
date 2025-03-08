@@ -63,21 +63,21 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
     die;
 }
 if($type=='sub'){
-    $titlequery=mysqli_query($conn,"select subcategories.scname,categories.id from categories,subcategories where categories.id=subcategories.cid and subcategories.id=$id");
+    $titlequery=mysqli_query($conn,"select subcategories.scname,categories.id from categories,subcategories where categories.id=subcategories.cid and subcategories.id=$id and subcategories.valid=1");
     while ($titlerow=mysqli_fetch_row($titlequery)) {
         $title=$titlerow[0];
         $categorychosen=$titlerow[1];
     }
     $back="category.php";
 }elseif($type=='trd') {
-    $titlequery = mysqli_query($conn, "select thirdcategories.thcname,categories.id from thirdcategories,categories,subcategories where categories.id=subcategories.cid and thirdcategories.scid=subcategories.id and thirdcategories.id=$id");
+    $titlequery = mysqli_query($conn, "select thirdcategories.thcname,categories.id from thirdcategories,categories,subcategories where categories.id=subcategories.cid and thirdcategories.scid=subcategories.id and thirdcategories.id=$id and thirdcategories.valid=1");
     while ($titlerow = mysqli_fetch_row($titlequery)) {
         $title = $titlerow[0];
         $categorychosen=$titlerow[1];
     }
     $back="category.php";
 }elseif ($type=='index'){
-    $titlequery = mysqli_query($conn, "select icname from indexcategories where id=$id");
+    $titlequery = mysqli_query($conn, "select icname from indexcategories where id=$id and valid=1");
     while ($titlerow = mysqli_fetch_row($titlequery)) {
         $title = $titlerow[0];
         $categorychosen=0;
@@ -125,7 +125,7 @@ if($act=="add"){
     <div class="main">
         <?PHP
         if($type=='sub'){
-            $itemquery=mysqli_query($conn,"select distinct subitems.id from thirdcategories,subitems,items where thirdcategories.scid=$id and thirdcategories.id=items.thcid and items.id=subitems.iid order by subitems.id");
+            $itemquery=mysqli_query($conn,"select distinct subitems.id from thirdcategories,subitems,items where thirdcategories.scid=$id and thirdcategories.id=items.thcid and items.id=subitems.iid and subitems.valid=1 order by subitems.id");
             while ($itemrow=mysqli_fetch_row($itemquery)) {
                 $subid=$itemrow[0];
                 $detailquery=mysqli_query($conn,"select subitems.siprice,subitems.sitext,vendors.vname from subitems,items,vendors where subitems.iid=items.id and items.vid=vendors.id and subitems.id=$subid");
