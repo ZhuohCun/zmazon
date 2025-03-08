@@ -145,12 +145,12 @@ if($act=="add"){
             $buytransportfee=0;
         }
     }
-    mysqli_query($conn,"insert into orders (uid,status,price,aid) values ($usid,1,$buysiprice,$buyaddress)");
+    mysqli_query($conn,"insert into orders (uid,status,price,aid,pid) values ($usid,1,$buysiprice,$buyaddress,0)");
     $orderidquery=mysqli_query($conn,"select id from orders where uid=$usid");
     while ($orderrow=mysqli_fetch_row($orderidquery)) {
         $orderid=$orderrow[0];
     }
-    mysqli_query($conn,"insert into ordertosubitem (oid,siid,quantity) values ($orderid,$subid,1)");
+    mysqli_query($conn,"insert into ordertosubitem (oid,siid,quantity,siprice,siimportfee,transportfee) values ($orderid,$subid,1,$buysiprice,$buytransportfee,$buytransportfee)");
     header("location:payment.php?usid=$usid&usr=$usr&veri=$veri&orderid=$orderid");
     die;
 }
@@ -233,9 +233,9 @@ if($act=="add"){
                     $vname=$vendorrow[0];
                 }
                 $addressfetched=0;
-                $daddressquery=mysqli_query($conn,"select usertoaddress.address from users,usertoaddress where users.id=usertoaddress.uid and usertoaddress.isdefault=1 and users.id=$usid limit 1");
+                $daddressquery=mysqli_query($conn,"select usertoaddress.address1,usertoaddress.address2 from users,usertoaddress where users.id=usertoaddress.uid and usertoaddress.isdefault=1 and users.id=$usid and valid=1 limit 1");
                 while($daddressrow=mysqli_fetch_row($daddressquery)){
-                    $address=$daddressrow[0];
+                    $address=$daddressrow[0].$daddressrow[1];
                     $addressfetched=1;
                 }
                 if($addressfetched==0){

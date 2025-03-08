@@ -193,7 +193,7 @@ if($act=="add"){
             </div>
         </div>
         <div class="part5">
-            <div class="item" <?php echo "onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri'\"";?>>
+            <div class="item" <?php echo "onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&back=me.php'\"";?>>
                 <img src="assets/me/part5/1.jpg">
                 <h4>收货地址</h4>
             </div>

@@ -197,7 +197,7 @@ if($opt=="cdlt" && $optid!=-1){
 ?>
 <div class="container">
     <div class="header">
-        <div class="back" <?php if($opt==-1){echo "onclick=\"location.href='me.php?usid=$usid&usr=$usr&veri=$veri'\"";} ?>></div>
+        <div class="back" <?php if($opt==-1){echo "onclick=\"location.href='$back?usid=$usid&usr=$usr&veri=$veri&manage=$cartmanage'\"";} ?>></div>
         <div class="item">地址管理</div>
     </div>
     <div class="main">
@@ -211,18 +211,21 @@ if($opt=="cdlt" && $optid!=-1){
             $recerver=$addr[3];
             $por=$addr[4];
             $isdefault=$addr[5];
-            echo "<div class='item'";if($opt==-1 and $back=="cart.php"){echo "onclick=\"location.href='cart.php?usid=$usid&usr=$usr&veri=$veri&manage=$cartmanage&aid=$addrid'\"";} echo ">";
+            echo "<div class='item'>";
             echo "<div class='p1'";if($opt==-1 and $back=="cart.php"){echo "onclick=\"location.href='cart.php?usid=$usid&usr=$usr&veri=$veri&manage=$cartmanage&aid=$addrid'\"";} echo ">$addrname1</div>";
 
             echo "<div class='p2'>";
             if($isdefault==1){echo "<div class='ifdefault'";}
             if($opt==-1 && $back=="cart.php" && $isdefault==1){echo "onclick=\"location.href='cart.php?usid=$usid&usr=$usr&veri=$veri&manage=$cartmanage&aid=$addrid'\"";}
             if($isdefault==1){echo ">默认</div>";}
-            echo "<div class='addr'>$addrname2</div><div class='delete'";
+            echo "<div class='addr'>$addrname2</div>";
+            if($isdefault!=1){echo "<div class='ifdefault2'></div>";}
+            echo "<div class='delete'";
             if($opt==-1){echo "onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&opt=dlt&optid=$addrid'\"";}
             echo "></div><div class='setdefault'";
             if($opt==-1 && $isdefault==0){echo "onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&opt=csd&optid=$addrid'\"";}
-            echo ">";if($isdefault==0){echo "<img src='assets/address/default.png'>";}
+            echo ">";
+            if($isdefault==0){echo "<img src='assets/address/default.png'>";}
             echo "</div><div class='edit'";
             if($opt==-1){echo "onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&opt=edit&optid=$addrid'\"";}
             echo "></div></div>";

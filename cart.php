@@ -42,8 +42,8 @@ if(isset($_GET['actid'])){
 }else{
     $actid=-1;
 }
-if(isset($_GET['address'])){
-    $address=$_GET['address'];
+if(isset($_GET['aid'])){
+    $address=$_GET['aid'];
 }else{
     $address=-1;
 }
@@ -196,12 +196,12 @@ if($act=='del'){
     header("location:cart.php?usid=$usid&usr=$usr&veri=$veri&manage=1");
 }elseif ($act=='buy'){
     $buyaddress=-1;
-    $buyaddressquery=mysqli_query($conn,"select id from usertoaddress where uid=$usid and isdefault=1 limit 1");
+    $buyaddressquery=mysqli_query($conn,"select id from usertoaddress where uid=$usid and isdefault=1 and valid=1 limit 1");
     while ($buyaddressrow=mysqli_fetch_row($buyaddressquery)) {
         $buyaddress=$buyaddressrow[0];
     }
     if($buyaddressrow==-1){
-        $buyaddressquery=mysqli_query($conn,"select id from usertoaddress where uid=$usid limit 1");
+        $buyaddressquery=mysqli_query($conn,"select id from usertoaddress where uid=$usid and valid=1 limit 1");
         while ($buyaddressrow=mysqli_fetch_row($buyaddressquery)) {
             $buyaddress=$buyaddressrow[0];
         }
@@ -227,14 +227,14 @@ if($act=='del'){
     while ($orderrow=mysqli_fetch_row($orderidquery)) {
         $orderid=$orderrow[0];
     }
-    $buysubitemquery=mysqli_query($conn,"select cart.siid,cart.quantity,subitem.siprice,subitem.siimportfee,subitem.transportfee from cart,subitems where uid=$usid and cart.siid=subitems.id and quantity>0 and chosen=1 and checked=0 and valid=1");
+    $buysubitemquery=mysqli_query($conn,"select cart.siid,cart.quantity,subitems.siprice,subitems.siimportfee,subitems.transportfee from cart,subitems where uid=$usid and cart.siid=subitems.id and quantity>0 and chosen=1 and checked=0 and valid=1");
     while ($buysubitemrow=mysqli_fetch_row($buysubitemquery)) {
         $buysubitemid=$buysubitemrow[0];
         $buysubitemquantity=$buysubitemrow[1];
         $siprice=$buysubitemrow[2];
         $siimportfee=$buysubitemrow[3];
         $transportfee=$buysubitemrow[4];
-        mysqli_query($conn,"insert into ordertosubitem (oid,siid,quantity,subprice) values ($orderid,$buysubitemid,$buysubitemquantity,$siprice,$transportfee,$transportfee)");  //下单固定价格
+        mysqli_query($conn,"insert into ordertosubitem (oid,siid,quantity,siprice,siimportfee,transportfee) values ($orderid,$buysubitemid,$buysubitemquantity,$siprice,$siimportfee,$transportfee)");  //下单固定价格
     }
     mysqli_query($conn,"update cart set checked=1 where checked=0 and quantity>0 and chosen=1 and valid=1 and uid=$usid");
     mysqli_query($conn,"commit");
@@ -246,7 +246,7 @@ if($act=='del'){
     <div class="header">
         <div class="left">
             <h1>购物车(<?php echo $cartitem;?>)</h1>
-            <div class="location">
+            <div class="location" <?php echo "onclick=\"location.href='address.php?usid=$usid&usr=$usr&veri=$veri&back=cart.php&cartmanage=$manage'\"" ?>>
                 <i class="lico"></i>
                 <?php echo $location;?>
                 <i class="rico"></i>
@@ -254,9 +254,9 @@ if($act=='del'){
         </div>
         <div class="right" onclick="location.href='<?php
         if($manage==0){
-            echo "cart.php?usid=$usid&usr=$usr&veri=$veri&manage=1";
+            echo "cart.php?usid=$usid&usr=$usr&veri=$veri&manage=1&aid=$address";
         }else{
-            echo "cart.php?usid=$usid&usr=$usr&veri=$veri&manage=0";
+            echo "cart.php?usid=$usid&usr=$usr&veri=$veri&manage=0&aid=$address";
         }
         ?>'"><?php
             if($manage==0){

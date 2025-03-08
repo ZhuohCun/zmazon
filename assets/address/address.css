@@ -179,7 +179,6 @@ body{
     justify-content:left;
     right: 3vw;
     align-items: center;
-    z-index: 999;
     content: url("../icons/edit.svg");
 }
 .container .main .itembox .item .p2 .delete{
@@ -189,7 +188,6 @@ body{
     border-radius: 1vw;
     justify-content:left;
     align-items: center;
-    z-index: 999;
     content: url("../icons/xmark.svg");
 }
 .container .main .itembox .item .p2 .setdefault{
@@ -199,7 +197,6 @@ body{
     border-radius: 1vw;
     justify-content:left;
     align-items: center;
-    z-index: 999;
 }
 .container .main .itembox .item .p2 .setdefault img{
     max-width: 5vw;
@@ -222,7 +219,6 @@ body{
     position: fixed;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
 }
 .container .footer .button {
     width: 90vw;
