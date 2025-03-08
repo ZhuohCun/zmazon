@@ -128,31 +128,31 @@ if($act=="add"){
             $itemquery=mysqli_query($conn,"select distinct subitems.id from thirdcategories,subitems,items where thirdcategories.scid=$id and thirdcategories.id=items.thcid and items.id=subitems.iid and subitems.valid=1 order by subitems.id");
             while ($itemrow=mysqli_fetch_row($itemquery)) {
                 $subid=$itemrow[0];
-                $detailquery=mysqli_query($conn,"select subitems.siprice,subitems.sitext,vendors.vname from subitems,items,vendors where subitems.iid=items.id and items.vid=vendors.id and subitems.id=$subid");
+                $detailquery=mysqli_query($conn,"select subitems.siprice,subitems.sitext,vendors.vname from subitems,items,vendors where subitems.iid=items.id and items.vid=vendors.id and subitems.id=$subid and subitems.valid=1");
                 while ($detailrow=mysqli_fetch_row($detailquery)) {
                     $price=$detailrow[0];
                     $name=$detailrow[1];
                     $vendor=$detailrow[2];
                 }
                 $pic="assets/items/itempic/nopic.jpg";
-                $picquery=mysqli_query($conn,"select pic from subitemtopic where siid=$subid limit 1");
+                $picquery=mysqli_query($conn,"select pic from subitemtopic where siid=$subid and valid=1 limit 1");
                 while ($picrow=mysqli_fetch_row($picquery)) {
                     $pic=$picrow[0];
                 }
                 echo "<div class='item'><div class='tag' onclick=\"location.href='details.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&subid=".$subid."&back=".$current."'\"><img src='$pic'><h1>$name</h1><div class='price'>&#165 $price</div><div class='detail'><div class='detailleft'>$vendor</div><div class='detailright'>满300元免运费</div></div></div><div class='last' onclick=\"location.href='items.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&id=".$id."&actid=".$subid."&act=add&type=sub'\"><svg class='ico' xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 1024 1024'><path fill='currentColor' d='M352 480h320a32 32 0 1 1 0 64H352a32 32 0 0 1 0-64'/><path fill='currentColor' d='M480 672V352a32 32 0 1 1 64 0v320a32 32 0 0 1-64 0'/><path fill='currentColor' d='M512 896a384 384 0 1 0 0-768a384 384 0 0 0 0 768m0 64a448 448 0 1 1 0-896a448 448 0 0 1 0 896'/></svg></div></div>";
             }
         }elseif($type=='trd'){
-            $itemquery=mysqli_query($conn,"select distinct subitems.id from items,subitems where items.id=subitems.iid and items.thcid=$id order by subitems.id");
+            $itemquery=mysqli_query($conn,"select distinct subitems.id from items,subitems where items.id=subitems.iid and items.thcid=$id and subitems.valid=1 order by subitems.id");
             while ($itemrow=mysqli_fetch_row($itemquery)) {
                 $subid=$itemrow[0];
-                $detailquery=mysqli_query($conn,"select subitems.siprice,subitems.sitext,vendors.vname from subitems,items,vendors where subitems.iid=items.id and items.vid=vendors.id and subitems.id=$subid");
+                $detailquery=mysqli_query($conn,"select subitems.siprice,subitems.sitext,vendors.vname from subitems,items,vendors where subitems.iid=items.id and items.vid=vendors.id and subitems.id=$subid and subitems.valid=1");
                 while ($detailrow=mysqli_fetch_row($detailquery)) {
                     $price=$detailrow[0];
                     $name=$detailrow[1];
                     $vendor=$detailrow[2];
                 }
                 $pic="assets/items/itempic/nopic.jpg";
-                $picquery=mysqli_query($conn,"select pic from subitemtopic where siid=$subid limit 1");
+                $picquery=mysqli_query($conn,"select pic from subitemtopic where siid=$subid and valid=1 limit 1");
                 while ($picrow=mysqli_fetch_row($picquery)) {
                     $pic=$picrow[0];
                 }
@@ -160,17 +160,17 @@ if($act=="add"){
             }
         }elseif ($type=='index'){
             echo "<div class='ichead'><img src='assets/indexcategory/".$id.".jpg'/> </div>";
-            $itemquery=mysqli_query($conn,"select distinct subitems.id from subitems where icid=$id order by subitems.id");
+            $itemquery=mysqli_query($conn,"select distinct subitems.id from subitems where icid=$id and valid=1 order by subitems.id");
             while ($itemrow=mysqli_fetch_row($itemquery)) {
                 $subid=$itemrow[0];
-                $detailquery=mysqli_query($conn,"select subitems.siprice,subitems.sitext,vendors.vname from subitems,items,vendors where subitems.iid=items.id and items.vid=vendors.id and subitems.id=$subid");
+                $detailquery=mysqli_query($conn,"select subitems.siprice,subitems.sitext,vendors.vname from subitems,items,vendors where subitems.iid=items.id and items.vid=vendors.id and subitems.id=$subid and subitems.valid=1");
                 while ($detailrow=mysqli_fetch_row($detailquery)) {
                     $price=$detailrow[0];
                     $name=$detailrow[1];
                     $vendor=$detailrow[2];
                 }
                 $pic="assets/items/itempic/nopic.jpg";
-                $picquery=mysqli_query($conn,"select pic from subitemtopic where siid=$subid limit 1");
+                $picquery=mysqli_query($conn,"select pic from subitemtopic where siid=$subid and valid=1 limit 1");
                 while ($picrow=mysqli_fetch_row($picquery)) {
                     $pic=$picrow[0];
                 }

@@ -66,9 +66,9 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
     <div class="main">
         <?php
         if($status==0){
-            $orderquery=mysqli_query($conn,"select orders.id,orders.price,orders.status from orders where orders.uid=$usid");
+            $orderquery=mysqli_query($conn,"select orders.id,orders.price,orders.status from orders where orders.uid=$usid and valid=1");
         }else{
-            $orderquery=mysqli_query($conn,"select orders.id,orders.price,orders.status from orders where orders.uid=$usid and orders.status=$status");
+            $orderquery=mysqli_query($conn,"select orders.id,orders.price,orders.status from orders where orders.uid=$usid and orders.status=$status and valid=1");
         }
         while($orderrow=mysqli_fetch_row($orderquery)){
             if($hasitem==0){
@@ -91,14 +91,14 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
             }
             echo "<div class='item'>";
             echo "<div class='itemhead'><div class='itemid'>订单号: $id</div><div class='status'>$realststus</div></div>";
-            $siquery=mysqli_query($conn,"select ordertosubitem.quantity,ordertosubitem.siprice,subitems.sitext,vendors.vname,subitems.id from subitems,ordertosubitem,items,vendors where ordertosubitem.oid=$id and subitems.id=ordertosubitem.siid and vendors.id=items.vid and subitems.iid=items.id");
+            $siquery=mysqli_query($conn,"select ordertosubitem.quantity,ordertosubitem.siprice,subitems.sitext,vendors.vname,subitems.id from subitems,ordertosubitem,items,vendors where ordertosubitem.oid=$id and subitems.id=ordertosubitem.siid and vendors.id=items.vid and subitems.iid=items.id and ordertosubitem.valid=1");
             while ($siqueryrow=mysqli_fetch_row($siquery)){
                 $quantity=$siqueryrow[0];
                 $siprice=$siqueryrow[1];
                 $sitext=$siqueryrow[2];
                 $vname=$siqueryrow[3];
                 $siid=$siqueryrow[4];
-                $picquery=mysqli_query($conn,"select subitemtopic.pic from subitemtopic,subitems where subitemtopic.siid=subitems.id and subitems.id=$siid limit 1");
+                $picquery=mysqli_query($conn,"select subitemtopic.pic from subitemtopic,subitems where subitemtopic.siid=subitems.id and subitems.id=$siid and subitemtopic.valid=1 limit 1");
                 while ($picrow=mysqli_fetch_row($picquery)) {
                     $pic=$picrow[0];
                 }

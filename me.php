@@ -117,11 +117,11 @@ if($act=="add"){
                             if($usid==-1){
                                 echo "登录/注册";
                             }else{
-                                $tocommentquery=mysqli_query($conn,"select count(*) from orders where orders.uid=$usid and status=4");
+                                $tocommentquery=mysqli_query($conn,"select count(*) from orders where orders.uid=$usid and status=4 and valid=1");
                                 while ($tocommentrow=mysqli_fetch_row($tocommentquery)){
                                     $tonum=$tocommentrow[0];
                                 }
-                                $hascommentquery=mysqli_query($conn,"select count(*) from orders where orders.uid=$usid and status=5");
+                                $hascommentquery=mysqli_query($conn,"select count(*) from orders where orders.uid=$usid and status=5 and valid=1");
                                 while ($hascommentrow=mysqli_fetch_row($hascommentquery)){
                                     $hasnum=$hascommentrow[0];
                                 }
@@ -157,12 +157,12 @@ if($act=="add"){
             </div>
             <div class="body">
                 <?PHP
-                $statusquery=mysqli_query($conn,"select * from status where id!=7");
+                $statusquery=mysqli_query($conn,"select * from status where id!=7 and valid=1");
                 while($statusrow=mysqli_fetch_row($statusquery)){
                     $statusid=$statusrow[0];
                     $statusname=$statusrow[1];
                     if($usid!=-1){
-                        $dotquery=mysqli_query($conn,"select count(*) from orders where orders.uid=$usid and orders.status=$statusid");
+                        $dotquery=mysqli_query($conn,"select count(*) from orders where orders.uid=$usid and orders.status=$statusid and valid=1");
                         while($dotrow=mysqli_fetch_row($dotquery)){
                             $dotnum=$dotrow[0];
                         }
@@ -214,17 +214,17 @@ if($act=="add"){
             <div class="head">畅销单品推荐</div>
             <div class="body">
             <?PHP
-            $itemquery=mysqli_query($conn,"select distinct subitems.id from subcategories,thirdcategories,items,subitems where subcategories.id=thirdcategories.scid and thirdcategories.id=items.thcid and subitems.rcid!=0 order by subitems.id");
+            $itemquery=mysqli_query($conn,"select distinct subitems.id from subcategories,thirdcategories,items,subitems where subcategories.id=thirdcategories.scid and thirdcategories.id=items.thcid and subitems.rcid!=0 and subitems.valid=1 order by subitems.id");
             while ($itemrow=mysqli_fetch_row($itemquery)) {
                 $subid=$itemrow[0];
-                $detailquery=mysqli_query($conn,"select subitems.siprice,subitems.sitext,vendors.vname from subitems,items,vendors where subitems.iid=items.id and items.vid=vendors.id and subitems.id=$subid");
+                $detailquery=mysqli_query($conn,"select subitems.siprice,subitems.sitext,vendors.vname from subitems,items,vendors where subitems.iid=items.id and items.vid=vendors.id and subitems.id=$subid and subitems.valid=1");
                 while ($detailrow=mysqli_fetch_row($detailquery)) {
                     $price=$detailrow[0];
                     $name=$detailrow[1];
                     $vendor=$detailrow[2];
                 }
                 $pic="assets/items/itempic/nopic.jpg";
-                $picquery=mysqli_query($conn,"select pic from subitemtopic where siid=$subid limit 1");
+                $picquery=mysqli_query($conn,"select pic from subitemtopic where siid=$subid and valid=1 limit 1");
                 while ($picrow=mysqli_fetch_row($picquery)) {
                     $pic=$picrow[0];
                 }
@@ -237,7 +237,7 @@ if($act=="add"){
     <div class="footer">
         <?PHP
         $cartitem=0;
-        $footerquery=mysqli_query($conn,"select id,text,href,icon from footer");
+        $footerquery=mysqli_query($conn,"select id,text,href,icon from footer where valid=1");
         $cartitemquery=mysqli_query($conn,"select sum(quantity) from cart where uid=$usid and checked=0 and quantity>0 and valid=1");
         while ($cartitemrow=mysqli_fetch_row($cartitemquery)) {
             $cartitem=$cartitemrow[0];
