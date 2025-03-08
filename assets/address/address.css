@@ -57,33 +57,7 @@ body{
     justify-content: center;
     align-items: center;
     font-size: 5vw;
-}
-.container .header2{
-    height:9vw;
-    margin-top: 10vw;
-    width: 100vw;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: fixed;
-    background-color: #fbfbfb;
-}
-.container .header2 .item{
-    width: 25vw;
-    height: 8vw;
-    font-size: 4vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.container .header2 .itemchosen{
-    width: 25vw;
-    height: 8vw;
-    font-size: 4vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: red;
+    z-index: 1000;
 }
 .container .main {
     height: 85%;
@@ -205,6 +179,7 @@ body{
     justify-content:left;
     right: 3vw;
     align-items: center;
+    z-index: 999;
     content: url("../icons/edit.svg");
 }
 .container .main .itembox .item .p2 .delete{
@@ -214,6 +189,7 @@ body{
     border-radius: 1vw;
     justify-content:left;
     align-items: center;
+    z-index: 999;
     content: url("../icons/xmark.svg");
 }
 .container .main .itembox .item .p2 .setdefault{
@@ -223,6 +199,7 @@ body{
     border-radius: 1vw;
     justify-content:left;
     align-items: center;
+    z-index: 999;
 }
 .container .main .itembox .item .p2 .setdefault img{
     max-width: 5vw;
@@ -245,6 +222,7 @@ body{
     position: fixed;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 .container .footer .button {
     width: 90vw;
