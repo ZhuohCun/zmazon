@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: localhost    Database: zmazon
 -- ------------------------------------------------------
--- Server version	8.0.38
+-- Server version	8.0.41
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,6 +30,7 @@ CREATE TABLE `comments` (
   `year` int NOT NULL,
   `month` int NOT NULL,
   `day` int NOT NULL,
+  `valid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `comments.siid` (`siid`),
   KEY `comments.uid` (`uid`),
@@ -44,7 +45,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,1,1,'很好用',2024,7,8),(2,2,2,'好评',2024,7,9),(3,1,3,'第三个评价',2024,7,9),(4,4,3,'是正品',2024,7,10);
+INSERT INTO `comments` VALUES (1,1,1,'很好用',2024,7,8,'1'),(2,2,2,'好评',2024,7,9,'1'),(3,1,3,'第三个评价',2024,7,9,'1'),(4,4,3,'是正品',2024,7,10,'1');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-12 22:18:30
+-- Dump completed on 2025-03-08 22:08:04

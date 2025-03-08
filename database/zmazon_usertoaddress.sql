@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: localhost    Database: zmazon
 -- ------------------------------------------------------
--- Server version	8.0.38
+-- Server version	8.0.41
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,12 +25,16 @@ DROP TABLE IF EXISTS `usertoaddress`;
 CREATE TABLE `usertoaddress` (
   `id` int NOT NULL AUTO_INCREMENT,
   `uid` int NOT NULL,
-  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `address1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `address2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `receiver` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `phoneofreceiver` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `isdefault` int NOT NULL,
+  `valid` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `usertoaddress.uid` (`uid`),
   CONSTRAINT `usertoaddress.uid` FOREIGN KEY (`uid`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +43,7 @@ CREATE TABLE `usertoaddress` (
 
 LOCK TABLES `usertoaddress` WRITE;
 /*!40000 ALTER TABLE `usertoaddress` DISABLE KEYS */;
-INSERT INTO `usertoaddress` VALUES (1,1,'云南省呈贡区大渔街道xx号',1),(2,2,'云南省呈贡区马金铺街道xx号',1);
+INSERT INTO `usertoaddress` VALUES (1,1,'云南省呈贡区','大渔街道xx号','小A','123456',0,1),(2,2,'云南省呈贡区','马金铺街道xx号','小B','456789',1,1),(3,1,'云南省五华区','人民西路xx号','小B','123789',0,1),(4,1,'東京都','xx番目','田中さん','111222',1,1),(5,1,'東京都','xx番目','山本さん','123890',1,0),(6,2,'大阪府','大阪市中央区xx番地','鈴木さん','567123',0,1),(7,2,'No.xxx Queen St.','Des Monies, IA','Ms.Greens','456123',0,1),(8,2,'京都府','京都市中京区xx番地','犬伏先生','987321',0,1);
 /*!40000 ALTER TABLE `usertoaddress` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-12 22:18:30
+-- Dump completed on 2025-03-08 22:08:03

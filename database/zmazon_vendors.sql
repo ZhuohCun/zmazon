@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: localhost    Database: zmazon
 -- ------------------------------------------------------
--- Server version	8.0.38
+-- Server version	8.0.41
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,6 +26,7 @@ CREATE TABLE `vendors` (
   `id` int NOT NULL AUTO_INCREMENT,
   `vname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `vintro` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `valid` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -36,7 +37,7 @@ CREATE TABLE `vendors` (
 
 LOCK TABLES `vendors` WRITE;
 /*!40000 ALTER TABLE `vendors` DISABLE KEYS */;
-INSERT INTO `vendors` VALUES (1,'美国Z马逊','美国Z马逊自营，原装进口'),(2,'日本Z马逊','日本Z马逊自营，原装进口'),(3,'德国Z马逊','德国Z马逊自营，原装进口'),(4,'英国Z马逊','英国Z马逊自营，原装进口'),(5,'澳洲Z马逊','澳洲Z马逊自营，原装进口');
+INSERT INTO `vendors` VALUES (1,'美国Z马逊','美国Z马逊自营，原装进口',1),(2,'日本Z马逊','日本Z马逊自营，原装进口',1),(3,'德国Z马逊','德国Z马逊自营，原装进口',1),(4,'英国Z马逊','英国Z马逊自营，原装进口',1),(5,'澳洲Z马逊','澳洲Z马逊自营，原装进口',1);
 /*!40000 ALTER TABLE `vendors` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-12 22:18:29
+-- Dump completed on 2025-03-08 22:08:04

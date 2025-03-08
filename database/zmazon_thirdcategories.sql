@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: localhost    Database: zmazon
 -- ------------------------------------------------------
--- Server version	8.0.38
+-- Server version	8.0.41
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,6 +27,7 @@ CREATE TABLE `thirdcategories` (
   `thcname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `thcpic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `scid` int NOT NULL,
+  `valid` int DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   KEY `thirdcategories.scid` (`scid`),
   CONSTRAINT `thirdcategories.scid` FOREIGN KEY (`scid`) REFERENCES `subcategories` (`id`)
@@ -39,7 +40,7 @@ CREATE TABLE `thirdcategories` (
 
 LOCK TABLES `thirdcategories` WRITE;
 /*!40000 ALTER TABLE `thirdcategories` DISABLE KEYS */;
-INSERT INTO `thirdcategories` VALUES (1,'数码相机','assets\\category\\categories\\1\\1\\1.png',1),(2,'录像机','assets\\category\\categories\\1\\1\\2.png',1),(3,'照片印制机','assets\\category\\categories\\1\\1\\3.png',1),(4,'耳机及配件','assets\\category\\categories\\1\\2\\1.png',2),(5,'音响喇叭','assets\\category\\categories\\1\\2\\2.png',2),(6,'音响线材','assets\\category\\categories\\1\\2\\3.png',2),(7,'电视喇叭','assets\\category\\categories\\1\\3\\1.png',3),(8,'电视功放','assets\\category\\categories\\1\\3\\2.png',3),(9,'手机','assets\\category\\categories\\1\\4\\1.png',4),(10,'手机配件','assets\\category\\categories\\1\\4\\2.png',4),(11,'笔记本','assets\\category\\categories\\3\\1.png',6),(12,'平板电脑','assets\\category\\categories\\3\\2.png',6),(13,'路由器交换机','assets\\category\\categories\\3\\3.png',6),(14,'电脑配件','assets\\category\\categories\\3\\4.png',6),(15,'口腔护理','assets\\category\\categories\\2\\1.png',5),(16,'保健生活用品','assets\\category\\categories\\2\\2.png',5),(17,'日用清洁用品','assets\\category\\categories\\2\\3.png',5),(18,'收录音机','assets\\category\\categories\\1\\2\\4.png',2),(19,'电视配件','assets\\category\\categories\\1\\3\\3.png',3),(20,'机顶盒配件','assets\\category\\categories\\1\\3\\4.png',3);
+INSERT INTO `thirdcategories` VALUES (1,'数码相机','assets\\category\\categories\\1\\1\\1.png',1,1),(2,'录像机','assets\\category\\categories\\1\\1\\2.png',1,1),(3,'照片印制机','assets\\category\\categories\\1\\1\\3.png',1,1),(4,'耳机及配件','assets\\category\\categories\\1\\2\\1.png',2,1),(5,'音响喇叭','assets\\category\\categories\\1\\2\\2.png',2,1),(6,'音响线材','assets\\category\\categories\\1\\2\\3.png',2,1),(7,'电视喇叭','assets\\category\\categories\\1\\3\\1.png',3,1),(8,'电视功放','assets\\category\\categories\\1\\3\\2.png',3,1),(9,'手机','assets\\category\\categories\\1\\4\\1.png',4,1),(10,'手机配件','assets\\category\\categories\\1\\4\\2.png',4,1),(11,'笔记本','assets\\category\\categories\\3\\1.png',6,1),(12,'平板电脑','assets\\category\\categories\\3\\2.png',6,1),(13,'路由器交换机','assets\\category\\categories\\3\\3.png',6,1),(14,'电脑配件','assets\\category\\categories\\3\\4.png',6,1),(15,'口腔护理','assets\\category\\categories\\2\\1.png',5,1),(16,'保健生活用品','assets\\category\\categories\\2\\2.png',5,1),(17,'日用清洁用品','assets\\category\\categories\\2\\3.png',5,1),(18,'收录音机','assets\\category\\categories\\1\\2\\4.png',2,1),(19,'电视配件','assets\\category\\categories\\1\\3\\3.png',3,1),(20,'机顶盒配件','assets\\category\\categories\\1\\3\\4.png',3,1);
 /*!40000 ALTER TABLE `thirdcategories` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-12 22:18:30
+-- Dump completed on 2025-03-08 22:08:02

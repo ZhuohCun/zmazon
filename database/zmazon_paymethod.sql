@@ -16,37 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ordertosubitem`
+-- Table structure for table `paymethod`
 --
 
-DROP TABLE IF EXISTS `ordertosubitem`;
+DROP TABLE IF EXISTS `paymethod`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ordertosubitem` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `oid` int NOT NULL,
-  `siid` int NOT NULL,
-  `quantity` int NOT NULL,
-  `siprice` float DEFAULT NULL,
-  `siimportfee` float DEFAULT NULL,
-  `transportfee` float DEFAULT NULL,
+CREATE TABLE `paymethod` (
+  `no` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `pic` varchar(255) DEFAULT NULL,
   `valid` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ordertosubitem.oid` (`oid`),
-  KEY `ordertosubitem.siid` (`siid`),
-  CONSTRAINT `ordertosubitem.oid` FOREIGN KEY (`oid`) REFERENCES `orders` (`id`),
-  CONSTRAINT `ordertosubitem.siid` FOREIGN KEY (`siid`) REFERENCES `subitems` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ordertosubitem`
+-- Dumping data for table `paymethod`
 --
 
-LOCK TABLES `ordertosubitem` WRITE;
-/*!40000 ALTER TABLE `ordertosubitem` DISABLE KEYS */;
-INSERT INTO `ordertosubitem` VALUES (15,4,4,1,2427.06,248.39,50,1),(16,4,3,1,1316.04,322.07,60,1),(20,9,1,1,397.67,0,0,1),(23,11,2,1,399.43,0,0,1),(26,13,1,2,397.67,44.21,50,1),(27,13,2,1,399.43,94.88,55,1),(28,14,5,1,192.22,20,20,1);
-/*!40000 ALTER TABLE `ordertosubitem` ENABLE KEYS */;
+LOCK TABLES `paymethod` WRITE;
+/*!40000 ALTER TABLE `paymethod` DISABLE KEYS */;
+INSERT INTO `paymethod` VALUES (1,'支付宝','assets/payment/alipay.png',1),(2,'微信支付','assets/payment/wechat.png',1),(3,'银行卡支付','assets/payment/unionpay.png',1),(4,'ZC支付','assets/payment/zcpay.png',1);
+/*!40000 ALTER TABLE `paymethod` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

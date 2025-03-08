@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: localhost    Database: zmazon
 -- ------------------------------------------------------
--- Server version	8.0.38
+-- Server version	8.0.41
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,16 +26,12 @@ CREATE TABLE `orders` (
   `id` int NOT NULL AUTO_INCREMENT,
   `uid` int NOT NULL,
   `status` int NOT NULL,
-  `price` float(10,2) NOT NULL,
+  `price` float NOT NULL,
+  `pid` int NOT NULL,
   `aid` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `orders.uid` (`uid`),
-  KEY `orders.aid` (`aid`),
-  KEY `orders.status` (`status`),
-  CONSTRAINT `orders.aid` FOREIGN KEY (`aid`) REFERENCES `usertoaddress` (`id`),
-  CONSTRAINT `orders.status` FOREIGN KEY (`status`) REFERENCES `status` (`id`),
-  CONSTRAINT `orders.uid` FOREIGN KEY (`uid`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `valid` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +40,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (2,1,2,399.43,1),(4,2,1,441.88,2),(5,1,1,397.67,1),(6,1,1,883.76,1),(7,2,1,397.67,2),(8,1,1,397.67,1),(9,1,1,710.02,1),(10,1,1,397.67,1),(11,1,1,235.71,1);
+INSERT INTO `orders` VALUES (4,1,5,4313.56,0,4,1),(9,1,1,397.67,0,4,1),(11,1,4,399.43,0,4,1),(13,1,1,1378.07,0,4,1),(14,1,1,192.22,0,4,1);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-12 22:18:29
+-- Dump completed on 2025-03-08 22:08:04

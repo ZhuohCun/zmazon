@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: localhost    Database: zmazon
 -- ------------------------------------------------------
--- Server version	8.0.38
+-- Server version	8.0.41
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,6 +26,7 @@ CREATE TABLE `indexcategories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `icpic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `icname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `valid` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -36,7 +37,7 @@ CREATE TABLE `indexcategories` (
 
 LOCK TABLES `indexcategories` WRITE;
 /*!40000 ALTER TABLE `indexcategories` DISABLE KEYS */;
-INSERT INTO `indexcategories` VALUES (1,'assets/index/indexcategory/1.png','今日特惠'),(2,'assets/index/indexcategory/2.png','畅销热卖'),(3,'assets/index/indexcategory/3.png','潮流服饰'),(4,'assets/index/indexcategory/4.png','时尚鞋靴'),(5,'assets/index/indexcategory/5.png','运动户外'),(6,'assets/index/indexcategory/6.png','美容护肤'),(7,'assets/index/indexcategory/7.png','营养保健'),(8,'assets/index/indexcategory/8.png','电子数码'),(9,'assets/index/indexcategory/9.png','进口家居'),(10,'assets/index/indexcategory/10.png','母婴玩具');
+INSERT INTO `indexcategories` VALUES (1,'assets/index/indexcategory/1.png','今日特惠',1),(2,'assets/index/indexcategory/2.png','畅销热卖',1),(3,'assets/index/indexcategory/3.png','潮流服饰',1),(4,'assets/index/indexcategory/4.png','时尚鞋靴',1),(5,'assets/index/indexcategory/5.png','运动户外',1),(6,'assets/index/indexcategory/6.png','美容护肤',1),(7,'assets/index/indexcategory/7.png','营养保健',1),(8,'assets/index/indexcategory/8.png','电子数码',1),(9,'assets/index/indexcategory/9.png','进口家居',1),(10,'assets/index/indexcategory/10.png','母婴玩具',1);
 /*!40000 ALTER TABLE `indexcategories` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-12 22:18:30
+-- Dump completed on 2025-03-08 22:08:04

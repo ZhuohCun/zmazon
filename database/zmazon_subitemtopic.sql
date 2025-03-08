@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: localhost    Database: zmazon
 -- ------------------------------------------------------
--- Server version	8.0.38
+-- Server version	8.0.41
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,6 +26,7 @@ CREATE TABLE `subitemtopic` (
   `id` int NOT NULL AUTO_INCREMENT,
   `siid` int NOT NULL,
   `pic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `valid` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `subitemtopic.siid` (`siid`),
   CONSTRAINT `subitemtopic.siid` FOREIGN KEY (`siid`) REFERENCES `subitems` (`id`)
@@ -38,7 +39,7 @@ CREATE TABLE `subitemtopic` (
 
 LOCK TABLES `subitemtopic` WRITE;
 /*!40000 ALTER TABLE `subitemtopic` DISABLE KEYS */;
-INSERT INTO `subitemtopic` VALUES (1,1,'assets\\items\\itempic\\1\\1\\1.jpg'),(2,1,'assets\\items\\itempic\\1\\1\\2.jpg'),(3,1,'assets\\items\\itempic\\1\\1\\3.jpg'),(4,1,'assets\\items\\itempic\\1\\1\\4.jpg'),(5,1,'assets\\items\\itempic\\1\\1\\5.jpg'),(6,1,'assets\\items\\itempic\\1\\1\\6.jpg'),(7,2,'assets\\items\\itempic\\1\\2\\1.jpg'),(8,2,'assets\\items\\itempic\\1\\2\\2.jpg'),(9,2,'assets\\items\\itempic\\1\\2\\3.jpg'),(10,2,'assets\\items\\itempic\\1\\2\\4.jpg'),(11,2,'assets\\items\\itempic\\1\\2\\5.jpg'),(12,2,'assets\\items\\itempic\\1\\2\\6.jpg'),(13,2,'assets\\items\\itempic\\1\\2\\7.jpg'),(14,3,'assets\\items\\itempic\\2\\1\\1.jpg'),(15,3,'assets\\items\\itempic\\2\\1\\2.jpg'),(16,3,'assets\\items\\itempic\\2\\1\\3.jpg'),(17,3,'assets\\items\\itempic\\2\\1\\4.jpg'),(18,3,'assets\\items\\itempic\\2\\1\\5.jpg'),(19,3,'assets\\items\\itempic\\2\\1\\6.jpg'),(20,3,'assets\\items\\itempic\\2\\1\\7.jpg'),(21,3,'assets\\items\\itempic\\2\\1\\8.jpg'),(22,3,'assets\\items\\itempic\\2\\1\\9.jpg'),(23,4,'assets\\items\\itempic\\3\\1\\1.jpg'),(24,4,'assets\\items\\itempic\\3\\1\\2.jpg'),(25,4,'assets\\items\\itempic\\3\\1\\3.jpg'),(26,4,'assets\\items\\itempic\\3\\1\\4.jpg'),(27,4,'assets\\items\\itempic\\3\\1\\5.jpg'),(28,4,'assets\\items\\itempic\\3\\1\\6.jpg'),(29,4,'assets\\items\\itempic\\3\\1\\7.jpg'),(30,5,'assets\\items\\itempic\\4\\1\\1.jpg'),(31,5,'assets\\items\\itempic\\4\\1\\2.jpg'),(32,5,'assets\\items\\itempic\\4\\1\\3.jpg'),(33,5,'assets\\items\\itempic\\4\\1\\4.jpg'),(34,5,'assets\\items\\itempic\\4\\1\\5.jpg'),(35,5,'assets\\items\\itempic\\4\\1\\6.jpg'),(36,5,'assets\\items\\itempic\\4\\1\\7.jpg'),(37,6,'assets\\items\\itempic\\5\\1\\1.jpg'),(38,6,'assets\\items\\itempic\\5\\1\\2.jpg'),(39,6,'assets\\items\\itempic\\5\\1\\3.jpg'),(40,6,'assets\\items\\itempic\\5\\1\\4.jpg'),(41,6,'assets\\items\\itempic\\5\\1\\5.jpg'),(42,6,'assets\\items\\itempic\\5\\1\\6.jpg'),(43,6,'assets\\items\\itempic\\5\\1\\7.jpg'),(44,6,'assets\\items\\itempic\\5\\1\\8.jpg'),(45,6,'assets\\items\\itempic\\5\\1\\9.jpg');
+INSERT INTO `subitemtopic` VALUES (1,1,'assets\\items\\itempic\\1\\1\\1.jpg',1),(2,1,'assets\\items\\itempic\\1\\1\\2.jpg',1),(3,1,'assets\\items\\itempic\\1\\1\\3.jpg',1),(4,1,'assets\\items\\itempic\\1\\1\\4.jpg',1),(5,1,'assets\\items\\itempic\\1\\1\\5.jpg',1),(6,1,'assets\\items\\itempic\\1\\1\\6.jpg',1),(7,2,'assets\\items\\itempic\\1\\2\\1.jpg',1),(8,2,'assets\\items\\itempic\\1\\2\\2.jpg',1),(9,2,'assets\\items\\itempic\\1\\2\\3.jpg',1),(10,2,'assets\\items\\itempic\\1\\2\\4.jpg',1),(11,2,'assets\\items\\itempic\\1\\2\\5.jpg',1),(12,2,'assets\\items\\itempic\\1\\2\\6.jpg',1),(13,2,'assets\\items\\itempic\\1\\2\\7.jpg',1),(14,3,'assets\\items\\itempic\\2\\1\\1.jpg',1),(15,3,'assets\\items\\itempic\\2\\1\\2.jpg',1),(16,3,'assets\\items\\itempic\\2\\1\\3.jpg',1),(17,3,'assets\\items\\itempic\\2\\1\\4.jpg',1),(18,3,'assets\\items\\itempic\\2\\1\\5.jpg',1),(19,3,'assets\\items\\itempic\\2\\1\\6.jpg',1),(20,3,'assets\\items\\itempic\\2\\1\\7.jpg',1),(21,3,'assets\\items\\itempic\\2\\1\\8.jpg',1),(22,3,'assets\\items\\itempic\\2\\1\\9.jpg',1),(23,4,'assets\\items\\itempic\\3\\1\\1.jpg',1),(24,4,'assets\\items\\itempic\\3\\1\\2.jpg',1),(25,4,'assets\\items\\itempic\\3\\1\\3.jpg',1),(26,4,'assets\\items\\itempic\\3\\1\\4.jpg',1),(27,4,'assets\\items\\itempic\\3\\1\\5.jpg',1),(28,4,'assets\\items\\itempic\\3\\1\\6.jpg',1),(29,4,'assets\\items\\itempic\\3\\1\\7.jpg',1),(30,5,'assets\\items\\itempic\\4\\1\\1.jpg',1),(31,5,'assets\\items\\itempic\\4\\1\\2.jpg',1),(32,5,'assets\\items\\itempic\\4\\1\\3.jpg',1),(33,5,'assets\\items\\itempic\\4\\1\\4.jpg',1),(34,5,'assets\\items\\itempic\\4\\1\\5.jpg',1),(35,5,'assets\\items\\itempic\\4\\1\\6.jpg',1),(36,5,'assets\\items\\itempic\\4\\1\\7.jpg',1),(37,6,'assets\\items\\itempic\\5\\1\\1.jpg',1),(38,6,'assets\\items\\itempic\\5\\1\\2.jpg',1),(39,6,'assets\\items\\itempic\\5\\1\\3.jpg',1),(40,6,'assets\\items\\itempic\\5\\1\\4.jpg',1),(41,6,'assets\\items\\itempic\\5\\1\\5.jpg',1),(42,6,'assets\\items\\itempic\\5\\1\\6.jpg',1),(43,6,'assets\\items\\itempic\\5\\1\\7.jpg',1),(44,6,'assets\\items\\itempic\\5\\1\\8.jpg',1),(45,6,'assets\\items\\itempic\\5\\1\\9.jpg',1);
 /*!40000 ALTER TABLE `subitemtopic` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-12 22:18:30
+-- Dump completed on 2025-03-08 22:08:05

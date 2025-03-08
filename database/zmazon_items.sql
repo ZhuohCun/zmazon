@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: localhost    Database: zmazon
 -- ------------------------------------------------------
--- Server version	8.0.38
+-- Server version	8.0.41
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,6 +28,7 @@ CREATE TABLE `items` (
   `bid` int NOT NULL,
   `thcid` int NOT NULL,
   `vid` int NOT NULL,
+  `valid` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `items.bid` (`bid`),
   KEY `items.thcid` (`thcid`),
@@ -44,7 +45,7 @@ CREATE TABLE `items` (
 
 LOCK TABLES `items` WRITE;
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
-INSERT INTO `items` VALUES (1,'USA',1,1,1),(2,'USA',1,1,1),(3,'Korea',2,14,3),(4,'USA',3,15,1),(5,'Japan',4,3,2);
+INSERT INTO `items` VALUES (1,'USA',1,1,1,1),(2,'USA',1,1,1,1),(3,'Korea',2,14,3,1),(4,'USA',3,15,1,1),(5,'Japan',4,3,2,1);
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-12 22:18:30
+-- Dump completed on 2025-03-08 22:08:03
