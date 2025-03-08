@@ -40,6 +40,16 @@ body{
     border-bottom: solid 1px #f0f2f1;
     flex-direction: row;
 }
+.container .header .back{
+    width: 6vw;
+    display: flex;
+    justify-content: left;
+    position: fixed;
+    left: 6vw;
+    top: 1.6vh;
+    align-items: center;
+    content: url("../icons/left.svg");
+}
 .container .header .item{
     max-width: 40vw;
     display: flex;
@@ -50,10 +60,20 @@ body{
 .container .main {
     height: 85%;
     width: 98%;
-    background-color: #ddd;
+    background-color: #fff;
     margin-bottom: 10vw;
     margin-top: 20vw;
     display: flex;
     box-sizing: border-box;
     flex-wrap: wrap;
+    flex-direction: column;
 }
+.container .main .title {
+    min-width: 96vw;
+    min-height: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4.5vw;
+}
+.container .main .price {}

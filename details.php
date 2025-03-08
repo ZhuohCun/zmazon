@@ -173,8 +173,9 @@ if($act=="add"){
         if($buysiprice>=300){
             $buytransportfee=0;
         }
+        $buytotal=$buysiprice+$buytransportfee+$buysiimportfee;
     }
-    mysqli_query($conn,"insert into orders (uid,status,price,aid,pid,valid) values ($usid,1,$buysiprice,$buyaddress,0,1)");
+    mysqli_query($conn,"insert into orders (uid,status,price,aid,pid,valid) values ($usid,1,$buytotal,$buyaddress,0,1)");
     $orderidquery=mysqli_query($conn,"select id from orders where uid=$usid");
     while ($orderrow=mysqli_fetch_row($orderidquery)) {
         $orderid=$orderrow[0];
