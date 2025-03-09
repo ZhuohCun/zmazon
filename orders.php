@@ -88,16 +88,16 @@ if($opt!=-1 && $optid!=-1){
 ?>
 <div class="container">
     <div class="header">
-            <div class="back" <?php echo "onclick=\"location.href='me.php?usid=$usid&usr=$usr&veri=$veri'\""; ?>></div>
+            <div class="back" <?php if($opt==-1){echo "onclick=\"location.href='me.php?usid=$usid&usr=$usr&veri=$veri'\"";} ?>></div>
             <div class="item">订单详情</div>
     </div>
     <div class="header2">
-        <div <?php if($status==0){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=0'\""?>>全部订单</div>
-        <div <?php if($status==1){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=1'\""?>>待支付</div>
-        <div <?php if($status==2){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=2'\""?>>待发货</div>
-        <div <?php if($status==3){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=3'\""?>>待收货</div>
-        <div <?php if($status==4){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=4'\""?>>已完成</div>
-        <div <?php if($status==5){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=5'\""?>>已取消</div>
+        <div <?php if($status==0){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} if($opt==-1){echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=0'\"";}?>>全部订单</div>
+        <div <?php if($status==1){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} if($opt==-1){echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=1'\"";}?>>待支付</div>
+        <div <?php if($status==2){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} if($opt==-1){echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=2'\"";}?>>待发货</div>
+        <div <?php if($status==3){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} if($opt==-1){echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=3'\"";}?>>待收货</div>
+        <div <?php if($status==4){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} if($opt==-1){echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=4'\"";}?>>已完成</div>
+        <div <?php if($status==5){echo "class=\"itemchosen\"";}else{echo "class=\"item\"";} if($opt==-1){echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=5'\"";}?>>已取消</div>
     </div>
     <div class="main">
         <?php
@@ -140,8 +140,8 @@ if($opt!=-1 && $optid!=-1){
                 }
                 echo "<div class='itembody'>";
                 echo "<div class='p2'>";
-                echo "<div class='left' onclick=\"location.href='details.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&subid=".$siid."&back=".$current."&status=$status'\"><img src='$pic'></div>";
-                echo "<div class='middle' onclick=\"location.href='details.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&subid=".$siid."&back=".$current."&status=$status'\"><div class='itemtitle'>$sitext</div><div class='vendor'>$vname</div></div>";
+                echo "<div class='left'";if($opt==-1){echo " onclick=\"location.href='details.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&subid=".$siid."&back=".$current."&status=$status'\"";}echo "><img src='$pic'></div>";
+                echo "<div class='middle'";if($opt==-1){echo "onclick=\"location.href='details.php?usid=".$usid."&usr=".$usr."&veri=".$veri."&subid=".$siid."&back=".$current."&status=$status'\"";}echo "><div class='itemtitle'>$sitext</div><div class='vendor'>$vname</div></div>";
                 echo "<div class='right'><div class='price'>&#165 $siprice</div><div class='quantity'>$quantity 个</div>";
                 echo "</div>";
                 echo "</div>";
@@ -149,10 +149,10 @@ if($opt!=-1 && $optid!=-1){
             }
                 echo "<div class='paybox'><div class='itemprice'>订单总额：&#165 $orderprice</div>";
             if ($itemstatus==1) {
-                echo "<div class='pay' onclick=\"location.href='payment.php?usid=$usid&usr=$usr&veri=$veri&orderid=$id&status=$status'\">去支付</div>";
-                echo "<div class='pay' onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&optid=$id&opt=co&status=$status'\">取消订单</div>";
+                echo "<div class='pay'"; if($opt==-1){echo "onclick=\"location.href='payment.php?usid=$usid&usr=$usr&veri=$veri&orderid=$id&status=$status'\"";}echo ">去支付</div>";
+                echo "<div class='pay'" ; if($opt==-1){echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&optid=$id&opt=co&status=$status'\"";}echo ">取消订单</div>";
             }elseif ($itemstatus==3) {
-                echo "<div class='pay' onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&optid=$id&opt=cr&status=$status'\">确认收货</div>";
+                echo "<div class='pay'"; if($opt==-1){echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&optid=$id&opt=cr&status=$status'\"";}echo ">确认收货</div>";
             }
                 echo "</div>";
             echo "</div>";

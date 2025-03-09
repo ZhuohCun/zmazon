@@ -237,7 +237,7 @@ if($act=='del'){
             $buysubitemvalid=$buyitemvalidrow[0];
             if($buysubitemvalid==0){
                 mysqli_query($conn,"rollback");
-                header("location:errororsucc.php?reason=含有已下架商品&text=返回购物车&usid=$usid&usr=$usr&veri=$veri&back=$current");
+                header("location:errororsucc.php?reason=含有已下架的商品&text=返回购物车&usid=$usid&usr=$usr&veri=$veri&back=$current");
                 die;
             }
         }

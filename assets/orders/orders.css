@@ -216,8 +216,10 @@ body{
     flex-direction: column;
 }
 .container .main .itembox .item .itembody .p2 .middle .itemtitle{
-    max-width: 55vw;
-    max-height: 9vw;
+    max-width: 52vw;
+    max-height: 10vw;
+    min-width: 52vw;
+    min-height: 10vw;
     font-size: 3.5vw;
     display: flex;
     justify-content: left;
@@ -226,18 +228,22 @@ body{
 .container .main .itembox .item .itembody .p2 .middle .vendor{
     max-width: 19vw;
     min-width: 19vw;
-    max-height: 9vw;
+    max-height: 6vw;
+    min-height: 6vw;
     font-size: 3.5vw;
     display: flex;
     justify-content: center;
     justify-items: left;
+    align-items: center;
     overflow: hidden;
     background-color: #000;
     color: #fff;
     text-align: left;
+    margin-top: 1.5vh;
 }
 .container .main .itembox .item .itembody .p2 .right{
-    max-width: 17vw;
+    max-width: 20vw;
+    min-width: 20vw;
     max-height: 28vw;
     display: flex;
     justify-content: center;
@@ -245,14 +251,20 @@ body{
     flex-direction: column;
 }
 .container .main .itembox .item .itembody .p2 .right .price{
-    max-width: 17vw;
+    max-width: 20vw;
+    min-width: 20vw;
     max-height: 5vw;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .container .main .itembox .item .itembody .p2 .right .quantity{
-    max-width: 17vw;
+    max-width: 20vw;
+    min-width: 20vw;
     max-height: 5vw;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .container .main .itembox .item .paybox{
     min-width: 97vw;

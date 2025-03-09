@@ -67,6 +67,7 @@ body{
     box-sizing: border-box;
     flex-wrap: wrap;
     flex-direction: column;
+    row-gap: 1.5vh;
 }
 .container .main .title {
     min-width: 96vw;
@@ -76,4 +77,92 @@ body{
     align-items: center;
     font-size: 4.5vw;
 }
-.container .main .price {}
+.container .main .price {
+    min-width: 96vw;
+    min-height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5.5vw;
+    flex-direction: row;
+}
+.container .main .price h1{
+    font-size: 7vw;
+    color: red;
+}
+.container .main .choosemethod{
+    min-width: 96vw;
+    min-height: 3vh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 4.5vw;
+}
+.container .main .item{
+    min-width: 96vw;
+    min-height: 8vh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+}
+.container .main .item .pic{
+    min-width: 55vw;
+    min-height: 7vh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+}
+.container .main .item .pic img{
+    min-width: 55vw;
+    min-height: 7vh;
+    max-width: 55vw;
+    max-height: 6vh;
+}
+.container .main .item .checkbox{
+    min-width: 38vw;
+    min-height: 6vh;
+    max-width: 38vw;
+    max-height: 6vh;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.container .main .item .checkboxred{
+    min-width: 38vw;
+    min-height: 6vh;
+    max-width: 38vw;
+    max-height: 6vh;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    color: red;
+}
+.container .main .pbbox{
+    min-width: 97vw;
+    min-height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .main .pbbox .pb{
+    min-width: 80vw;
+    min-height: 4.5vh;
+    background-color: dodgerblue;
+    color: white;
+    font-size: 4.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .main .pbbox .pbgrey{
+    min-width: 80vw;
+    min-height: 4.5vh;
+    background-color: grey;
+    color: white;
+    font-size: 4.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

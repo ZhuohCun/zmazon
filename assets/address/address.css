@@ -78,6 +78,7 @@ body{
     flex-direction:column ;
     background-color: #ddd;
     row-gap: 4vw;
+    margin-top: -2.4vh;
 }
 .container .main .noitembox{
     max-width: 95vw;

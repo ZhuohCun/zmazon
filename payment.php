@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="assets/payment/payment.css">
     <title>在线支付</title>
 </head>
+<script>
+    function nopay() {
+        alert("请选择支付方式");
+    }
+</script>
 <body>
 <?PHP
 $rootlocation=$_SERVER['DOCUMENT_ROOT'];
@@ -36,6 +41,11 @@ if(isset($_GET['chosen'])){
 }else{
     $chosen=0;
 }
+if(isset($_GET['opt'])){
+    $opt=$_GET['opt'];
+}else{
+    $opt=-1;
+}
 $current="payment.php";
 $hasitem=0;
 $usrv=mysqli_query($conn,'set names utf8');
@@ -54,7 +64,24 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
 }else{
     header("Location:"."login.php");
     die;
-}?>
+}
+if($chosen<0 || $chosen>=5){
+    header("Location:"."errororsucc.php?reason=paraloss");
+    die;
+}elseif($opt!=-1 && ($chosen<=0 || $chosen>=5)){
+    header("Location:"."errororsucc.php?reason=paraloss");
+    die;
+}
+$pmtveri=0;
+$pmtveriquery=mysqli_query($conn,"select * from orders where uid=$usid and id=$orderid and valid=1 limit 1");
+while($pmtverirow=mysqli_fetch_row($pmtveriquery)){
+    $pmtveri=1;
+}
+if($pmtveri==0){
+    header("Location:"."errororsucc.php?reason=incorrectuser");
+    die;
+}
+?>
 <div class="container">
     <div class="header">
         <div class="back" <?php echo "onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=1'\"";?>></div>
@@ -68,12 +95,13 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
             $price=$orderrow[0];
         }
         echo "<div class='price'>共计需支付:<h1>&#165 $price</h1></div>";
+        echo "<div class='choosemethod'>请选择支付方式</div>";
         $methodquery=mysqli_query($conn,"select no,pic from paymethod where valid=1");
         echo "<div class='paymethod'>";
         while ($methodrow=mysqli_fetch_row($methodquery)){
             $pmid=$methodrow[0];
             $pmpic=$methodrow[1];
-            echo "<div class='item'>";
+            echo "<div class='item' onclick=\"location.href='payment.php?usid=$usid&usr=$usr&veri=$veri&orderid=$orderid&chosen=$pmid'\">";
             echo "<div class='pic'><img src='$pmpic' /></div>";
             if($pmid==$chosen){
                 echo "<div class='checkboxred'><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"0 0 1024 1024\"><path fill=\"currentColor\" d=\"M512 896a384 384 0 1 0 0-768a384 384 0 0 0 0 768m0 64a448 448 0 1 1 0-896a448 448 0 0 1 0 896\"/><path fill=\"currentColor\" d=\"M745.344 361.344a32 32 0 0 1 45.312 45.312l-288 288a32 32 0 0 1-45.312 0l-160-160a32 32 0 1 1 45.312-45.312L480 626.752z\"/></svg></div>";
@@ -83,7 +111,13 @@ if($usrqry==1&&$usr==$realname && $veri==$realver){
             echo "</div>";
         }
         echo "</div>";
-        echo "<div class='sbbox'><div class='sb'>确认支付</div></div>"
+        echo "<div class='pbbox'>";
+        if($chosen==0){
+            echo "<div class='pbgrey' onclick='nopay()'>确认支付</div>";
+        }else{
+            echo "<div class='pb' onclick=\"location.href='payment.php?usid=$usid&usr=$usr&veri=$veri&chosen=$chosen&orderid=$orderid&opt=cpay'\">确认支付</div>";
+        }
+        echo "</div>";
         ?>
     </div>
 </div>
