@@ -81,6 +81,14 @@ if($pmtveri==0){
     header("Location:"."errororsucc.php?reason=incorrectuser");
     die;
 }
+if($opt=="cpay"){
+    mysqli_query($conn,"start transaction");
+    mysqli_query($conn,"select * from orders where uid=$usid and id=$orderid and valid=1 for update");
+    mysqli_query($conn,"update orders set status=2, pid=$chosen where id=$orderid");
+    mysqli_query($conn,"commit");
+    header("Location:"."errororsucc.php?reason=支付成功&usid=$usid&usr=$usr&veri=$veri&back=index.php&text=回首页&succ=1");
+    die;
+}
 ?>
 <div class="container">
     <div class="header">
