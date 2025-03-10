@@ -59,9 +59,14 @@ if($usrqry==1&&$usr==$realname && $veri==$realver && $role==2){
     <div class="left">
         <div class="title">欢迎您，Z马逊自营商家</div>
         <?php if($chosen==1){echo "<div class=\"itemwhite\">商品管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&eri=$veri&chosen=1'\">商品管理</div>";} ?>
-        <?php if($chosen==1){echo "<div class=\"itemwhite\">分类管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&eri=$veri&chosen=1'\">分类管理</div>";} ?>
-        <?php if($chosen==1){echo "<div class=\"itemwhite\">推荐管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&eri=$veri&chosen=1'\">推荐管理</div>";} ?>
-        <?php if($chosen==1){echo "<div class=\"itemwhite\">订单管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&eri=$veri&chosen=1'\">订单管理</div>";} ?>
+        <?php if($chosen==2){echo "<div class=\"itemwhite\">分类管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&eri=$veri&chosen=1'\">分类管理</div>";} ?>
+        <?php if($chosen==3){echo "<div class=\"itemwhite\">推荐管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&eri=$veri&chosen=1'\">推荐管理</div>";} ?>
+        <?php if($chosen==4){echo "<div class=\"itemwhite\">订单管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&eri=$veri&chosen=1'\">订单管理</div>";} ?>
+    </div>
+    <div class="right">
+        <?php if($chosen==1){
+
+        }?>
     </div>
 </div>
 </body>
