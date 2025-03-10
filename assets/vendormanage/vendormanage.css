@@ -1,0 +1,67 @@
+.container{
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 0;
+    height: 0;
+    padding: 1em;
+    justify-content: space-around;
+    align-items: center;
+}
+.container .left {
+    min-width: 15vw;
+    max-width: 15vw;
+    height: 97vh;
+    display: flex;
+    flex-direction: column;
+    background-color: aquamarine;
+    top:1vh;
+    left:1vw;
+    position: fixed;
+    justify-content: left;
+    align-items: center;
+    row-gap: 2vh;
+}
+.container .left .title {
+    display: flex;
+    font-size: 1.2vw;
+    justify-content: center;
+    align-items: center;
+}
+.container .left .item {
+    min-width: 8vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6vw;
+    border-radius: 10vw;
+    color: black;
+    margin-top: 1vh;
+}
+.container .left .item:hover{
+    background-color: aliceblue;
+}
+.container .left .itemwhite{
+    min-width: 12vw;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vw;
+    border-radius: 10vw;
+    color: black;
+    background-color: #b1b1b1;
+}
+.container .left .copyright{
+    width: 15vw;
+    display: flex;
+    font-size: 0.8vw;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 3.3vh;
+}

@@ -24,7 +24,7 @@ if($opt=='log'){
         header("Location:"."errororsucc.php?reason=paraloss&back=login.php");
         die;
     }
-    $loginquery=mysqli_query($conn,"select id,username,password,verify,valid from users where username = '$loginname'");
+    $loginquery=mysqli_query($conn,"select id,username,password,verify,valid,role from users where username = '$loginname'");
     $hasuser=0;
     while ($loginrow = mysqli_fetch_row($loginquery)) {
         $usid = $loginrow[0];
@@ -32,6 +32,7 @@ if($opt=='log'){
         $realpass = $loginrow[2];
         $verify = $loginrow[3];
         $valid = $loginrow[4];
+        $role = $loginrow[5];
         $hasuser=1;
     }
     if ($hasuser == 0) {
@@ -40,11 +41,16 @@ if($opt=='log'){
     }elseif ($valid!=1){
         header("Location:"."errororsucc.php?reason=uservalid&back=login.php");
 
-    }
-    elseif ($realname == $loginname && $realpass == $loginpass) {
+    }elseif ($realname == $loginname && $realpass == $loginpass && $role==3) {
         header("location:index.php?usid=$usid&usr=$loginname&veri=$verify");
         die;
-    } else {
+    }elseif ($realname == $loginname && $realpass == $loginpass && $role==2){
+        header("location:vendormanage.php?usid=$usid&usr=$loginname&veri=$verify");
+        die;
+    }elseif ($realname == $loginname && $realpass == $loginpass && $role==1){
+        header("location:rootmanage.php?usid=$usid&usr=$loginname&veri=$verify");
+        die;
+    }else {
         header("Location:"."errororsucc.php?reason=userpass&back=login.php");
         die;
     }

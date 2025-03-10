@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="assets/payment/payment.css">
-    <title>商家管理系统</title>
+    <link rel="stylesheet" href="assets/vendormanage/vendormanage.css">
+    <title>Z马逊商家管理系统</title>
 </head>
 <script>
 
@@ -45,7 +45,7 @@ while($usrvr=mysqli_fetch_row($usrv)){
     $role=$usrvr[2];
     $usrqry=1;
 }
-if($usrqry==1&&$usr==$realname && $veri==$realver && $role==2){
+if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
 
 }elseif($usid!=-1){
     header("Location:"."errororsucc.php?reason=用户权限不足");
@@ -58,10 +58,12 @@ if($usrqry==1&&$usr==$realname && $veri==$realver && $role==2){
 <div class="container">
     <div class="left">
         <div class="title">欢迎您，Z马逊自营商家</div>
-        <?php if($chosen==1){echo "<div class=\"itemwhite\">商品管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&eri=$veri&chosen=1'\">商品管理</div>";} ?>
-        <?php if($chosen==2){echo "<div class=\"itemwhite\">分类管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&eri=$veri&chosen=1'\">分类管理</div>";} ?>
-        <?php if($chosen==3){echo "<div class=\"itemwhite\">推荐管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&eri=$veri&chosen=1'\">推荐管理</div>";} ?>
-        <?php if($chosen==4){echo "<div class=\"itemwhite\">订单管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&eri=$veri&chosen=1'\">订单管理</div>";} ?>
+        <?php if($chosen==1){echo "<div class=\"itemwhite\">商品管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=1'\">商品管理</div>";} ?>
+        <?php if($chosen==2){echo "<div class=\"itemwhite\">分类管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=2'\">分类管理</div>";} ?>
+        <?php if($chosen==3){echo "<div class=\"itemwhite\">推荐管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=3'\">推荐管理</div>";} ?>
+        <?php if($chosen==4){echo "<div class=\"itemwhite\">订单管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=4'\">订单管理</div>";} ?>
+        <?php if($chosen==5){echo "<div class=\"itemwhite\">退出登陆</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=5'\">退出登陆</div>";} ?>
+        <div class="copyright">版权所有© ゼマゾン株式会社</div>
     </div>
     <div class="right">
         <?php if($chosen==1){
