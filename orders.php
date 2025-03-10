@@ -167,7 +167,7 @@ if($opt!=-1 && $optid!=-1){
         if($opt=="co" && $optid!=-1){
             echo "<div class='dltpanel'>";
             echo "<div class='x' onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=$status'\"></div>";
-            echo "<div class='title'>是否确认删除该订单？</div>";
+            echo "<div class='title'>是否确认取消该订单？</div>";
             echo "<div class='buttons'><div class='confirm' onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=$status&opt=cco&optid=$optid'\">确认</div><div class='cancel' onclick=\"location.href='orders.php?usid=$usid&usr=$usr&veri=$veri&status=$status'\">取消</div></div>";
             echo "</div>";
         }elseif ($opt=="cr" && $optid!=-1){
