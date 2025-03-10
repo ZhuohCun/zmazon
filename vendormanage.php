@@ -8,7 +8,12 @@
     <title>Z马逊商家管理系统</title>
 </head>
 <script>
-
+    function logout(){
+        var c=confirm("是否退出登录");
+        if (c===true){
+            location.replace("me.php");
+        }
+    }
 </script>
 <body>
 <?PHP
@@ -62,12 +67,24 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
         <?php if($chosen==2){echo "<div class=\"itemwhite\">分类管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=2'\">分类管理</div>";} ?>
         <?php if($chosen==3){echo "<div class=\"itemwhite\">推荐管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=3'\">推荐管理</div>";} ?>
         <?php if($chosen==4){echo "<div class=\"itemwhite\">订单管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=4'\">订单管理</div>";} ?>
-        <?php if($chosen==5){echo "<div class=\"itemwhite\">退出登陆</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=5'\">退出登陆</div>";} ?>
+        <?php if($chosen==5){echo "<div class=\"itemwhite\">退出登陆</div>";}else{echo "<div class=\"item\" onclick=\"logout()\">退出登陆</div>";} ?>
         <div class="copyright">版权所有© ゼマゾン株式会社</div>
     </div>
     <div class="right">
         <?php if($chosen==1){
-
+            $subitemquery=mysqli_query($conn,"select id,iid,sitext,subname,siprice,siimportfee,transportfee,rcid,icid,valid from subitems");
+            while ($subitemrow=mysqli_fetch_array($subitemquery)){
+                $subid=$subitemrow[0];
+                $subiid=$subitemrow[1];
+                $subsitext=$subitemrow[2];
+                $subname=$subitemrow[3];
+                $subsiprice=$subitemrow[4];
+                $subsiimportfee=$subitemrow[5];
+                $subtransportfee=$subitemrow[6];
+                $subrcid=$subitemrow[7];
+                $subicid=$subitemrow[8];
+                $subvalid=$subitemrow[9];
+            }
         }?>
     </div>
 </div>
