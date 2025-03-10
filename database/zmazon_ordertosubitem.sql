@@ -36,7 +36,7 @@ CREATE TABLE `ordertosubitem` (
   KEY `ordertosubitem.siid` (`siid`),
   CONSTRAINT `ordertosubitem.oid` FOREIGN KEY (`oid`) REFERENCES `orders` (`id`),
   CONSTRAINT `ordertosubitem.siid` FOREIGN KEY (`siid`) REFERENCES `subitems` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `ordertosubitem` (
 
 LOCK TABLES `ordertosubitem` WRITE;
 /*!40000 ALTER TABLE `ordertosubitem` DISABLE KEYS */;
-INSERT INTO `ordertosubitem` VALUES (15,4,4,1,2427.06,248.39,50,1),(16,4,3,1,1316.04,322.07,60,1),(20,9,1,1,397.67,0,0,1),(23,11,2,1,399.43,0,0,1),(26,13,1,2,397.67,44.21,50,1),(27,13,2,1,399.43,94.88,55,1),(28,14,5,1,192.22,20,20,1);
+INSERT INTO `ordertosubitem` VALUES (15,4,4,1,2427.06,248.39,50,1),(16,4,3,1,1316.04,322.07,60,1),(20,9,1,1,397.67,0,0,1),(23,11,2,1,399.43,0,0,1),(26,13,1,2,397.67,44.21,50,1),(27,13,2,1,399.43,94.88,55,1),(29,15,5,1,192.22,20,20,1),(30,16,5,1,192.22,23.49,20,1),(31,17,6,1,1254.82,0,0,1);
 /*!40000 ALTER TABLE `ordertosubitem` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-08 22:08:03
+-- Dump completed on 2025-03-10  9:14:58
