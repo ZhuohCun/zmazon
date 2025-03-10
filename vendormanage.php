@@ -84,6 +84,9 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 $subrcid=$subitemrow[7];
                 $subicid=$subitemrow[8];
                 $subvalid=$subitemrow[9];
+                echo "<div class=\"item\">";
+                echo "";
+                echo "</div>";
             }
         }?>
     </div>
