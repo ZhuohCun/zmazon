@@ -157,7 +157,7 @@ if($act=="add"){
         <div class="part4">
             <div class="body">
                 <?PHP
-                $itemquery=mysqli_query($conn,"select distinct subitems.id from subcategories,thirdcategories,items,subitems where subcategories.id=thirdcategories.scid and thirdcategories.id=items.thcid and subitems.rcid=$rcchosen and subitems.valid=1 order by subitems.id");
+                $itemquery=mysqli_query($conn,"select distinct subitems.id from subcategories,thirdcategories,items,subitems where subcategories.id=thirdcategories.scid and thirdcategories.id=items.thcid and subitems.rcid=$rcchosen and subitems.valid=1 and subitems.rcverify=1 and subitems.rcexpired=0 order by subitems.id");
                 while ($itemrow=mysqli_fetch_row($itemquery)) {
                     $subid=$itemrow[0];
                     $detailquery=mysqli_query($conn,"select subitems.siprice,subitems.sitext,vendors.vname from subitems,items,vendors where subitems.iid=items.id and items.vid=vendors.id and subitems.id=$subid and subitems.valid=1 and vendors.valid=1");
