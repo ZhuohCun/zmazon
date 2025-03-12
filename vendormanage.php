@@ -140,7 +140,8 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                     echo "<option value='$icqueryrcid'>$icqueryrcname</option>";
                 }
                 echo "</select></div>";
-                echo "<div class='p4item'><h1>是否上架</h1></div>";
+                echo "<div class='p4item'><h1>是否上架</h1><input type='radio' id='goodsvalid'/></div>";
+                echo "";
                 echo "</div>";
                 echo "</div>";
                 echo "<div class='lower'></div>";
