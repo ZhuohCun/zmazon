@@ -95,11 +95,24 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 }elseif($rcverify==2){
                     $realrcverify="审核不通过";
                 }elseif ($rcverify==3){
-                    $realrcverify="推荐过期";
+                    $realrcverify="已过期";
                 }elseif ($rcverify==4 && $rcid==0){
-                    $realrcverify="用户选择不推荐";
+                    $realrcverify="用户未选择推荐";
                 }else{
-                    $realrcverify="系统出错，请联系管理员";
+                    $realrcverify="系统出错";
+                }
+                if($icverify==0){
+                    $realicverify="待审核";
+                }elseif($icverify==1){
+                    $realicverify="生效中";
+                }elseif($icverify==2){
+                    $realicverify="审核不通过";
+                }elseif ($icverify==3){
+                    $realicverify="已过期";
+                }elseif ($icverify==4 && $icid==0){
+                    $realicverify="用户未选择推荐";
+                }else{
+                    $realicverify="系统出错";
                 }
                 $picquery=mysqli_query($conn,"select subitemtopic.pic from subitemtopic,subitems where subitemtopic.siid=subitems.id and subitems.id=$siid and subitemtopic.valid=1 limit 1");
                 while ($picrow=mysqli_fetch_row($picquery)) {
@@ -110,7 +123,25 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 echo "<div class='upper'>";
                 echo "<div class='p1'><img scr='$pic'></div>";
                 echo "<div class='p2'><input id='subsitext' value='$subsitext'/><input id='subname' value='$subname'/></div>";
-                echo "<div class='p3'></div>";
+                echo "<div class='p3'><input id='price' value='$subsiprice'/><input id='importfee' value='$subsiimportfee'/><input id='transportfee' value='$subtransportfee'/></div>";
+                echo "<div class='p4'><div class='p4item'><h1>rc推荐条目</h1><select id='rcrecommend' name='rcrecommend'>";
+                $rcquery=mysqli_query($conn,"select id,rcname from recccategories where valid=1 and id!=0");
+                while ($rcrow=mysqli_fetch_row($rcquery)) {
+                    $rcqueryrcid=$rcrow[0];
+                    $rcqueryrcname=$rcrow[1];
+                    echo "<option value='$rcqueryrcid'>$rcqueryrcname</option>";
+                }
+                echo "</select></div>";
+                echo "<div class='p4item'><h1>ic推荐条目</h1><select id='icrecommend' name='icrecommend'>";
+                $icquery=mysqli_query($conn,"select id,icname from indexcategores where valid=1");
+                while ($icrow=mysqli_fetch_row($icquery)) {
+                    $icqueryrcid=$icrow[0];
+                    $icqueryrcname=$icrow[1];
+                    echo "<option value='$icqueryrcid'>$icqueryrcname</option>";
+                }
+                echo "</select></div>";
+                echo "<div class='p4item'><h1>是否上架</h1></div>";
+                echo "</div>";
                 echo "</div>";
                 echo "<div class='lower'></div>";
                 echo "</form>";
