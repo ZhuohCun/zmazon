@@ -72,7 +72,7 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
     </div>
     <div class="right">
         <?php if($chosen==1){
-            $subitemquery=mysqli_query($conn,"select id,iid,sitext,subname,siprice,siimportfee,transportfee,rcid,icid,valid from subitems");
+            $subitemquery=mysqli_query($conn,"select id,iid,sitext,subname,siprice,siimportfee,transportfee,rcid,icid,valid,rcid,rcverify,icid,icverify from subitems");
             while ($subitemrow=mysqli_fetch_array($subitemquery)){
                 $subid=$subitemrow[0];
                 $subiid=$subitemrow[1];
@@ -84,8 +84,36 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 $subrcid=$subitemrow[7];
                 $subicid=$subitemrow[8];
                 $subvalid=$subitemrow[9];
+                $rcid=$subitemrow[10];
+                $rcverify=$subitemrow[11];
+                $icid=$subitemrow[12];
+                $icverify=$subitemrow[13];
+                if($rcverify==0){
+                    $realrcverify="待审核";
+                }elseif($rcverify==1){
+                    $realrcverify="生效中";
+                }elseif($rcverify==2){
+                    $realrcverify="审核不通过";
+                }elseif ($rcverify==3){
+                    $realrcverify="推荐过期";
+                }elseif ($rcverify==4 && $rcid==0){
+                    $realrcverify="用户选择不推荐";
+                }else{
+                    $realrcverify="系统出错，请联系管理员";
+                }
+                $picquery=mysqli_query($conn,"select subitemtopic.pic from subitemtopic,subitems where subitemtopic.siid=subitems.id and subitems.id=$siid and subitemtopic.valid=1 limit 1");
+                while ($picrow=mysqli_fetch_row($picquery)) {
+                    $pic=$picrow[0];
+                }
                 echo "<div class=\"item\">";
-                echo "<div class=''></div>";
+                echo "<form>";
+                echo "<div class='upper'>";
+                echo "<div class='p1'><img scr='$pic'></div>";
+                echo "<div class='p2'><input id='subsitext' value='$subsitext'/><input id='subname' value='$subname'/></div>";
+                echo "<div class='p3'></div>";
+                echo "</div>";
+                echo "<div class='lower'></div>";
+                echo "</form>";
                 echo "</div>";
             }
         }?>

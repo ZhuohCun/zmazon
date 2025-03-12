@@ -160,7 +160,7 @@ if($act=="add"){
             }
         }elseif ($type=='index'){
             echo "<div class='ichead'><img src='assets/indexcategory/".$id.".jpg'/> </div>";
-            $itemquery=mysqli_query($conn,"select distinct subitems.id from subitems where icid=$id and valid=1 and subitems.icverify=1 and subitems.icexpired=0 order by subitems.id");
+            $itemquery=mysqli_query($conn,"select distinct subitems.id from subitems where icid=$id and valid=1 and subitems.icverify=1 order by subitems.id");
             while ($itemrow=mysqli_fetch_row($itemquery)) {
                 $subid=$itemrow[0];
                 $detailquery=mysqli_query($conn,"select subitems.siprice,subitems.sitext,vendors.vname from subitems,items,vendors where subitems.iid=items.id and items.vid=vendors.id and subitems.id=$subid and subitems.valid=1");
