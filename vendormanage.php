@@ -118,7 +118,7 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 while ($picrow=mysqli_fetch_row($picquery)) {
                     $pic=$picrow[0];
                 }
-                echo "<div class=\"item\">";
+                echo "<div class=\"goodsitem\">";
                 echo "<form action=\"loginorreg.php?opt=log\" id=\"form1\" method=\"post\" onsubmit=\"return onlogin();>";
                 echo "<div class='upper'>";
                 echo "<div class='p1'><img src='$pic'></div>";
