@@ -114,12 +114,12 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 }else{
                     $realicverify="系统出错";
                 }
-                $picquery=mysqli_query($conn,"select subitemtopic.pic from subitemtopic,subitems where subitemtopic.siid=subitems.id and subitems.id=$siid and subitemtopic.valid=1 limit 1");
+                $picquery=mysqli_query($conn,"select subitemtopic.pic from subitemtopic,subitems where subitemtopic.siid=subitems.id and subitems.id=$subid and subitemtopic.valid=1 limit 1");
                 while ($picrow=mysqli_fetch_row($picquery)) {
                     $pic=$picrow[0];
                 }
                 echo "<div class=\"item\">";
-                echo "<form>";
+                echo "<form action=\"loginorreg.php?opt=log\" id=\"form1\" method=\"post\" onsubmit=\"return onlogin();>";
                 echo "<div class='upper'>";
                 echo "<div class='p1'><img scr='$pic'></div>";
                 echo "<div class='p2'><input id='subsitext' value='$subsitext'/><input id='subname' value='$subname'/></div>";
@@ -131,20 +131,21 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                     $rcqueryrcname=$rcrow[1];
                     echo "<option value='$rcqueryrcid'>$rcqueryrcname</option>";
                 }
-                echo "</select></div>";
+                echo "</select><h2>状态：$realrcverify</h2></div>";
                 echo "<div class='p4item'><h1>ic推荐条目</h1><select id='icrecommend' name='icrecommend'>";
-                $icquery=mysqli_query($conn,"select id,icname from indexcategores where valid=1");
+                $icquery=mysqli_query($conn,"select id,icname from indexcategories where valid=1");
                 while ($icrow=mysqli_fetch_row($icquery)) {
                     $icqueryrcid=$icrow[0];
                     $icqueryrcname=$icrow[1];
                     echo "<option value='$icqueryrcid'>$icqueryrcname</option>";
                 }
-                echo "</select></div>";
+                echo "</select><h2>状态：$realicverify</h2></div>";
                 echo "<div class='p4item'><h1>是否上架</h1><input type='radio' id='goodsvalid'/></div>";
-                echo "";
                 echo "</div>";
                 echo "</div>";
-                echo "<div class='lower'></div>";
+                echo "<div class='lower'>";
+                echo "<div class='submitbutton'><input type=\"submit\" name=\"submit\" id=\"submit\" class=\"submit\" value=\"整体提交商品\" /></div>";
+                echo "</div>";
                 echo "</form>";
                 echo "</div>";
             }
