@@ -121,7 +121,7 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 echo "<div class=\"item\">";
                 echo "<form action=\"loginorreg.php?opt=log\" id=\"form1\" method=\"post\" onsubmit=\"return onlogin();>";
                 echo "<div class='upper'>";
-                echo "<div class='p1'><img scr='$pic'></div>";
+                echo "<div class='p1'><img src='$pic'></div>";
                 echo "<div class='p2'><input id='subsitext' value='$subsitext'/><input id='subname' value='$subname'/></div>";
                 echo "<div class='p3'><input id='price' value='$subsiprice'/><input id='importfee' value='$subsiimportfee'/><input id='transportfee' value='$subtransportfee'/></div>";
                 echo "<div class='p4'><div class='p4item'><h1>rc推荐条目</h1><select id='rcrecommend' name='rcrecommend'>";
@@ -141,16 +141,16 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 }
                 echo "</select><h2>状态：$realicverify</h2></div>";
                 echo "<div class='p4item'><h1>是否上架</h1><input type='radio' id='goodsvalid'/></div>";
-                echo "</div>";
-                echo "</div>";
+                echo "</div>";  //p4
+                echo "</div>";  //upper
                 echo "<div class='lower'>";
-                echo "<div class='submitbutton'><input type=\"submit\" name=\"submit\" id=\"submit\" class=\"submit\" value=\"整体提交商品\" /></div>";
-                echo "</div>";
+                echo "<div class='submitbutton'><input type=\"submit\" name=\"submit\" id=\"submit\" class=\"submit\" value=\"整体商品修改\" /></div>";
+               // echo "</div>";  //lower
                 echo "</form>";
-                echo "</div>";
+              //  echo "</div>";  //item
             }
         }?>
-    </div>
-</div>
+    </div>  <!--right-->
+</div>  <!--container-->
 </body>
 </html>
