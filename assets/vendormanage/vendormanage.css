@@ -100,7 +100,7 @@
     justify-content: center;
     align-items: center;
     margin-left: 0.5vw;
-
+    flex-direction: row;
 }
 .container .right .goodsitem .upper{
     display: flex;
@@ -185,7 +185,7 @@
     max-width: 3vw;
     min-height: 7vh;
     max-height: 7vh;
-    font-size: 0.5vw;
+    font-size: 0.2vw;
     justify-content: center;
     align-items: center;
 }
@@ -224,7 +224,7 @@
     max-width: 10vw;
     min-height: 4vh;
     max-height: 4vh;
-    font-size: 0.5vw;
+    font-size: 0.2vw;
     justify-content: center;
     align-items: center;
 }

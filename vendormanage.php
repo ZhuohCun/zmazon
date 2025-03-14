@@ -119,7 +119,7 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                     $pic=$picrow[0];
                 }
                 echo "<div class=\"goodsitem\">";
-                echo "<form action=\"loginorreg.php?opt=log\" id=\"form1\" method=\"post\" onsubmit=\"return onlogin();>";
+                echo "<form action=\"loginorreg.php?opt=log\" id=\"form1\" method=\"post\" onsubmit=\"return onlogin();\">";
                 echo "<div class='upper'>";
                 echo "<div class='p1'><img src='$pic'></div>";
                 echo "<div class='p2'><input id='subsitext' value='$subsitext' class='subtext'/><input id='subname' value='$subname' class='subtext'/></div>";
@@ -145,7 +145,7 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 echo "</div>";  //upper
                 echo "<div class='lower'>";
                 echo "<div class='submitbutton'><input type=\"submit\" name=\"submit\" id=\"submit\" class=\"submit\" value=\"整体商品修改\" /></div>";
-               // echo "</div>";  //lower
+               //echo "</div>";  //lower
                 echo "</form>";
               //  echo "</div>";  //item
             }
