@@ -84,7 +84,9 @@
     align-items: flex-start;
     row-gap: 2vh;
     overflow-y: scroll;
-    padding-top: 18vh;
+    padding-top: 37.5vh;
+    padding-bottom: 2vh;
+    box-sizing: border-box;
 
 }
 .container .right .goodsitem{
@@ -176,6 +178,64 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.container .right .goodsitem .upper .p3 .p3item h1{
+    display: flex;
+    min-width: 3vw;
+    max-width: 3vw;
+    min-height: 7vh;
+    max-height: 7vh;
+    font-size: 0.5vw;
+    justify-content: center;
+    align-items: center;
+}
+.container .right .goodsitem .upper .p3 .p3item .iptbox{
+    display: flex;
+    min-width: 10vw;
+    max-width: 10vw;
+    min-height: 7vh;
+    max-height: 7vh;
+    justify-content: center;
+    align-items: center;
+}
+.container .right .goodsitem .upper .p4{
+    display: flex;
+    min-width: 34vw;
+    max-width: 34vw;
+    min-height: 12vh;
+    max-height: 12vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container .right .goodsitem .upper .p4 .p4item{
+    display: flex;
+    min-width: 34vw;
+    max-width: 34vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container .right .goodsitem .upper .p4 .p4item h1{
+    display: flex;
+    min-width: 10vw;
+    max-width: 10vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    font-size: 0.5vw;
+    justify-content: center;
+    align-items: center;
+}
+.container .right .goodsitem .upper .p4 .p4item .slctbox{
+    display: flex;
+    min-width: 7vw;
+    max-width: 7vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    justify-content: center;
+    align-items: center;
 }
 .container .right .goodsitem .lower{
     display: flex;
