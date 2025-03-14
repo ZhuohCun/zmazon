@@ -88,7 +88,9 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 $rcverify=$subitemrow[11];
                 $icid=$subitemrow[12];
                 $icverify=$subitemrow[13];
-                if($rcverify==0){
+                if($subvalid==0){
+                    $realrcverify="商品未上架";
+                }elseif($rcverify==0){
                     $realrcverify="待审核";
                 }elseif($rcverify==1){
                     $realrcverify="生效中";
@@ -101,7 +103,9 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 }else{
                     $realrcverify="系统出错";
                 }
-                if($icverify==0){
+                if($subvalid==0){
+                    $realicverify="商品未上架";
+                } elseif($icverify==0){
                     $realicverify="待审核";
                 }elseif($icverify==1){
                     $realicverify="生效中";
@@ -123,7 +127,7 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 echo "<div class='upper'>";
                 echo "<div class='p1'><img src='$pic'></div>";
                 echo "<div class='p2'><input id='subsitext' value='$subsitext' class='subtext'/><input id='subname' value='$subname' class='subtext'/></div>";
-                echo "<div class='p3'><div class='p3item'><h1>价格：</h1><input id='price' value='$subsiprice' class='iptbox'/></div><div class='p3item'><h1>进口关税：</h1><input id='importfee' value='$subsiimportfee' class='iptbox'/></div><div class='p3item'><h1>运费：</h1></div><input id='transportfee' value='$subtransportfee' class='iptbox'/></div></div>";
+                echo "<div class='p3'><div class='p3item'><h1>价格：</h1><input id='price' value='$subsiprice' class='iptbox'/></div><div class='p3item'><h1>进口关税：</h1><input id='importfee' value='$subsiimportfee' class='iptbox'/></div><div class='p3item'><h1>运费：</h1><input id='transportfee' value='$subtransportfee' class='iptbox'/></div></div>";
                 echo "<div class='p4'><div class='p4item'><h1>rc推荐条目</h1><select id='rcrecommend' name='rcrecommend' class='slctbox'>";
                 $rcquery=mysqli_query($conn,"select id,rcname from recccategories where valid=1 and id!=0");
                 while ($rcrow=mysqli_fetch_row($rcquery)) {
@@ -140,14 +144,14 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                     echo "<option value='$icqueryrcid'>$icqueryrcname</option>";
                 }
                 echo "</select><h1>状态：$realicverify</h1></div>";
-                echo "<div class='p4item'><h1>是否上架</h1><input type='radio' id='goodsvalid' class='slectbox' ></div>";
+                echo "<div class='p4item'><h1>是否上架</h1><input type='checkbox' id='goodsvalid' class='slectbox' ";if($subvalid==1){echo "checked";}echo "></div>";
                 echo "</div>";  //p4
                 echo "</div>";  //upper
                 echo "<div class='lower'>";
-                echo "<div class='submitbutton'><input type=\"submit\" name=\"submit\" id=\"submit\" class=\"submit\" value=\"整体商品修改\" /></div>";
-               //echo "</div>";  //lower
+                echo "<div class='submitbutton'><input type=\"submit\" name=\"submit\" id=\"submit\" class=\"sbmtbtn\" value=\"整体商品修改\" /></div>";
+               echo "</div>";  //lower
                 echo "</form>";
-              //  echo "</div>";  //item
+                echo "</div>";  //item
             }
         }?>
     </div>  <!--right-->

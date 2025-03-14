@@ -101,6 +101,7 @@
     align-items: center;
     margin-left: 0.5vw;
     flex-direction: row;
+    column-gap: 0.5vw;
 }
 .container .right .goodsitem .upper{
     display: flex;
@@ -111,19 +112,20 @@
     max-width: 78vw;
     justify-content: center;
     align-items: center;
+    column-gap: 0.5vw;
 }
 .container .right .goodsitem .upper .p1{
     display: flex;
-    min-width: 10vw;
-    max-width: 10vw;
+    min-width: 7vw;
+    max-width: 7vw;
     min-height: 13vh;
     max-height: 13vh;
     justify-content: center;
     align-items: center;
 }
 .container .right .goodsitem .upper .p1 img{
-    min-width: 10vw;
-    max-width: 10vw;
+    min-width: 7vw;
+    max-width: 7vw;
     min-height: 13vh;
     max-height: 13vh;
     justify-content: center;
@@ -138,13 +140,14 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    row-gap: 1vh;
 }
 .container .right .goodsitem .upper .p2 .subtext{
     display: flex;
     min-width: 20vw;
     max-width: 20vw;
-    min-height: 6.5vh;
-    max-height: 6.5vh;
+    min-height: 4vh;
+    max-height: 4vh;
     justify-content: left;
     align-items: center;
     flex-direction: column;
@@ -153,8 +156,8 @@
     display: flex;
     min-width: 10vw;
     max-width: 10vw;
-    min-height: 6.5vh;
-    max-height: 6.5vh;
+    min-height: 4vh;
+    max-height: 4vh;
     justify-content: left;
     align-items: center;
     flex-direction: column;
@@ -175,26 +178,26 @@
     max-width: 13vw;
     min-height: 4vh;
     max-height: 4vh;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 .container .right .goodsitem .upper .p3 .p3item h1{
     display: flex;
-    min-width: 3vw;
-    max-width: 3vw;
-    min-height: 7vh;
-    max-height: 7vh;
-    font-size: 0.2vw;
+    min-width: 8vw;
+    max-width: 8vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    font-size: 0.9vw;
     justify-content: center;
     align-items: center;
 }
 .container .right .goodsitem .upper .p3 .p3item .iptbox{
     display: flex;
-    min-width: 10vw;
-    max-width: 10vw;
-    min-height: 7vh;
-    max-height: 7vh;
+    min-width: 5vw;
+    max-width: 5vw;
+    min-height: 3vh;
+    max-height: 3vh;
     justify-content: center;
     align-items: center;
 }
@@ -207,6 +210,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    row-gap: 1vh;
+    margin-top:1vh;
 }
 .container .right .goodsitem .upper .p4 .p4item{
     display: flex;
@@ -214,7 +219,7 @@
     max-width: 34vw;
     min-height: 4vh;
     max-height: 4vh;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
@@ -224,7 +229,7 @@
     max-width: 10vw;
     min-height: 4vh;
     max-height: 4vh;
-    font-size: 0.2vw;
+    font-size: 0.9vw;
     justify-content: center;
     align-items: center;
 }
@@ -246,4 +251,7 @@
     max-width: 78vw;
     justify-content: center;
     align-items: center;
+}
+.container .right .goodsitem .lower .sbmtbtmn{
+    display: flex;
 }
