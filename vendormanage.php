@@ -327,7 +327,6 @@ if($opt=="changegoods"){
                     echo "<div class='p4'><div class='price'>商品价格：$suborderprice</div><div class='importfee'>进口关税：$suborderimportfee</div><div class='transportfee'>运费：$subordertransportfee</div></div>";
                     echo "<div class='p5'>x$suborderquantity</div>";
                     echo "</div>";  //subitem
-                    echo "</div>"; //orderitem
                 }
                 echo "<div class='lower'>";
                 echo "<div class='lefter'><div class='address'>收货地址：$orderaddress</div><div class='receiver'>收件人：$orderreceiver</div></div>";
@@ -337,15 +336,17 @@ if($opt=="changegoods"){
                 }else{
                     echo "<div class='p1'></div>";
                 }
+                echo "<div class='p2'>";
                 if($orderstatus==1 || $orderstatus==2) {
                     echo "<div class='calcelbutton'>强制取消订单</div>";
                 }
                 if($orderstatus==2) {
                     echo "<div class='deliverbutton'>发货</div>";
                 }
-                echo "<div class='p2'></div>";
+                echo "</div>";  //p2
                 echo "</div>";  //righter
                 echo "</div>";  //lower
+                echo "</div>";  //orderitem
             }
             echo "</div>"; //orderbox
         }
