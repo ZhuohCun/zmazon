@@ -280,7 +280,18 @@ if($opt=="changegoods"){
                 echo "</div>";
             }
         }elseif ($chosen==2){
-
+            $orderquery=mysqli_query($conn,"select orders.id,orders.status,orders.price,orders.pid,usertoaddress.address1,usertoaddress.address2,usertoaddress.receiver,usertoaddress.phoneofreceiver,orders.valid from orders,usertoaddress where orders.aid=usertoaddress.id order by orders.id asc");
+            while ($orderrow=mysqli_fetch_row($orderquery)) {
+                $orderid=$orderrow[0];
+                $orderstatus=$orderrow[1];
+                $orderprice=$orderrow[2];
+                $orderpid=$orderrow[3];
+                $orderaddress=$orderrow[4]+$orderrow[5];
+                $orderreceiver=$orderrow[6]+$orderrow[7];
+                $orderphoneofreceiver=$orderrow[8];
+                $ordervalid=$orderrow[9];
+                $ordertosubquery=mysqli_query($conn,"select ordertosubitem.siid,ordertosubitem.quantity,ordertosubitem,siprice,siimportfee,transportfee,valid from ordertosubitem where orderid=$orderid");
+            }
         }
         ?>
     </div>
