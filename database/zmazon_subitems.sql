@@ -31,11 +31,9 @@ CREATE TABLE `subitems` (
   `siimportfee` float NOT NULL,
   `transportfee` float NOT NULL,
   `rcid` int NOT NULL,
-  `rcverify` int NOT NULL,
-  `rcexpired` int NOT NULL,
+  `rcverify` int NOT NULL COMMENT '0.pending proving 1.valid 2.prove failed 3.expired 4.not recomment',
   `icid` int NOT NULL,
-  `icverify` int DEFAULT NULL,
-  `icexpired` int DEFAULT NULL,
+  `icverify` int NOT NULL COMMENT '0.pending proving 1.valid 2.prove failed 3.expired 4.not recomment',
   `valid` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `subitems.iid` (`iid`),
@@ -53,7 +51,7 @@ CREATE TABLE `subitems` (
 
 LOCK TABLES `subitems` WRITE;
 /*!40000 ALTER TABLE `subitems` DISABLE KEYS */;
-INSERT INTO `subitems` VALUES (1,1,'KODAK粉色升级数码相机,自动对焦 50MP FHD 1080P 儿童相机,带 16 倍变焦防抖功能,小型相机适合儿童学生儿童青少年女孩男孩,儿童相机带 32GB SD 卡,2 节电池','粉色',397.67,44.21,50,1,1,0,1,1,0,1),(2,1,'KODAK黑色升级数码相机,自动对焦 50MP FHD 1080P 儿童相机,带 16 倍变焦防抖功能,小型相机适合儿童学生儿童青少年女孩男孩,儿童相机带 32GB SD 卡,2 节电池','黑色',399.43,94.88,55,3,1,0,1,1,0,1),(3,2,'Kodak PIXPRO FZ55 红色 1600 万像素数码相机 5 倍光学变焦 28 毫米广角 1080P 全高清视频 2.7 英寸液晶摄像头 + 64GB 读卡器 + 保护套 + 记忆钱包 + 三脚架 + 清洁套装','红色',1316.04,322.07,60,0,0,0,2,1,0,1),(4,3,'Samsung 三星 计算机内部固态硬盘 4.0 TB 兼容台式机 usb 3.0 向下兼容 MZ-V9P4T0CW','4TB990 PRO',2427.06,248.39,50,3,1,0,2,1,0,0),(5,4,'Davids 牙膏 缓解牙齿敏感 通用成人款 5.25盎司(约149克)','薄荷味',192.22,23.49,20,4,1,0,2,1,0,1),(6,5,'brother 兄弟 ColAura 彩色照片和标签打印机','VC500W',1254.82,136.12,50,3,1,0,1,1,0,1);
+INSERT INTO `subitems` VALUES (1,1,'KODAK粉色升级数码相机,自动对焦 50MP FHD 1080P 儿童相机,带 16 倍变焦防抖功能,小型相机适合儿童学生儿童青少年女孩男孩,儿童相机带 32GB SD 卡,2 节电池','粉色',397.67,44.21,50,1,1,1,1,1),(2,1,'KODAK黑色升级数码相机,自动对焦 50MP FHD 1080P 儿童相机,带 16 倍变焦防抖功能,小型相机适合儿童学生儿童青少年女孩男孩,儿童相机带 32GB SD 卡,2 节电池','黑色',399.43,94.88,55,3,1,1,1,1),(3,2,'Kodak PIXPRO FZ55 红色 1600 万像素数码相机 5 倍光学变焦 28 毫米广角 1080P 全高清视频 2.7 英寸液晶摄像头 + 64GB 读卡器 + 保护套 + 记忆钱包 + 三脚架 + 清洁套装','红色',1316.04,322.07,60,0,0,2,1,1),(4,3,'Samsung 三星 计算机内部固态硬盘 4.0 TB 兼容台式机 usb 3.0 向下兼容 MZ-V9P4T0CW','4TB990 PRO',2427.06,248.39,50,3,1,2,1,0),(5,4,'Davids 牙膏 缓解牙齿敏感 通用成人款 5.25盎司(约149克)','薄荷味',192.22,23.49,20,4,1,2,1,1),(6,5,'brother 兄弟 ColAura 彩色照片和标签打印机','VC500W',1254.82,136.12,50,3,1,1,1,1);
 /*!40000 ALTER TABLE `subitems` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -66,4 +64,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-11 12:11:57
+-- Dump completed on 2025-03-14 18:06:41

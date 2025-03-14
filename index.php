@@ -104,6 +104,23 @@ if($act=="add"){
         }
     }
 }
+$role=-1;
+if($usid!=-1){
+    $rolequery=mysqli_query($conn,"select role from users where id=$usid and valid=1");
+    while($rolerow=mysqli_fetch_row($rolequery)){
+        $role=$rolerow[0];
+    }
+    if($role==-1){
+        header("errororsucc.php?reason=uservalid&usid=$usid&usr=$usr&veri=$veri");
+        die;
+    }elseif($role==2){
+        header("location:vendormanage.php?usid=$usid&usr=$usr&veri=$veri");
+        die;
+    }elseif($role==1){
+        header("location:rootmanage.php?usid=$usid&usr=$usr&veri=$veri");
+        die;
+    }
+}
 ?>
 <div class="container">
     <div class="header">
@@ -130,7 +147,7 @@ if($act=="add"){
         </div>
         <div class="part2">
             <?PHP
-            $indexcategory=mysqli_query($conn,"select icpic,icname,id from indexcategories where valid=1");
+            $indexcategory=mysqli_query($conn,"select icpic,icname,id from indexcategories where valid=1 and id!=0");
             while($indexcategoryrow=mysqli_fetch_row($indexcategory)){
                 $icpic=$indexcategoryrow[0];
                 $icname=$indexcategoryrow[1];

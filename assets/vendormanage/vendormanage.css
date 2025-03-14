@@ -32,6 +32,7 @@
     font-size: 1.2vw;
     justify-content: center;
     align-items: center;
+    margin-top: 2vh;
 }
 .container .left .item {
     min-width: 8vw;
@@ -217,8 +218,8 @@
     display: flex;
     min-width: 34vw;
     max-width: 34vw;
-    min-height: 4vh;
-    max-height: 4vh;
+    min-height: 3vh;
+    max-height: 3vh;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -227,18 +228,29 @@
     display: flex;
     min-width: 10vw;
     max-width: 10vw;
-    min-height: 4vh;
-    max-height: 4vh;
+    min-height: 3vh;
+    max-height: 3vh;
     font-size: 0.9vw;
     justify-content: center;
     align-items: center;
+}
+.container .right .goodsitem .upper .p4 .p4item h2{
+    display: flex;
+    min-width: 30vw;
+    max-width: 30vw;
+    min-height: 2vh;
+    max-height: 2vh;
+    font-size: 0.7vw;
+    justify-content: center;
+    align-items: center;
+    color: red;
 }
 .container .right .goodsitem .upper .p4 .p4item .slctbox{
     display: flex;
     min-width: 7vw;
     max-width: 7vw;
-    min-height: 4vh;
-    max-height: 4vh;
+    min-height: 3vh;
+    max-height: 3vh;
     justify-content: center;
     align-items: center;
 }
@@ -252,6 +264,17 @@
     justify-content: center;
     align-items: center;
 }
-.container .right .goodsitem .lower .sbmtbtmn{
+.container .right .goodsitem .lower .sbmtbtn{
     display: flex;
+    min-width: 17vw;
+    min-height: 5vh;
+    max-width: 17vw;
+    max-height: 5vh;
+    font-size: 1vw;
+    background-color: #38CA73;
+    border: none;
+    border-radius: 0.5vw;
+}
+.container .right .goodsitem .lower .sbmtbtn:hover{
+    background-color: #74958c;
 }

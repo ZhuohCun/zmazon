@@ -39,7 +39,17 @@ if(isset($_GET['chosen'])){
 }else{
     $chosen=1;
 }
-$current="payment.php";
+if(isset($_GET['opt'])){
+    $opt=$_GET['opt'];
+}else{
+    $opt=1;
+}
+if(isset($_GET['optid'])){
+    $optid=$_GET['optid'];
+}else{
+    $optid=1;
+}
+$current="vendormanage.php";
 $hasitem=0;
 $usrv=mysqli_query($conn,'set names utf8');
 $usrv=mysqli_query($conn,"select username,verify,role from users where id = $usid and valid=1");
@@ -59,15 +69,68 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
     header("Location:"."login.php");
     die;
 }
+if($opt=="changegoods"){
+    if($optid==-1){
+        header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+        die;
+    }else{
+        if(isset($_POST['subsitext'])){
+            $goodssubsitext=$_POST['subsitext'];
+        }else{
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            die;
+        }
+        if(isset($_POST['subname'])){
+            $goodssubname=$_POST['subname'];
+        }else{
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            die;
+        }
+        if(isset($_POST['price'])){
+            $goodsprice=$_POST['price'];
+        }else{
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            die;
+        }
+        if(isset($_POST['importfee'])){
+            $goodsimportfee=$_POST['importfee'];
+        }else{
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            die;
+        }
+        if(isset($_POST['transportfee'])){
+            $goodstransportfee=$_POST['transportfee'];
+        }else{
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            die;
+        }
+        if(isset($_POST['rcrecommend'])){
+            $goodsrcrecommend=$_POST['rcrecommend'];
+        }else{
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            die;
+        }
+        if(isset($_POST['icrecommend'])){
+            $goodsicrecommend=$_POST['icrecommend'];
+        }else{
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            die;
+        }
+        if(isset($_POST['goodsvalid'])){
+            $goodsgoodsvalid=$_POST['goodsvalid'];
+        }else{
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            die;
+        }
+    }
+}
 ?>
 <div class="container">
     <div class="left">
         <div class="title">欢迎您，Z马逊自营商家</div>
         <?php if($chosen==1){echo "<div class=\"itemwhite\">商品管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=1'\">商品管理</div>";} ?>
-        <?php if($chosen==2){echo "<div class=\"itemwhite\">分类管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=2'\">分类管理</div>";} ?>
-        <?php if($chosen==3){echo "<div class=\"itemwhite\">推荐管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=3'\">推荐管理</div>";} ?>
-        <?php if($chosen==4){echo "<div class=\"itemwhite\">订单管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=4'\">订单管理</div>";} ?>
-        <?php if($chosen==5){echo "<div class=\"itemwhite\">退出登陆</div>";}else{echo "<div class=\"item\" onclick=\"logout()\">退出登陆</div>";} ?>
+        <?php if($chosen==2){echo "<div class=\"itemwhite\">订单管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=2'\">订单管理</div>";} ?>
+        <?php if($chosen==3){echo "<div class=\"itemwhite\">退出登陆</div>";}else{echo "<div class=\"item\" onclick=\"logout()\">退出登陆</div>";} ?>
         <div class="copyright">版权所有© ゼマゾン株式会社</div>
     </div>
     <div class="right">
@@ -90,6 +153,8 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 $icverify=$subitemrow[13];
                 if($subvalid==0){
                     $realrcverify="商品未上架";
+                }elseif ($rcid==0){
+                    $realrcverify="未选择推荐";
                 }elseif($rcverify==0){
                     $realrcverify="待审核";
                 }elseif($rcverify==1){
@@ -105,7 +170,9 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 }
                 if($subvalid==0){
                     $realicverify="商品未上架";
-                } elseif($icverify==0){
+                }elseif ($icid==0){
+                    $realicverify="未选择推荐";
+                }elseif($icverify==0){
                     $realicverify="待审核";
                 }elseif($icverify==1){
                     $realicverify="生效中";
@@ -123,38 +190,47 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                     $pic=$picrow[0];
                 }
                 echo "<div class=\"goodsitem\">";
-                echo "<form action=\"loginorreg.php?opt=log\" id=\"form1\" method=\"post\" onsubmit=\"return onlogin();\">";
+                echo "<form action=\"vendormanage.php?opt=changegoods&optid=$subid\" id=\"form1\" method=\"post\" onsubmit=\"return onlogin();\">";
                 echo "<div class='upper'>";
                 echo "<div class='p1'><img src='$pic'></div>";
                 echo "<div class='p2'><input id='subsitext' value='$subsitext' class='subtext'/><input id='subname' value='$subname' class='subtext'/></div>";
                 echo "<div class='p3'><div class='p3item'><h1>价格：</h1><input id='price' value='$subsiprice' class='iptbox'/></div><div class='p3item'><h1>进口关税：</h1><input id='importfee' value='$subsiimportfee' class='iptbox'/></div><div class='p3item'><h1>运费：</h1><input id='transportfee' value='$subtransportfee' class='iptbox'/></div></div>";
                 echo "<div class='p4'><div class='p4item'><h1>rc推荐条目</h1><select id='rcrecommend' name='rcrecommend' class='slctbox'>";
-                $rcquery=mysqli_query($conn,"select id,rcname from recccategories where valid=1 and id!=0");
+                $rcquery=mysqli_query($conn,"select id,rcname from recccategories where valid=1 order by id asc");
                 while ($rcrow=mysqli_fetch_row($rcquery)) {
                     $rcqueryrcid=$rcrow[0];
                     $rcqueryrcname=$rcrow[1];
-                    echo "<option value='$rcqueryrcid'>$rcqueryrcname</option>";
+                    echo "<option " ;
+                    if($rcqueryrcid==$rcid){
+                        echo "selected style=\"color:red;\"";
+                    }
+                    echo " value='$rcqueryrcid'>$rcqueryrcname</option>";
                 }
                 echo "</select><h1>状态：$realrcverify</h1></div>";
                 echo "<div class='p4item'><h1>ic推荐条目</h1><select id='icrecommend' name='icrecommend' class='slctbox'>";
-                $icquery=mysqli_query($conn,"select id,icname from indexcategories where valid=1");
+                $icquery=mysqli_query($conn,"select id,icname from indexcategories where valid=1 order by id asc");
                 while ($icrow=mysqli_fetch_row($icquery)) {
-                    $icqueryrcid=$icrow[0];
-                    $icqueryrcname=$icrow[1];
-                    echo "<option value='$icqueryrcid'>$icqueryrcname</option>";
+                    $icqueryicid=$icrow[0];
+                    $icqueryicname=$icrow[1];
+                    echo "<option ";
+                    if($icqueryicid==$icid){
+                        echo "selected style=\"color:red;\"";
+                    }
+                    echo " value='$icqueryicid'>$icqueryicname</option>";
                 }
                 echo "</select><h1>状态：$realicverify</h1></div>";
+                echo "<div class='p4item'><h2>更改推荐栏目及下架商品会使目前推荐资格失效，且无法恢复，需重新审核后方可生效</h2></div>";
                 echo "<div class='p4item'><h1>是否上架</h1><input type='checkbox' id='goodsvalid' class='slectbox' ";if($subvalid==1){echo "checked";}echo "></div>";
-                echo "</div>";  //p4
-                echo "</div>";  //upper
+                echo "</div>";
+                echo "</div>";
                 echo "<div class='lower'>";
                 echo "<div class='submitbutton'><input type=\"submit\" name=\"submit\" id=\"submit\" class=\"sbmtbtn\" value=\"整体商品修改\" /></div>";
-               echo "</div>";  //lower
+                echo "</div>";
                 echo "</form>";
-                echo "</div>";  //item
+                echo "</div>";
             }
         }?>
-    </div>  <!--right-->
-</div>  <!--container-->
+    </div>
+</div>
 </body>
 </html>
