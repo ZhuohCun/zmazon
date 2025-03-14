@@ -122,8 +122,8 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                 echo "<form action=\"loginorreg.php?opt=log\" id=\"form1\" method=\"post\" onsubmit=\"return onlogin();>";
                 echo "<div class='upper'>";
                 echo "<div class='p1'><img src='$pic'></div>";
-                echo "<div class='p2'><input id='subsitext' value='$subsitext'/><input id='subname' value='$subname'/></div>";
-                echo "<div class='p3'><input id='price' value='$subsiprice'/><input id='importfee' value='$subsiimportfee'/><input id='transportfee' value='$subtransportfee'/></div>";
+                echo "<div class='p2'><input id='subsitext' value='$subsitext' class='subtext'/><input id='subname' value='$subname' class='subtext'/></div>";
+                echo "<div class='p3'><div class='p3item'><h1>价格：</h1><input id='price' value='$subsiprice' class='iptbox'/></div><div class='p3item'><h1>进口关税：</h1><input id='importfee' value='$subsiimportfee' class='iptbox'/></div><div class='p3item'><h1>运费：</h1></div><input id='transportfee' value='$subtransportfee' class='iptbox'/></div></div>";
                 echo "<div class='p4'><div class='p4item'><h1>rc推荐条目</h1><select id='rcrecommend' name='rcrecommend'>";
                 $rcquery=mysqli_query($conn,"select id,rcname from recccategories where valid=1 and id!=0");
                 while ($rcrow=mysqli_fetch_row($rcquery)) {
@@ -131,7 +131,7 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                     $rcqueryrcname=$rcrow[1];
                     echo "<option value='$rcqueryrcid'>$rcqueryrcname</option>";
                 }
-                echo "</select><h2>状态：$realrcverify</h2></div>";
+                echo "</select><h1>状态：$realrcverify</h1></div>";
                 echo "<div class='p4item'><h1>ic推荐条目</h1><select id='icrecommend' name='icrecommend'>";
                 $icquery=mysqli_query($conn,"select id,icname from indexcategories where valid=1");
                 while ($icrow=mysqli_fetch_row($icquery)) {
@@ -139,7 +139,7 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
                     $icqueryrcname=$icrow[1];
                     echo "<option value='$icqueryrcid'>$icqueryrcname</option>";
                 }
-                echo "</select><h2>状态：$realicverify</h2></div>";
+                echo "</select><h1>状态：$realicverify</h1></div>";
                 echo "<div class='p4item'><h1>是否上架</h1><input type='radio' id='goodsvalid'/></div>";
                 echo "</div>";  //p4
                 echo "</div>";  //upper

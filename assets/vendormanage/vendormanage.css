@@ -84,15 +84,106 @@
     align-items: flex-start;
     row-gap: 2vh;
     overflow-y: scroll;
+    padding-top: 18vh;
+
 }
 .container .right .goodsitem{
     display: flex;
     min-width: 79vw;
     max-width: 79vw;
-    min-height: 10vh;
-    max-height: 10vh;
+    min-height: 20vh;
+    max-height: 20vh;
     background-color: white;
     border-radius: 0.5vw;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5vw;
+
+}
+.container .right .goodsitem .upper{
+    display: flex;
+    flex-direction: row;
+    min-height: 14vh;
+    max-height: 14vh;
+    min-width: 78vw;
+    max-width: 78vw;
+    justify-content: center;
+    align-items: center;
+}
+.container .right .goodsitem .upper .p1{
+    display: flex;
+    min-width: 10vw;
+    max-width: 10vw;
+    min-height: 13vh;
+    max-height: 13vh;
+    justify-content: center;
+    align-items: center;
+}
+.container .right .goodsitem .upper .p1 img{
+    min-width: 10vw;
+    max-width: 10vw;
+    min-height: 13vh;
+    max-height: 13vh;
+    justify-content: center;
+    align-items: center;
+}
+.container .right .goodsitem .upper .p2{
+    display: flex;
+    min-width: 20vw;
+    max-width: 20vw;
+    min-height: 13vh;
+    max-height: 13vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.container .right .goodsitem .upper .p2 .subtext{
+    display: flex;
+    min-width: 20vw;
+    max-width: 20vw;
+    min-height: 6.5vh;
+    max-height: 6.5vh;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+}
+.container .right .goodsitem .upper .p2 .subname{
+    display: flex;
+    min-width: 10vw;
+    max-width: 10vw;
+    min-height: 6.5vh;
+    max-height: 6.5vh;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+}
+.container .right .goodsitem .upper .p3{
+    display: flex;
+    min-width: 13vw;
+    max-width: 13vw;
+    min-height: 12vh;
+    max-height: 12vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container .right .goodsitem .upper .p3 .p3item{
+    display: flex;
+    min-width: 13vw;
+    max-width: 13vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container .right .goodsitem .lower{
+    display: flex;
+    flex-direction: column;
+    min-height: 5vh;
+    max-height: 5vh;
+    min-width: 78vw;
+    max-width: 78vw;
     justify-content: center;
     align-items: center;
 }
