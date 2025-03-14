@@ -278,3 +278,50 @@
 .container .right .goodsitem .lower .sbmtbtn:hover{
     background-color: #74958c;
 }
+.container .right .orderbox{
+    display: flex;
+    min-width: 79vw;
+    max-width: 79vw;
+    min-height: 20vh;
+    max-height: 20vh;
+    background-color: white;
+    border-radius: 0.5vw;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5vw;
+    flex-direction: row;
+    column-gap: 0.5vw;
+}
+.container .right .orderbox .orderitem{
+    display: flex;
+    min-width: 79vw;
+    max-width: 79vw;
+    height: auto;
+    background-color: white;
+    border-radius: 0.5vw;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5vw;
+    flex-direction: column;
+    column-gap: 0.5vw;
+}
+.container .right .orderbox .orderitem .title{
+    min-width: 78vw;
+    max-width: 78vw;
+    min-height: 5vh;
+    max-height: 5vh;
+    font-size: 0.8vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+.container .right .orderbox .orderitem .title .p1{
+    display: flex;
+    min-width: 30vw;
+    max-width: 30vw;
+    min-height: 5vh;
+    max-height: 5vh;
+}
+.container .right .orderbox .orderitem .title .p2
+.container .right .orderbox .orderitem .title .p3

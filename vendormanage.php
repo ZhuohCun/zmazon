@@ -280,18 +280,74 @@ if($opt=="changegoods"){
                 echo "</div>";
             }
         }elseif ($chosen==2){
-            $orderquery=mysqli_query($conn,"select orders.id,orders.status,orders.price,orders.pid,usertoaddress.address1,usertoaddress.address2,usertoaddress.receiver,usertoaddress.phoneofreceiver,orders.valid from orders,usertoaddress where orders.aid=usertoaddress.id order by orders.id asc");
+            echo "<div class='orderbox'>";
+            $orderquery=mysqli_query($conn,"select orders.id,orders.status,orders.price,orders.pid,usertoaddress.address1,usertoaddress.address2,usertoaddress.receiver,usertoaddress.phoneofreceiver,orders.valid,orders.expfirm,orders.expno from orders,usertoaddress where orders.aid=usertoaddress.id order by orders.id asc");
             while ($orderrow=mysqli_fetch_row($orderquery)) {
                 $orderid=$orderrow[0];
                 $orderstatus=$orderrow[1];
                 $orderprice=$orderrow[2];
                 $orderpid=$orderrow[3];
-                $orderaddress=$orderrow[4]+$orderrow[5];
-                $orderreceiver=$orderrow[6]+$orderrow[7];
-                $orderphoneofreceiver=$orderrow[8];
-                $ordervalid=$orderrow[9];
-                $ordertosubquery=mysqli_query($conn,"select ordertosubitem.siid,ordertosubitem.quantity,ordertosubitem,siprice,siimportfee,transportfee,valid from ordertosubitem where orderid=$orderid");
+                $orderaddress=$orderrow[4].$orderrow[5];
+                $orderreceiver=$orderrow[6].$orderrow[7];
+                $ordervalid=$orderrow[8];
+                $orderexpfirm=$orderrow[9];
+                $orderexpno=$orderrow[10];
+                if($orderstatus==1){
+                    $realorderstatus="待支付";
+                }elseif ($orderstatus==2) {
+                    $realorderstatus="待发货";
+                }elseif ($orderstatus==3) {
+                    $realorderstatus="待收货";
+                }elseif ($orderstatus==4) {
+                    $realorderstatus="已完成";
+                }elseif ($orderstatus==5) {
+                    $realorderstatus="已取消";
+                }
+                echo "<div class='orderitem'>";
+                echo "<div class='title'><div class='p1'>订单号：$orderid</div><div class='p2'>$realorderstatus</div><div class='p3'>共支付：&#165 $orderprice</div></div>";
+                $ordertosubquery=mysqli_query($conn,"select ordertosubitem.siid,ordertosubitem.quantity,ordertosubitem.siprice,ordertosubitem.siimportfee,ordertosubitem.transportfee,ordertosubitem.valid,vendors.vname,subitems.sitext,subitems.subname from ordertosubitem,subitems,items,vendors where ordertosubitem.oid=$orderid and ordertosubitem.siid=subitems.id and subitems.iid=items.id and items.vid=vendors.id");
+                while ($ordertosubrow=mysqli_fetch_row($ordertosubquery)) {
+                    $subordersiid=$ordertosubrow[0];
+                    $suborderquantity=$ordertosubrow[1];
+                    $suborderprice=$ordertosubrow[2];
+                    $suborderimportfee=$ordertosubrow[3];
+                    $subordertransportfee=$ordertosubrow[4];
+                    $subordervalid=$ordertosubrow[5];
+                    $subordervname=$ordertosubrow[6];
+                    $subordersubtext=$ordertosubrow[7];
+                    $subordersubname=$ordertosubrow[8];
+                    $suborderpicquery=mysqli_query($conn,"select subitemtopic.pic from subitemtopic,subitems where subitemtopic.siid=subitems.id and subitems.id=$subordersiid and subitemtopic.valid=1 limit 1");
+                    while ($suborderpicrow=mysqli_fetch_row($suborderpicquery)) {
+                        $suborderpic=$suborderpicrow[0];
+                    }
+                    echo "<div class='subitem'>";
+                    echo "<div class='p1'><img src='$suborderpic'></div>";
+                    echo "<div class='p2'><div class='text'>$subordersubtext</div><div class='name'>款式：$subordersubname</div> </div>";
+                    echo "<div class='p3'>供应商：$subordervname</div>";
+                    echo "<div class='p4'><div class='price'>商品价格：$suborderprice</div><div class='importfee'>进口关税：$suborderimportfee</div><div class='transportfee'>运费：$subordertransportfee</div></div>";
+                    echo "<div class='p5'>x$suborderquantity</div>";
+                    echo "</div>";  //subitem
+                    echo "</div>"; //orderitem
+                }
+                echo "<div class='lower'>";
+                echo "<div class='lefter'><div class='address'>收货地址：$orderaddress</div><div class='receiver'>收件人：$orderreceiver</div></div>";
+                echo "<div class='righter'>";
+                if($orderstatus==3 || $orderstatus==4) {
+                    echo "<div class='p1'><div class='expfirm'>快递公司：$orderexpfirm</div><div class='expno'>快递单号：$orderexpno</div></div>";
+                }else{
+                    echo "<div class='p1'></div>";
+                }
+                if($orderstatus==1 || $orderstatus==2) {
+                    echo "<div class='calcelbutton'>强制取消订单</div>";
+                }
+                if($orderstatus==2) {
+                    echo "<div class='deliverbutton'>发货</div>";
+                }
+                echo "<div class='p2'></div>";
+                echo "</div>";  //righter
+                echo "</div>";  //lower
             }
+            echo "</div>"; //orderbox
         }
         ?>
     </div>
