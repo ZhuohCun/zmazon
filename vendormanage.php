@@ -60,7 +60,7 @@ while($usrvr=mysqli_fetch_row($usrv)){
     $role=$usrvr[2];
     $usrqry=1;
 }
-if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
+if($usrqry==1 && $usr==$realname && $veri==$realver && $role=='2'){
 
 }elseif($usid!=-1){
     header("Location:"."errororsucc.php?reason=用户权限不足");
@@ -71,57 +71,106 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role==2){
 }
 if($opt=="changegoods"){
     if($optid==-1){
-        header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+        header("Location:"."errororsucc1.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
         die;
     }else{
         if(isset($_POST['subsitext'])){
             $goodssubsitext=$_POST['subsitext'];
         }else{
-            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            header("Location:"."errororsucc2.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
             die;
         }
         if(isset($_POST['subname'])){
             $goodssubname=$_POST['subname'];
         }else{
-            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            header("Location:"."errororsucc3.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
             die;
         }
         if(isset($_POST['price'])){
             $goodsprice=$_POST['price'];
         }else{
-            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            header("Location:"."errororsucc4.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
             die;
         }
         if(isset($_POST['importfee'])){
             $goodsimportfee=$_POST['importfee'];
         }else{
-            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            header("Location:"."errororsucc5.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
             die;
         }
         if(isset($_POST['transportfee'])){
             $goodstransportfee=$_POST['transportfee'];
         }else{
-            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            header("Location:"."errororsucc6.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
             die;
         }
         if(isset($_POST['rcrecommend'])){
             $goodsrcrecommend=$_POST['rcrecommend'];
         }else{
-            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            header("Location:"."errororsucc7.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
             die;
         }
         if(isset($_POST['icrecommend'])){
             $goodsicrecommend=$_POST['icrecommend'];
         }else{
-            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            header("Location:"."errororsucc8.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
             die;
         }
         if(isset($_POST['goodsvalid'])){
             $goodsgoodsvalid=$_POST['goodsvalid'];
         }else{
-            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
-            die;
+            $goodsgoodsvalid="off";
         }
+    }
+    $ifgoodsexists=0;
+    $ifgoodsexistsquery=mysqli_query($conn,"select * from subitems where id=$optid limit 1");  //未上架的商品也可以修改，不强求valid=1
+    while($ifgoodsexistsrow=mysqli_fetch_row($ifgoodsexistsquery)){
+        $ifgoodsexists=1;
+    }
+    if($ifgoodsexists==1){
+        mysqli_query($conn,"start transaction");
+        mysqli_query($conn,"select * from subitems where id=$optid for update");
+        $goodsrcquery=mysqli_query($conn,"select rcid,rcverify from subitems where id=$optid limit 1");
+        while($goodsrcrow=mysqli_fetch_row($goodsrcquery)){
+            $goodsrcid=$goodsrcrow[0];
+            $goodsrcverify=$goodsrcrow[1];
+        }
+        $goodsicquery=mysqli_query($conn,"select icid,icverify from subitems where id=$optid limit 1");
+        while($goodsicrow=mysqli_fetch_row($goodsicquery)){
+            $goodsicid=$goodsicrow[0];
+            $goodsicverify=$goodsicrow[1];
+        }
+        if($goodsrcverify!=0 && $goodsrcid!=$goodsrcrecommend && $goodsrcrecommend!=0){
+            mysqli_query($conn,"update subitems set rcverify=0,rcid=$goodsrcrecommend where id=$optid");
+        }elseif ($goodsrcrecommend==0){
+            mysqli_query($conn,"update subitems set rcverify=0,rcid=0 where id=$optid");
+        }elseif ($goodsrcverify==0 && $goodsrcid!=$goodsrcrecommend){
+            mysqli_query($conn,"update subitems set rcid=$goodsrcrecommend where id=$optid");
+        }
+        if($goodsicverify!=0 && $goodsicid!=$goodsicrecommend && $goodsicrecommend!=0){
+            mysqli_query($conn,"update subitems set icverify=0,icid=$goodsicrecommend where id=$optid");
+        }elseif ($goodsicrecommend==0){
+            mysqli_query($conn,"update subitems set icverify=0,icid=0 where id=$optid");
+        }elseif ($goodsicverify==0 && $goodsicid!=$goodsicrecommend){
+            mysqli_query($conn,"update subitems set icid=$goodsicrecommend where id=$optid");
+        }
+        if($goodsgoodsvalid=="on"){
+            $goodsgoodsvalidnum=1;
+        }else{
+            $goodsgoodsvalidnum=0;
+        }
+        $goodsvalidquery=mysqli_query($conn,"select valid from subitems where id=$optid limit 1");
+        while ($goodsvalidrow=mysqli_fetch_row($goodsvalidquery)){
+            $selectedgoodsvalid=$goodsvalidrow[0];
+        }
+        if($selectedgoodsvalid==1 && $goodsgoodsvalidnum==0){
+            mysqli_query($conn,"update subitems set valid=0,icverify=0,rcverify=0 where id=$optid");
+        }elseif ($selectedgoodsvalid==0 && $goodsgoodsvalidnum==1){
+            mysqli_query($conn,"update subitems set valid=1 where id=$optid");
+        }
+        mysqli_query($conn,"update subitems set sitext='$goodssubsitext',subname='$goodssubname',siprice='$goodsprice',siimportfee='$goodsimportfee',transportfee='$goodstransportfee' where id=$optid");
+        mysqli_query($conn,"commit");
+        header("Location:"."vendormanage.php?&usid=$usid&usr=$usr&veri=$veri&chosen=1");
     }
 }
 ?>
@@ -134,7 +183,8 @@ if($opt=="changegoods"){
         <div class="copyright">版权所有© ゼマゾン株式会社</div>
     </div>
     <div class="right">
-        <?php if($chosen==1){
+        <?php
+        if($chosen==1){
             $subitemquery=mysqli_query($conn,"select id,iid,sitext,subname,siprice,siimportfee,transportfee,rcid,icid,valid,rcid,rcverify,icid,icverify from subitems");
             while ($subitemrow=mysqli_fetch_array($subitemquery)){
                 $subid=$subitemrow[0];
@@ -190,11 +240,11 @@ if($opt=="changegoods"){
                     $pic=$picrow[0];
                 }
                 echo "<div class=\"goodsitem\">";
-                echo "<form action=\"vendormanage.php?opt=changegoods&optid=$subid\" id=\"form1\" method=\"post\" onsubmit=\"return onlogin();\">";
+                echo "<form action=\"vendormanage.php?usid=$usid&usr=$usr&veri=$veri&opt=changegoods&optid=$subid\" id=\"form1\" method=\"post\">";
                 echo "<div class='upper'>";
                 echo "<div class='p1'><img src='$pic'></div>";
-                echo "<div class='p2'><input id='subsitext' value='$subsitext' class='subtext'/><input id='subname' value='$subname' class='subtext'/></div>";
-                echo "<div class='p3'><div class='p3item'><h1>价格：</h1><input id='price' value='$subsiprice' class='iptbox'/></div><div class='p3item'><h1>进口关税：</h1><input id='importfee' value='$subsiimportfee' class='iptbox'/></div><div class='p3item'><h1>运费：</h1><input id='transportfee' value='$subtransportfee' class='iptbox'/></div></div>";
+                echo "<div class='p2'><input id='subsitext' name='subsitext' value='$subsitext' class='subtext'/><input id='subname' name='subname' value='$subname' class='subtext'/></div>";
+                echo "<div class='p3'><div class='p3item'><h1>价格：</h1><input id='price' name='price' value='$subsiprice' class='iptbox'/></div><div class='p3item'><h1>进口关税：</h1><input id='importfee' name='importfee' value='$subsiimportfee' class='iptbox'/></div><div class='p3item'><h1>运费：</h1><input id='transportfee' name='transportfee' value='$subtransportfee' class='iptbox'/></div></div>";
                 echo "<div class='p4'><div class='p4item'><h1>rc推荐条目</h1><select id='rcrecommend' name='rcrecommend' class='slctbox'>";
                 $rcquery=mysqli_query($conn,"select id,rcname from recccategories where valid=1 order by id asc");
                 while ($rcrow=mysqli_fetch_row($rcquery)) {
@@ -220,7 +270,7 @@ if($opt=="changegoods"){
                 }
                 echo "</select><h1>状态：$realicverify</h1></div>";
                 echo "<div class='p4item'><h2>更改推荐栏目及下架商品会使目前推荐资格失效，且无法恢复，需重新审核后方可生效</h2></div>";
-                echo "<div class='p4item'><h1>是否上架</h1><input type='checkbox' id='goodsvalid' class='slectbox' ";if($subvalid==1){echo "checked";}echo "></div>";
+                echo "<div class='p4item'><h1>是否上架</h1><input type='checkbox' id='goodsvalid' name='goodsvalid' class='slectbox' ";if($subvalid==1){echo "checked";}echo "></div>";
                 echo "</div>";
                 echo "</div>";
                 echo "<div class='lower'>";
@@ -229,7 +279,10 @@ if($opt=="changegoods"){
                 echo "</form>";
                 echo "</div>";
             }
-        }?>
+        }elseif ($chosen==2){
+
+        }
+        ?>
     </div>
 </div>
 </body>
