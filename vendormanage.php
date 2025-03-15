@@ -14,6 +14,19 @@
             location.replace("me.php");
         }
     }
+    function ondeliver() {
+        var expf = document.getElementById("expf");
+        var expn=document.getElementById("expn");
+        if(expf.value===''){
+            alert("请输入快递业者名称");
+            return false;
+        }else if(expn.value===''){
+            alert("请输入快递单号");
+            return false;
+        }else {
+            return true;
+        }
+    }
 </script>
 <body>
 <?PHP
@@ -42,12 +55,12 @@ if(isset($_GET['chosen'])){
 if(isset($_GET['opt'])){
     $opt=$_GET['opt'];
 }else{
-    $opt=1;
+    $opt=-1;
 }
 if(isset($_GET['optid'])){
     $optid=$_GET['optid'];
 }else{
-    $optid=1;
+    $optid=-1;
 }
 $current="vendormanage.php";
 $hasitem=0;
@@ -71,49 +84,49 @@ if($usrqry==1 && $usr==$realname && $veri==$realver && $role=='2'){
 }
 if($opt=="changegoods"){
     if($optid==-1){
-        header("Location:"."errororsucc1.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+        header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
         die;
     }else{
         if(isset($_POST['subsitext'])){
             $goodssubsitext=$_POST['subsitext'];
         }else{
-            header("Location:"."errororsucc2.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
             die;
         }
         if(isset($_POST['subname'])){
             $goodssubname=$_POST['subname'];
         }else{
-            header("Location:"."errororsucc3.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
             die;
         }
         if(isset($_POST['price'])){
             $goodsprice=$_POST['price'];
         }else{
-            header("Location:"."errororsucc4.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
             die;
         }
         if(isset($_POST['importfee'])){
             $goodsimportfee=$_POST['importfee'];
         }else{
-            header("Location:"."errororsucc5.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
             die;
         }
         if(isset($_POST['transportfee'])){
             $goodstransportfee=$_POST['transportfee'];
         }else{
-            header("Location:"."errororsucc6.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
             die;
         }
         if(isset($_POST['rcrecommend'])){
             $goodsrcrecommend=$_POST['rcrecommend'];
         }else{
-            header("Location:"."errororsucc7.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
             die;
         }
         if(isset($_POST['icrecommend'])){
             $goodsicrecommend=$_POST['icrecommend'];
         }else{
-            header("Location:"."errororsucc8.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+            header("Location:"."errororsucc.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
             die;
         }
         if(isset($_POST['goodsvalid'])){
@@ -173,6 +186,50 @@ if($opt=="changegoods"){
         header("Location:"."vendormanage.php?&usid=$usid&usr=$usr&veri=$veri&chosen=1");
     }
 }
+if($opt=="ccancel"){
+    if($optid==-1){
+        header("Location:"."errororsucc1.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+        die;
+    }
+    mysqli_query($conn,"start transaction");
+    mysqli_query($conn,"select status from orders where  id=$optid and valid=1 for update");
+    mysqli_query($conn,"update orders set status=5 where id=$optid and valid=1");
+    mysqli_query($conn,"commit");
+    header("Location:"."vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=$chosen");
+    die;
+}
+if($opt=="cdeliver"){
+    if($optid==-1){
+        header("Location:"."errororsucc1.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+        die;
+    }
+    if(isset($_POST["expf"])){
+        $expf=$_POST["expf"];
+    }else{
+        header("Location:"."errororsucc2.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+        die;
+    }
+    if(isset($_POST["expn"])){
+        $expn=$_POST["expn"];
+    }else{
+        header("Location:"."errororsucc3.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+        die;
+    }
+    $statusquery=mysqli_query($conn,"select status from orders where id=$optid and valid=1 limit 1");
+    while ($statusrow=mysqli_fetch_row($statusquery)){
+        $selectedstatus=$statusrow[0];
+    }
+    if($selectedstatus!=2){
+        header("Location:"."errororsucc$optid.php?reason=paraloss&usid=$usid&usr=$usr&veri=$veri");
+        die;
+    }
+    mysqli_query($conn,"start transaction");
+    mysqli_query($conn,"select * from orders where  id=$optid and valid=1 for update");
+    mysqli_query($conn,"update orders set status='3',expfirm='$expf',expno='$expn' where id=$optid and valid=1");
+    mysqli_query($conn,"commit");
+    header("Location:"."vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=$chosen");
+    die;
+}
 ?>
 <div class="container">
     <div class="left">
@@ -182,9 +239,9 @@ if($opt=="changegoods"){
         <?php if($chosen==3){echo "<div class=\"itemwhite\">退出登陆</div>";}else{echo "<div class=\"item\" onclick=\"logout()\">退出登陆</div>";} ?>
         <div class="copyright">版权所有© ゼマゾン株式会社</div>
     </div>
-    <div class="right">
         <?php
         if($chosen==1){
+            echo "<div class=\"right\">";
             $subitemquery=mysqli_query($conn,"select id,iid,sitext,subname,siprice,siimportfee,transportfee,rcid,icid,valid,rcid,rcverify,icid,icverify from subitems");
             while ($subitemrow=mysqli_fetch_array($subitemquery)){
                 $subid=$subitemrow[0];
@@ -280,7 +337,7 @@ if($opt=="changegoods"){
                 echo "</div>";
             }
         }elseif ($chosen==2){
-            echo "<div class='orderbox'>";
+            echo "<div class=\"right1\">";
             $orderquery=mysqli_query($conn,"select orders.id,orders.status,orders.price,orders.pid,usertoaddress.address1,usertoaddress.address2,usertoaddress.receiver,usertoaddress.phoneofreceiver,orders.valid,orders.expfirm,orders.expno from orders,usertoaddress where orders.aid=usertoaddress.id order by orders.id asc");
             while ($orderrow=mysqli_fetch_row($orderquery)) {
                 $orderid=$orderrow[0];
@@ -288,7 +345,7 @@ if($opt=="changegoods"){
                 $orderprice=$orderrow[2];
                 $orderpid=$orderrow[3];
                 $orderaddress=$orderrow[4].$orderrow[5];
-                $orderreceiver=$orderrow[6].$orderrow[7];
+                $orderreceiver=$orderrow[6]." ".$orderrow[7];
                 $ordervalid=$orderrow[8];
                 $orderexpfirm=$orderrow[9];
                 $orderexpno=$orderrow[10];
@@ -304,7 +361,7 @@ if($opt=="changegoods"){
                     $realorderstatus="已取消";
                 }
                 echo "<div class='orderitem'>";
-                echo "<div class='title'><div class='p1'>订单号：$orderid</div><div class='p2'>$realorderstatus</div><div class='p3'>共支付：&#165 $orderprice</div></div>";
+                echo "<div class='title'><div class='p1'>订单号：$orderid</div><div class='p2'>$realorderstatus</div><div class='p3'>总价：&#165 $orderprice</div></div>";
                 $ordertosubquery=mysqli_query($conn,"select ordertosubitem.siid,ordertosubitem.quantity,ordertosubitem.siprice,ordertosubitem.siimportfee,ordertosubitem.transportfee,ordertosubitem.valid,vendors.vname,subitems.sitext,subitems.subname from ordertosubitem,subitems,items,vendors where ordertosubitem.oid=$orderid and ordertosubitem.siid=subitems.id and subitems.iid=items.id and items.vid=vendors.id");
                 while ($ordertosubrow=mysqli_fetch_row($ordertosubquery)) {
                     $subordersiid=$ordertosubrow[0];
@@ -332,26 +389,37 @@ if($opt=="changegoods"){
                 echo "<div class='lefter'><div class='address'>收货地址：$orderaddress</div><div class='receiver'>收件人：$orderreceiver</div></div>";
                 echo "<div class='righter'>";
                 if($orderstatus==3 || $orderstatus==4) {
-                    echo "<div class='p1'><div class='expfirm'>快递公司：$orderexpfirm</div><div class='expno'>快递单号：$orderexpno</div></div>";
+                    echo "<div class='p1'><div class='expfirm'>快递业者：$orderexpfirm</div><div class='expno'>快递单号：$orderexpno</div></div>";
                 }else{
                     echo "<div class='p1'></div>";
                 }
                 echo "<div class='p2'>";
                 if($orderstatus==1 || $orderstatus==2) {
-                    echo "<div class='calcelbutton'>强制取消订单</div>";
+                    echo "<div class='cancelbutton'";if($opt==-1){echo " onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=$chosen&opt=ccancel&optid=$orderid'\"";}echo ">强制取消订单</div>";
                 }
                 if($orderstatus==2) {
-                    echo "<div class='deliverbutton'>发货</div>";
+                    echo "<div class='deliverbutton'";if($opt==-1){echo " onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=$chosen&opt=deliver&optid=$orderid'\"";}echo ">发货</div>";
                 }
                 echo "</div>";  //p2
                 echo "</div>";  //righter
                 echo "</div>";  //lower
                 echo "</div>";  //orderitem
             }
-            echo "</div>"; //orderbox
         }
         ?>
     </div>
+<?php
+if($opt=="deliver") {
+    echo "<div class='panel'>";
+    echo "<div class='title'>订单发货</div>";
+    echo "<div class='x' onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=$chosen'\"></div>";
+    echo "<form action=\"vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=$chosen&opt=cdeliver&optid=$optid\" id=\"form1\" method=\"post\" onsubmit=\"return ondeliver();\" accept-charset='UTF-8'>";
+    echo "<div class='p'>快递业者：<input class=\"i\" type=\"text\" id=\"expf\" name=\"expf\" value=\"\"/></div>";
+    echo "<div class='p'>快递单号：<input class=\"i\" type=\"text\" id=\"expn\" name=\"expn\" value=\"\"/></div>";
+    echo "<div class='pb'><input type=\"submit\" name=\"submit\" id=\"submit\" class=\"button\" value=\"确认发货\" /></div>";
+    echo "</div>";  //panel
+}
+?>
 </div>
 </body>
 </html>
