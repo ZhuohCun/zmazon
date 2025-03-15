@@ -276,6 +276,21 @@
     justify-content: center;
     align-items: center;
 }
+.container .right .goodsitem .upper .p4 .p4item .psbutton{
+    display: flex;
+    min-width: 5vw;
+    max-width: 5vw;
+    min-height: 3vh;
+    max-height: 3vh;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5vw;
+    background-color:#38CA73 ;
+    font-size: 0.9vw;
+}
+.container .right .goodsitem .upper .p4 .p4item .psbutton:hover{
+    background-color: #74958c;
+}
 .container .right .goodsitem .lower{
     display: flex;
     flex-direction: column;

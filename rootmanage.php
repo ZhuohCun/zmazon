@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="assets/vendormanage/vendormanage.css">
+    <link rel="stylesheet" href="assets/rootmanage/rootmanage.css">
     <title>Z马逊商家管理系统</title>
 </head>
 <script>
@@ -313,7 +313,7 @@ if($opt=="cdeliver"){
                 }
                 echo " value='$rcqueryrcid'>$rcqueryrcname</option>";
             }
-            echo "</select><h1>状态：$realrcverify</h1>"; if($realrcverify=="待审核"){echo "<div class='psbutton'>通过审核</div>";} echo "</div>";
+            echo "</select><h1>状态：$realrcverify</h1>"; if($realrcverify=="待审核"){echo "<div class='psbutton' onclick=\"location.href='rootmanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=$chosen&opt=crcpass&optid=$subid'\">通过审核</div>";} echo "</div>";
             echo "<div class='p4item'><h1>ic推荐条目</h1><select id='icrecommend' name='icrecommend' class='slctbox'>";
             $icquery=mysqli_query($conn,"select id,icname from indexcategories where valid=1 order by id asc");
             while ($icrow=mysqli_fetch_row($icquery)) {
@@ -325,7 +325,7 @@ if($opt=="cdeliver"){
                 }
                 echo " value='$icqueryicid'>$icqueryicname</option>";
             }
-            echo "</select><h1>状态：$realicverify</h1>"; if($realicverify=="待审核"){echo "<div class='psbutton'>通过审核</div>";} echo "</div>";
+            echo "</select><h1>状态：$realicverify</h1>"; if($realicverify=="待审核"){echo "<div class='psbutton' onclick=\"location.href='rootmanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=$chosen&opt=cicpass&optid=$subid'\">通过审核</div>";} echo "</div>";
             echo "<div class='p4item'><h2>更改推荐栏目及下架商品会使目前推荐资格失效，且无法恢复，需重新审核后方可生效</h2></div>";
             echo "<div class='p4item'><h1>是否上架</h1><input type='checkbox' id='goodsvalid' name='goodsvalid' class='slectbox' ";if($subvalid==1){echo "checked";}echo "></div>";
             echo "</div>";
