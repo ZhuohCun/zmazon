@@ -297,7 +297,7 @@ if($opt=="cdeliver"){
                     $pic=$picrow[0];
                 }
                 echo "<div class=\"goodsitem\">";
-                echo "<form action=\"vendormanage.php?usid=$usid&usr=$usr&veri=$veri&opt=changegoods&optid=$subid\" id=\"form1\" method=\"post\">";
+                echo "<form action=\"vendormanage.php?usid=$usid&usr=$usr&veri=$veri&opt=changegoods&optid=$subid&chosen=$chosen\" id=\"form1\" method=\"post\">";
                 echo "<div class='upper'>";
                 echo "<div class='p1'><img src='$pic'></div>";
                 echo "<div class='p2'><input id='subsitext' name='subsitext' value='$subsitext' class='subtext'/><input id='subname' name='subname' value='$subname' class='subtext'/></div>";
