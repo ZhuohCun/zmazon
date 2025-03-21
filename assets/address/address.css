@@ -1,0 +1,377 @@
+@font-face {
+    font-family: "Iconify Explorer Font";
+    src: url("../icons/search.svg") format("svg");
+    src: url("../icons/left.svg") format("svg");
+    src: url("../icons/share.svg") format("svg");
+    src: url("../icons/right.svg") format("svg");
+    src: url("../icons/user.svg") format("svg");
+    src: url("../icons/roundback.svg") format("svg");
+    src: url("../icons/cart.svg") format("svg");
+    src: url("../icons/edit.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    background-color: #fbfbfb;
+}
+.line{
+    width: 100%;
+    border-top: 1vw solid #f0f2f1;
+    margin-top: 3vw;
+}
+.container{
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    top:0;
+    left:0;
+    flex-wrap: wrap;
+}
+.container .header{
+    min-height:12vw;
+    min-width:100vw;
+    background-color: #fbfbfb;
+    top:0;
+    left:0;
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: solid 1px #f0f2f1;
+    flex-direction: row;
+}
+.container .header .back{
+    width: 6vw;
+    display: flex;
+    justify-content: left;
+    position: fixed;
+    left: 6vw;
+    top: 1.6vh;
+    align-items: center;
+    content: url("../icons/left.svg");
+}
+.container .header .item{
+    max-width: 40vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5vw;
+    z-index: 1000;
+}
+.container .main {
+    height: 85%;
+    width: 98%;
+    background-color: #ddd;
+    margin-bottom: 10vw;
+    margin-top: 20vw;
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+.container .main .itembox{
+    max-width: 95vw;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction:column ;
+    background-color: #ddd;
+    row-gap: 4vw;
+    margin-top: -2.4vh;
+}
+.container .main .noitembox{
+    max-width: 95vw;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction:column ;
+    background-color: #fbfbfb;
+    row-gap: 4vw;
+}
+.container .main .noitembox .noitem{
+    width: 97vw;
+    height: 40vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10vw;
+    row-gap: 4vw;
+}
+.container .main .noitembox .noitem img{
+    width: 25vw;
+    height: 25vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .main .noitembox .noitem .noitemtitle{
+    width: 95vw;
+    height: 5vw;
+    display: flex;
+    font-size: 4vw;
+    justify-content: center;
+    align-items: center;
+}
+.container .main .itembox .item{
+    width: 97vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color:#fff;
+    border-radius: 2vw;
+    margin-left: -0.5vw;
+}
+.container .main .itembox .item .p1{
+    min-width: 95vw;
+    display: flex;
+    justify-content: left;
+    color: #2d2d2d;
+    min-height: 8vw;
+    align-items: center;
+}
+.container .main .itembox .item .p2{
+    min-width: 95vw;
+    min-height: 8vw;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction:row;
+    column-gap: 2vw;
+}
+.container .main .itembox .item .p2 .ifdefault{
+    min-width: 9.4vw;
+    min-height: 5.4vw;
+    display: flex;
+    color: #fff;
+    background-color: blue;
+    border-radius: 1vw;
+    justify-content: center;
+    align-items: center;
+    font-size: 4vw;
+}
+.container .main .itembox .item .p2 .ifdefault2{
+    min-width: 9.4vw;
+    min-height: 5.4vw;
+    display: flex;
+    border-radius: 1vw;
+    justify-content: center;
+    align-items: center;
+    font-size: 4vw;
+}
+.container .main .itembox .item .p2 .addr{
+    min-width: 60vw;
+    min-height: 5.4vw;
+    display: flex;
+    border-radius: 1vw;
+    justify-content: left;
+    align-items: center;
+    font-size: 3.8vw;
+}
+.container .main .itembox .item .p2 .edit{
+    min-width: 5vw;
+    min-height: 5.4vw;
+    display: flex;
+    border-radius: 1vw;
+    justify-content:left;
+    right: 3vw;
+    align-items: center;
+    content: url("../icons/edit.svg");
+}
+.container .main .itembox .item .p2 .delete{
+    min-width: 5vw;
+    min-height: 5.4vw;
+    display: flex;
+    border-radius: 1vw;
+    justify-content:left;
+    align-items: center;
+    content: url("../icons/xmark.svg");
+}
+.container .main .itembox .item .p2 .setdefault{
+    min-width: 5vw;
+    min-height: 5.4vw;
+    display: flex;
+    border-radius: 1vw;
+    justify-content:left;
+    align-items: center;
+}
+.container .main .itembox .item .p2 .setdefault img{
+    max-width: 5vw;
+    max-height: 5.4vw;
+}
+.container .main .itembox .item .p3{
+    min-width: 95vw;
+    max-width: 95vw;
+    min-height: 7vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container .footer{
+    width: 100%;
+    height: 9vh;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+}
+.container .footer .button {
+    width: 90vw;
+    height: 5vh;
+    display: flex;
+    color: white;
+    background-color: #eb1845;
+    border-radius: 10vw;
+    justify-content: center;
+    align-items: center;
+    font-size: 6vw;
+}
+.container .panel {
+    position: fixed;
+    top: 20vh;
+    left: 10vw;
+    display: flex;
+    min-width: 80vw;
+    max-width: 80vw;
+    min-height: 50vh;
+    max-height: 50vh;
+    background-color: #ccc;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 2vh;
+    column-gap: 2vh;
+}
+.container .panel .x{
+    min-width: 8vw;
+    max-width: 8vw;
+    max-height: 8vw;
+    display: flex;
+    position: fixed;
+    top: 21vh;
+    left: 80vw;
+    content: url("../icons/xmark.svg");
+}
+.container .panel .title{
+    min-width: 80vw;
+    min-height: 4vh;
+    font-size: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top:21vh;
+    left: 11vw;
+    position: fixed;
+}
+.container .panel .p{
+    min-width: 80vw;
+    min-height: 5vh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 1vw;
+}
+.container .panel .p .i{
+    min-width: 50vw;
+    min-height: 4.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10vw;
+    border: none;
+}
+.container .panel .pb{
+    min-width: 80vw;
+    min-height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vw;
+}
+.container .panel .pb .button{
+    min-width: 22vw;
+    min-height: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    border-radius: 10vw;
+    font-size: 4vw;
+}
+.container .dltpanel {
+    position: fixed;
+    top: 35vh;
+    left: 10vw;
+    display: flex;
+    min-width: 80vw;
+    max-width: 80vw;
+    min-height: 30vh;
+    max-height: 30vh;
+    background-color: #ccc;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 2vh;
+    column-gap: 2vh;
+}
+.container .dltpanel .x{
+    min-width: 8vw;
+    max-width: 8vw;
+    max-height: 8vw;
+    display: flex;
+    position: fixed;
+    top: 36vh;
+    left: 80vw;
+    content: url("../icons/xmark.svg");
+}
+.container .dltpanel .title{
+    min-width: 80vw;
+    min-height: 4vh;
+    font-size: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top:40vh;
+    left: 11vw;
+    position: fixed;
+}
+.container .dltpanel .buttons{
+    min-width: 80vw;
+    min-height: 5vh;
+    top:53vh;
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1vw;
+    column-gap: 2vw;
+    margin-left: -1vw;
+}
+.container .dltpanel .buttons .confirm{
+    min-width: 35vw;
+    min-height: 5vh;
+    background-color:red ;
+    border-radius: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .dltpanel .buttons .cancel{
+    min-width: 35vw;
+    min-height: 5vh;
+    background-color:darkseagreen ;
+    border-radius: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,324 @@
+@font-face {
+    font-family: "Iconify Explorer Font";
+    src: url("../icons/location.svg") format("svg");
+    src: url("../icons/right.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+.container{
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top:0;
+    left:0;
+    flex-wrap: wrap;
+}
+.container .header{
+    height:12vw;
+    width:100%;
+    background-color: #fff;
+    top:0;
+    left:0;
+    position: fixed;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    border-bottom: solid 1px #DDD;
+    overflow: hidden;
+}
+.container .header .left{
+    width:80vw;
+    height: 10vw;
+    display: flex;
+}
+.container .header .left h1{
+    width:20vw;
+    height: 10vw;
+    font-size: 4vw;
+    text-align: center;
+}
+.container .header .left .location{
+    width:60vw;
+    height: 10vw;
+    display: flex;
+    font-size: 3vw;
+    justify-content: left;
+    align-items: center;
+}
+.container .header .left .location .lico{
+    width: 4vw;
+    height: 4vw;
+    content: url("../icons/location.svg");
+}
+.container .header .left .location .rico{
+    width: 4vw;
+    height: 4vw;
+    content: url("../icons/right.svg");
+}
+.container .header .right{
+    width: 20vw;
+    height: 10vw;
+    font-size: 4vw;
+    display: flex;
+    margin-right: 2vw;
+    align-items: center;
+    justify-content: right;
+}
+.container .main {
+    height: auto;
+    width: 100%;
+    background-color: white;
+    margin-bottom: 20vw;
+    margin-top: 12vw;
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.container .main .empty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5vw;
+    color: #444;
+    width:100%;
+    height: 60vw;
+    flex-wrap: wrap;
+}
+.container .main .empty img{
+    width: 40vw;
+    height: 40vw;
+}
+.container .main .item{
+    height:30vw;
+    width: 100%;
+    display: flex;
+}
+.container .main .item .checkbox{
+    min-width: 8vw;
+    height: 28vw;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.container .main .item .checkbox svg{
+    width: 6vw;
+    height: 6vw;
+    margin-top: -4vw;
+}
+.container .main .item .checkbox .checkgrey{
+    min-width: 3vw;
+    height: 3vw;
+    color: #666666;
+}
+.container .main .item .checkbox .checkred{
+    min-width: 3vw;
+    height: 3vw;
+    color: red;
+}
+.container .main .item .body{
+    width:100%;
+    height: 28vw;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-right: 7vw;
+}
+.container .main .item .body .left{
+    width:25vw;
+    height: 28vw;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.container .main .item .body .left .img{
+    width: 20vw;
+    height: 20vw;
+    flex-wrap: wrap;
+}
+.container .main .item .body .right{
+    width:63vw;
+    height: 28vw;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.container .main .item .body .right .p1{
+    min-width: 63vw;
+    height: 12vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: left;
+    font-size: 3vw;
+    overflow: hidden;
+}
+.container .main .item .body .right .p2{
+    width: 63vw;
+    height: 16vw;
+    display: flex;
+    align-items: flex-start;
+    right: 0;
+}
+.container .main .item .body .right .p2 .lft{
+    width: 25vw;
+    height: 14vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1vw;
+}
+.container .main .item .body .right .p2 .lft .vendor{
+    min-height: 4.3vw;
+    max-height: 4.3vw;
+    min-width: 15vw;
+    max-width: 15vw;
+    font-size: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+}
+.container .main .item .body .right .p2 .lft .subinfo{
+    height: 4vw;
+    min-width: 15vw;
+    font-size: 3vw;
+    display: flex;
+    justify-content: left;
+}
+.container .main .item .body .right .p2 .lft .subinfo h1{
+    color: #555555;
+    font-size: 3vw;
+    white-space: nowrap;
+}
+.container .main .item .body .right .p2 .lft .subinfo h2{
+    color: #555555;
+    font-size: 3vw;
+    white-space: nowrap;
+    margin-top: 2vw;
+}
+.container .main .item .body .right .p2 .lft .subinfo .ico{
+    width: 3vw;
+    height: 3vw;
+    margin-top: 2.5vw;
+    content: url("../icons/right.svg");
+}
+.container .main .item .body .right .p2 .lft .price{
+    height: 4vw;
+    width: 15vw;
+    font-size: 4vw;
+    color: #e21540;
+    display: flex;
+    justify-content: left;
+    margin-top: 2vw;
+}
+.container .main .item .body .right .p2 .rit{
+    min-width: 45vw;
+    height: 14vw ;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.container .main .item .body .right .p2 .rit .minusgrey{
+    width: 6vw;
+    height: 6vw;
+    color: #666666;
+}
+.container .main .item .body .right .p2 .rit .minusgrey svg{
+    width: 6vw;
+    height: 6vw;
+}
+.container .main .item .body .right .p2 .rit .minusblue{
+    width: 6vw;
+    height: 6vw;
+    color: royalblue;
+}
+.container .main .item .body .right .p2 .rit .minusblue svg{
+    width: 6vw;
+    height: 6vw;
+}
+.container .main .item .body .right .p2 .rit .number{
+    width: 6vw;
+    height: 6vw;
+    color: #2d2d2d;
+    font-size: 4vw;
+    margin-top: 1.5vw;
+    text-align: center;
+}
+.container .main .item .body .right .p2 .rit .plus{
+    width: 6vw;
+    height: 6vw;
+    color: royalblue;
+}
+.container .main .item .body .right .p2 .rit .plus svg{
+    width: 6vw;
+    height: 6vw;
+}
+.container .main .subfooter{
+    width: 100%;
+    height: 10vw;
+    display: flex;
+    position: fixed;
+    bottom: 14vw;
+    background-color: white;
+}
+.container .main .subfooter .left{
+    width: 15vw;
+    height: 10vw;
+    display: flex;
+    align-items: center;
+}
+.container .main .subfooter .left .checkboxgrey{
+    width: 6vw;
+    height: 6vw;
+    color: #666666;
+}
+.container .main .subfooter .left .checkboxgrey svg{
+    width: 6vw;
+    height: 6vw;
+}
+.container .main .subfooter .left .checkboxred{
+    width: 6vw;
+    height: 6vw;
+    color: red;
+}
+.container .main .subfooter .left .checkboxred svg{
+    width: 6vw;
+    height: 6vw;
+}
+.container .main .subfooter .left h1{
+    min-width: 8vw;
+    font-size: 3.5vw;
+    color: #b1b1b1;
+}
+.container .main .subfooter .middle{
+    width: 60vw;
+    height: 10vw;
+    font-size: 3.2vw;
+    color: black;
+    display: flex;
+    justify-content: right;
+    align-items: flex-start;
+}
+.container .main .subfooter .middle h1{
+    color: red;
+    font-size: 4vw;
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+    margin-top: 0;
+}
+.container .main .subfooter .right{
+    width: 23vw;
+    height: 8vw;
+    background-color: red;
+    border-radius: 15vw;
+    color: white;
+    font-size: 4vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

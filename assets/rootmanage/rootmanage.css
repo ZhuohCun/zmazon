@@ -1,0 +1,1016 @@
+.container{
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 0;
+    height: 0;
+    padding: 1em;
+    justify-content: space-around;
+    align-items: center;
+}
+.container .left {
+    min-width: 15vw;
+    max-width: 15vw;
+    height: 97vh;
+    display: flex;
+    flex-direction: column;
+    background-color: aquamarine;
+    top:1vh;
+    left:1vw;
+    position: fixed;
+    justify-content: left;
+    align-items: center;
+    row-gap: 2vh;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 1vw;
+}
+.container .left .title {
+    display: flex;
+    font-size: 1.2vw;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vh;
+}
+.container .left .item {
+    min-width: 8vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6vw;
+    border-radius: 10vw;
+    color: black;
+    margin-top: 1vh;
+}
+.container .left .item:hover{
+    background-color: aliceblue;
+}
+.container .left .itemwhite{
+    min-width: 12vw;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vw;
+    border-radius: 10vw;
+    color: black;
+    background-color: #b1b1b1;
+}
+.container .left .copyright{
+    width: 15vw;
+    display: flex;
+    font-size: 0.8vw;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 3.3vh;
+}
+.container .right{
+    min-width: 81vw;
+    max-width: 81vw;
+    min-height: 97vh;
+    max-height: 97vh;
+    left: 17.5vw;
+    top:1vh;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    background-color: #bbb;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 1vw;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 2vh;
+    overflow-y: scroll;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    box-sizing: border-box;
+
+}
+.container .right1{
+    min-width: 81vw;
+    max-width: 81vw;
+    min-height: 97vh;
+    max-height: 97vh;
+    left: 17.5vw;
+    top:1vh;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    background-color: #bbb;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 1vw;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 2vh;
+    overflow-y: scroll;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    box-sizing: border-box;
+
+}
+.container .right2{
+    min-width: 81vw;
+    max-width: 81vw;
+    min-height: 97vh;
+    max-height: 97vh;
+    left: 17.5vw;
+    top:1vh;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    flex-flow: column;
+    background-color: #bbb;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 1vw;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 2vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    overflow-y: scroll;
+    box-sizing:border-box;
+
+}
+.container .right .goodsitem{
+    display: flex;
+    min-width: 79vw;
+    max-width: 79vw;
+    min-height: 20vh;
+    max-height: 20vh;
+    background-color: white;
+    border-radius: 0.5vw;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5vw;
+    flex-direction: row;
+    column-gap: 0.5vw;
+}
+.container .right .goodsitem .upper{
+    display: flex;
+    flex-direction: row;
+    min-height: 14vh;
+    max-height: 14vh;
+    min-width: 78vw;
+    max-width: 78vw;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.5vw;
+}
+.container .right .goodsitem .upper .p1{
+    display: flex;
+    min-width: 7vw;
+    max-width: 7vw;
+    min-height: 13vh;
+    max-height: 13vh;
+    justify-content: center;
+    align-items: center;
+}
+.container .right .goodsitem .upper .p1 img{
+    min-width: 7vw;
+    max-width: 7vw;
+    min-height: 13vh;
+    max-height: 13vh;
+    justify-content: center;
+    align-items: center;
+}
+.container .right .goodsitem .upper .p2{
+    display: flex;
+    min-width: 20vw;
+    max-width: 20vw;
+    min-height: 13vh;
+    max-height: 13vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 1vh;
+}
+.container .right .goodsitem .upper .p2 .subtext{
+    display: flex;
+    min-width: 20vw;
+    max-width: 20vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+}
+.container .right .goodsitem .upper .p2 .subname{
+    display: flex;
+    min-width: 10vw;
+    max-width: 10vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+}
+.container .right .goodsitem .upper .p3{
+    display: flex;
+    min-width: 13vw;
+    max-width: 13vw;
+    min-height: 12vh;
+    max-height: 12vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container .right .goodsitem .upper .p3 .p3item{
+    display: flex;
+    min-width: 13vw;
+    max-width: 13vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.container .right .goodsitem .upper .p3 .p3item h1{
+    display: flex;
+    min-width: 8vw;
+    max-width: 8vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    font-size: 0.9vw;
+    justify-content: center;
+    align-items: center;
+}
+.container .right .goodsitem .upper .p3 .p3item .iptbox{
+    display: flex;
+    min-width: 5vw;
+    max-width: 5vw;
+    min-height: 3vh;
+    max-height: 3vh;
+    justify-content: center;
+    align-items: center;
+}
+.container .right .goodsitem .upper .p4{
+    display: flex;
+    min-width: 34vw;
+    max-width: 34vw;
+    min-height: 12vh;
+    max-height: 12vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 1vh;
+    margin-top:1vh;
+}
+.container .right .goodsitem .upper .p4 .p4item{
+    display: flex;
+    min-width: 34vw;
+    max-width: 34vw;
+    min-height: 3vh;
+    max-height: 3vh;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.container .right .goodsitem .upper .p4 .p4item h1{
+    display: flex;
+    min-width: 10vw;
+    max-width: 10vw;
+    min-height: 3vh;
+    max-height: 3vh;
+    font-size: 0.9vw;
+    justify-content: center;
+    align-items: center;
+}
+.container .right .goodsitem .upper .p4 .p4item h2{
+    display: flex;
+    min-width: 30vw;
+    max-width: 30vw;
+    min-height: 2vh;
+    max-height: 2vh;
+    font-size: 0.7vw;
+    justify-content: center;
+    align-items: center;
+    color: red;
+}
+.container .right .goodsitem .upper .p4 .p4item .slctbox{
+    display: flex;
+    min-width: 7vw;
+    max-width: 7vw;
+    min-height: 3vh;
+    max-height: 3vh;
+    justify-content: center;
+    align-items: center;
+}
+.container .right .goodsitem .upper .p4 .p4item .psbutton{
+    display: flex;
+    min-width: 5vw;
+    max-width: 5vw;
+    min-height: 3vh;
+    max-height: 3vh;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5vw;
+    background-color:#38CA73 ;
+    font-size: 0.9vw;
+}
+.container .right .goodsitem .upper .p4 .p4item .psbutton:hover{
+    background-color: #74958c;
+}
+.container .right .goodsitem .lower{
+    display: flex;
+    flex-direction: column;
+    min-height: 5vh;
+    max-height: 5vh;
+    min-width: 78vw;
+    max-width: 78vw;
+    justify-content: center;
+    align-items: center;
+}
+.container .right .goodsitem .lower .sbmtbtn{
+    display: flex;
+    min-width: 17vw;
+    min-height: 5vh;
+    max-width: 17vw;
+    max-height: 5vh;
+    font-size: 1vw;
+    background-color: #38CA73;
+    border: none;
+    border-radius: 0.5vw;
+}
+.container .right .goodsitem .lower .sbmtbtn:hover{
+    background-color: #74958c;
+}
+
+.container .right1  .orderitem{
+    display: flex;
+    min-width: 78vw;
+    max-width: 78vw;
+    height: auto;
+    background-color: #eee;
+    border-radius: 2vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 1vh;
+    padding: 1vh;
+    margin-left: 0.5vw;
+    box-sizing: border-box;
+}
+
+.container .right1  .orderitem .title{
+    min-width: 78vw;
+    max-width: 78vw;
+    min-height: 5vh;
+    max-height: 5vh;
+    font-size: 1vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin-left: 0.5vw;
+    border-radius: 0.6vw;
+}
+.container .right1  .orderitem .title .p1{
+    display: flex;
+    min-width: 38vw;
+    max-width: 38vw;
+    min-height: 5vh;
+    max-height: 5vh;
+    font-size: 1vw;
+    justify-content: left;
+    align-items: center;
+}
+.container .right1 .orderitem .title .p2{
+    display: flex;
+    min-width: 10vw;
+    max-width: 10vw;
+    min-height: 5vh;
+    max-height: 5vh;
+    font-size: 1vw;
+    justify-content: left;
+    align-items: center;
+}
+.container .right1 .orderitem .title .p3{
+    display: flex;
+    min-width: 30vw;
+    max-width: 30vw;
+    min-height: 5vh;
+    max-height: 5vh;
+    font-size: 1vw;
+    justify-content: left;
+    align-items: center;
+}
+.container .right1 .orderitem .subitem{
+    display: flex;
+    min-width: 78vw;
+    max-width: 78vw;
+    min-height: 17vh;
+    max-height: 17vh;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    column-gap: 0.8vw;
+    border-radius: 0.6vw;
+}
+.container .right1 .orderitem .subitem .p1{
+    display: flex;
+    min-width: 6vw;
+    max-width: 6vw;
+    min-height: 10vh;
+    max-height: 10vh;
+    justify-content: center;
+    align-items: center;
+}
+.container .right1 .orderitem .subitem .p1 img{
+    min-width: 6vw;
+    max-width: 6vw;
+    min-height: 9vh;
+    max-height: 9vh;
+}
+.container .right1 .orderitem .subitem .p2{
+    display: flex;
+    min-width: 20vw;
+    max-width: 20vw;
+    min-height: 17vh;
+    max-height: 17vh;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+}
+.container .right1 .orderitem .subitem .p2 .text{
+    display: flex;
+    min-width: 20vw;
+    max-width: 20vw;
+    min-height: 12vh;
+    max-height: 12vh;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    font-size: 0.8vw;
+}
+.container .right1 .orderitem .subitem .p2 .name{
+    display: flex;
+    min-width: 20vw;
+    max-width: 20vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    font-size: 0.8vw;
+}
+.container .right1 .orderitem .subitem .p3{
+    display: flex;
+    min-width: 10vw;
+    max-width: 10vw;
+    min-height: 19vh;
+    max-height: 19vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8vw;
+}
+.container .right1 .orderitem .subitem .p4{
+    display: flex;
+    min-width: 20vw;
+    max-width: 20vw;
+    min-height: 19vh;
+    max-height: 19vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container .right1 .orderitem .subitem .p4 .price{
+    display: flex;
+    min-width: 20vw;
+    max-width: 20vw;
+    min-height: 6vh;
+    max-height: 6vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container .right1 .orderitem .subitem .p4 .importfee{
+    display: flex;
+    min-width: 20vw;
+    max-width: 20vw;
+    min-height: 6vh;
+    max-height: 6vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container .right1 .orderitem .subitem .p4 .transportfee{
+    display: flex;
+    min-width: 20vw;
+    max-width: 20vw;
+    min-height: 6vh;
+    max-height: 6vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container .right1 .orderitem .subitem .p5{
+    display: flex;
+    min-width: 16vw;
+    max-width: 16vw;
+    min-height: 19vh;
+    max-height: 19vh;
+    justify-content: center;
+    align-items: center;
+}
+.container .right1 .orderitem .lower{
+    display: flex;
+    flex-direction: row;
+    min-width: 78vw;
+    max-width: 78vw;
+    min-height: 9vh;
+    max-height: 9vh;
+    border-radius: 0.6vw;
+}
+.container .right1 .orderitem .lower .lefter{
+    display: flex;
+    min-width: 48vw;
+    max-width: 48vw;
+    min-height: 8vh;
+    max-height: 8vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container .right1 .orderitem .lower .lefter .address{
+    display: flex;
+    min-width: 47vw;
+    max-width: 47vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    font-size: 0.8vw;
+    justify-content: left;
+    align-items: center;
+}
+.container .right1 .orderitem .lower .lefter .receiver{
+    display: flex;
+    min-width: 47vw;
+    max-width: 47vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    font-size: 0.8vw;
+    justify-content: left;
+    align-items: center;
+}
+.container .right1 .orderitem .lower .righter{
+    display: flex;
+    min-width: 30vw;
+    max-width: 30vw;
+    min-height: 9vh;
+    max-height: 9vh;
+    flex-direction: column;
+    justify-content: right;
+    align-items: center;
+}
+.container .right1 .orderitem .lower .righter .p1{
+    display: flex;
+    min-width: 30vw;
+    max-width: 30vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.container .right1 .orderitem .lower .righter .p1 .expfirm{
+    display: flex;
+    min-width: 12vw;
+    max-width: 12vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    font-size: 0.8vw;
+    justify-content: left;
+    align-items: center;
+}
+.container .right1 .orderitem .lower .righter .p1 .expno{
+    display: flex;
+    min-width: 18vw;
+    max-width: 18vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    font-size: 0.8vw;
+    justify-content: left;
+    align-items: center;
+}
+.container .right1 .orderitem .lower .righter .p2{
+    display: flex;
+    min-width: 30vw;
+    max-width: 30vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.container .right1 .orderitem .lower .righter .p2 .cancelbutton{
+    display: flex;
+    min-width: 8vw;
+    max-width: 8vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    font-size: 1vw;
+    justify-content: center;
+    align-items: center;
+    background-color: #38CA73;
+    border-radius: 0.8vw;
+}
+.container .right1 .orderitem .lower .righter .p2 .deliverbutton{
+    display: flex;
+    min-width: 8vw;
+    max-width: 8vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    font-size: 1vw;
+    justify-content: center;
+    align-items: center;
+    background-color: #38CA73;
+    border-radius: 0.8vw;
+}
+.container .right1 .orderitem .lower .righter .p2 .cancelbutton:hover{
+    background-color:#74958c;
+}
+.container .right1 .orderitem .lower .righter .p2 .deliverbutton:hover{
+    background-color:#74958c;
+}
+.container .panel {
+    position: fixed;
+    top: 20vh;
+    left: 30vw;
+    display: flex;
+    min-width: 40vw;
+    max-width: 40vw;
+    min-height: 50vh;
+    max-height: 50vh;
+    background-color: #ccc;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 2vh;
+    column-gap: 2vh;
+}
+.container .panel .x{
+    min-width: 3vw;
+    max-width: 3vw;
+    max-height: 3vw;
+    display: flex;
+    position: fixed;
+    top: 21vh;
+    left: 66vw;
+    content: url("../icons/xmark.svg");
+}
+.container .panel .title{
+    min-width: 40vw;
+    min-height: 4vh;
+    font-size: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top:21vh;
+    left: 28vw;
+    position: fixed;
+}
+.container .panel .p{
+    min-width: 40vw;
+    min-height: 10vh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 1vw;
+    left:20vw;
+}
+.container .panel .pcancel{
+    min-width: 40vw;
+    min-height: 5vh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 1vw;
+    left:20vw;
+    font-size: 1.8vw;
+    margin-top: -4vh;
+}
+.container .panel .p .pl{
+    min-width: 20vw;
+    min-height: 5vh;
+    justify-content: left;
+    align-items: center;
+}
+.container .panel .p .pr{
+    min-width: 20vw;
+    min-height: 5vh;
+    justify-content: left;
+    align-items: center;
+}
+.container .panel .p .i{
+    min-width: 30vw;
+    min-height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1vw;
+    border: none;
+}
+.container .panel .pb{
+    min-width: 40vw;
+    min-height: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vw;
+}
+.container .panel .pb .button{
+    min-width: 12vw;
+    min-height: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    border-radius: 10vw;
+    font-size: 2vw;
+}
+.container .panel .pb .button:hover{
+    background-color: cyan;
+}
+.container .panel .buttons{
+    min-width: 40vw;
+    min-height: 5vh;
+    top:53vh;
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1vw;
+    column-gap: 2vw;
+    margin-left: -1vw;
+}
+.container .panel .buttons .confirm{
+    min-width: 11vw;
+    min-height: 5vh;
+    background-color:red ;
+    border-radius: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7vw;
+}
+.container .panel .buttons .confirm:hover{
+    background-color: #ff6e71;
+}
+.container .panel .buttons .cancel{
+    min-width: 11vw;
+    min-height: 5vh;
+    background-color:#38CA73 ;
+    border-radius: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7vw;
+}
+.container .panel .buttons .cancel:hover{
+    background-color: #74958c;
+}
+.container .right2 .useritem{
+    min-width: 79vw;
+    max-width: 79vw;
+    max-height: 21vh;
+    min-height: 21vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 0.8vw;
+    margin-left:0.5vw;
+}
+.container .right2 .useritem .upper{
+    min-width: 78vw;
+    max-width: 78vw;
+    max-height: 15vh;
+    min-height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.container .right2 .useritem .upper .p1{
+    display: flex;
+    min-width: 20vw;
+    max-width: 20vw;
+    min-height: 15vh;
+    max-height: 15vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1vh;
+    margin-left: 0.5vw;
+}
+.container .right2 .useritem .upper .p1 .p1item{
+    display: flex;
+    min-width: 20vw;
+    max-width: 20vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.container .right2 .useritem .upper .p1 .p1item .lefter{
+    display: flex;
+    min-width: 8vw;
+    max-width: 8vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    justify-content: left;
+    align-items: center;
+}
+.container .right2 .useritem .upper .p1 .p1item .righter{
+    display: flex;
+    min-width: 12vw;
+    max-width: 12vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    justify-content: left;
+    align-items: center;
+}
+.container .right2 .useritem .upper .p1 .p1item .righter .iptbox{
+    display: flex;
+    min-width: 12vw;
+    max-width: 12vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.8vw;
+}
+.container .right2 .useritem .upper .p2{
+    display: flex;
+    min-width: 49vw;
+    max-width: 49vw;
+    min-height: 15vh;
+    max-height: 15vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 4vw;
+    row-gap: 1vh;
+}
+.container .right2 .useritem .upper .p2 .p2item{
+    display: flex;
+    min-width: 49vw;
+    max-width: 49vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.container .right2 .useritem .upper .p2 .p2item .lefter{
+    display: flex;
+    min-width: 8vw;
+    max-width: 8vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    justify-content: left;
+    align-items: center;
+}
+.container .right2 .useritem .upper .p2 .p2item .righter{
+    display: flex;
+    min-width: 38vw;
+    max-width: 38vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+.container .right2 .useritem .upper .p2 .p2item .righter .l{
+    display: flex;
+    min-width: 10vw;
+    max-width: 10vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    justify-content: left;
+    align-items: center;
+}
+.container .right2 .useritem .upper .p2 .p2item .righter .r{
+    display: flex;
+    min-width: 28vw;
+    max-width: 28vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    justify-content: left;
+    align-items: center;
+}
+.container .right2 .useritem .upper .p2 .p2item .righter .iptbox{
+    display: flex;
+    min-width: 15vw;
+    max-width: 15vw;
+    min-height: 4vh;
+    max-height: 4vh;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.8vw;
+}
+.container .right2 .useritem .upper .p3{
+    display: flex;
+    min-width: 6vw;
+    max-width: 6vw;
+    min-height: 12vh;
+    max-height: 12vh;
+    justify-content: center;
+    align-items: center;
+}
+.container .right2 .useritem .upper .p3 .ubtnbox{
+    display: flex;
+    min-width: 5vw;
+    max-width: 5vw;
+    min-height: 15vh;
+    max-height:15vh;
+    justify-content: center;
+    align-items: center;
+    margin-left: -2vw;
+}
+.container .right2 .useritem .upper .p3 .ubtnbox .ubtn{
+    display: flex;
+    min-width: 5vw;
+    max-width: 5vw;
+    min-height: 5vh;
+    max-height: 5vh;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 1vw;
+    background-color: #38CA73;
+}
+.container .right2 .useritem .upper .p3 .ubtnbox .ubtn:hover{
+    background-color:#74958c;
+}
+.container .right2 .useritem .upper .p3 .lbtnbox{
+    display: flex;
+    min-width: 5vw;
+    max-width: 5vw;
+    min-height: 15vh;
+    max-height: 15vh;
+    justify-content: center;
+    align-items: center;
+    margin-left: -2vw;
+}
+.container .right2 .useritem .upper .p3 .lbtnbox .lbtn{
+    display: flex;
+    min-width: 5vw;
+    max-width: 5vw;
+    min-height: 5vh;
+    max-height: 5vh;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: none;
+    border-radius: 1vw;
+    background-color: #eb1845;
+}
+.container .right2 .useritem .upper .p3 .lbtnbox .lbtn:hover{
+    color: white;
+    background-color:#ff6e71;
+}
+.container .right2 .useritem .lower{
+    min-width: 78vw;
+    max-width: 78vw;
+    max-height: 5vh;
+    min-height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .right2 .useritem .lower .sbmtbtnbox{
+    min-width: 78vw;
+    max-width: 78vw;
+    max-height: 5vh;
+    min-height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .right2 .useritem .lower .sbmtbtnbox .sbmtbtn{
+    min-width: 7vw;
+    max-width: 7vw;
+    max-height: 4vh;
+    min-height: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 1vw;
+    background-color: #38CA73;
+}
+.container .right2 .useritem .lower .sbmtbtnbox .sbmtbtn:hover{
+    background-color: #74958c;
+}
