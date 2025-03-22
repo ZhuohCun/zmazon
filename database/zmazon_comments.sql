@@ -45,7 +45,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,1,1,'很好用',2024,7,8,'1'),(2,2,2,'好评',2024,7,9,'1'),(3,1,3,'第三个评价',2024,7,9,'1'),(4,4,3,'是正品',2024,7,10,'1');
+INSERT INTO `comments` VALUES (1,1,2,'很好用',2024,7,8,'1'),(2,2,3,'好评',2024,7,9,'1'),(3,1,4,'第三个评价',2024,7,9,'1'),(4,4,4,'是正品',2024,7,10,'1');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-21 11:43:47
+-- Dump completed on 2025-03-22 19:29:32

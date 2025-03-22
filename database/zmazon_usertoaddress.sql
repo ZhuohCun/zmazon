@@ -43,7 +43,7 @@ CREATE TABLE `usertoaddress` (
 
 LOCK TABLES `usertoaddress` WRITE;
 /*!40000 ALTER TABLE `usertoaddress` DISABLE KEYS */;
-INSERT INTO `usertoaddress` VALUES (1,1,'云南省呈贡区','大渔街道xx号','小A','123456',1,1),(2,2,'云南省呈贡区','马金铺街道xx号','小B','456789',0,1),(3,1,'云南省五华区','人民西路xx号','小C','123789',0,1),(4,1,'東京都','xx番目','田中さん','111222',0,0),(5,1,'東京都','xx番目','山本さん','123890',1,0),(6,2,'大阪府','大阪市中央区xx番地','斉藤さん','567123',1,1),(7,2,'No.xxx Queen St.','Des Monies, IA','Ms.Greens','456123',0,1),(8,2,'京都府','京都大学のソフトウェア学部','犬伏先生','987321',0,1),(9,1,'云南省盘龙区','北辰大道xx号','小AD','345987',1,0);
+INSERT INTO `usertoaddress` VALUES (1,2,'云南省呈贡区','大渔街道xx号','小A','123456',1,1),(2,3,'云南省呈贡区','马金铺街道xx号','小B','456789',0,1),(3,2,'云南省五华区','人民西路xx号','小C','123789',0,1),(4,2,'東京都','xx番目','田中さん','111222',0,0),(5,2,'東京都','xx番目','山本さん','123890',1,0),(6,3,'大阪府','大阪市中央区xx番地','斉藤さん','567123',1,1),(7,3,'No.xxx Queen St.','Des Monies, IA','Ms.Greens','456123',0,1),(8,3,'京都府','京都大学のソフトウェア学部','犬伏先生','987321',0,1),(9,2,'云南省盘龙区','北辰大道xx号','小AD','345987',1,0);
 /*!40000 ALTER TABLE `usertoaddress` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-21 11:43:48
+-- Dump completed on 2025-03-22 19:29:34

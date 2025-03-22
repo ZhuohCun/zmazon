@@ -33,7 +33,7 @@ CREATE TABLE `users` (
   `valid` int NOT NULL COMMENT '是否有效或被封号',
   `comment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '封号原因',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'testuser','test','123456','12345644@zmazon.com',3,'6654946546516.6416546516',1,''),(2,'testuser1','test','111','155511@zmazon.com',3,'551698.3825263552',1,''),(3,'zhcun','test','087187654321','zhcun@zmazon.com',3,'491594.45659405965',1,''),(4,'vendor','vendor','123','456@zmazon.com',2,'57468769879869.8942',1,''),(5,'root','root','789','765',1,'24641984894561.1561',1,NULL);
+INSERT INTO `users` VALUES (0,'root','root','789','765',1,'24641984894561.1561',1,NULL),(1,'vendor','vendor','123','456@zmazon.com',2,'57468769879869.8942',1,''),(2,'testuser','test','123456','12345644@zmazon.com',3,'6654946546516.6416546516',1,''),(3,'testuser1','test','111','155511@zmazon.com',3,'551698.3825263552',1,''),(4,'zhcun','test','087187654321','zhcun@zmazon.com',3,'491594.45659405965',1,''),(5,'tester','tester','087174635465','tester@zmazon.com',3,'4185205646031.7275',1,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-21 11:43:46
+-- Dump completed on 2025-03-22 19:29:32

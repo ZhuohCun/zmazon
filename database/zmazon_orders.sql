@@ -42,7 +42,7 @@ CREATE TABLE `orders` (
   CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`aid`) REFERENCES `usertoaddress` (`id`),
   CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`pid`) REFERENCES `paymethod` (`no`),
   CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`status`) REFERENCES `status` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +51,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,5,'已取消',444.21,0,1,1,NULL,NULL),(2,1,3,'待收货',235.71,4,1,1,'小Z专递','98765432123456'),(3,1,1,'待支付',494.31,0,1,1,NULL,NULL),(4,1,5,'已取消',494.31,0,1,1,NULL,NULL);
+INSERT INTO `orders` VALUES (1,2,5,'已取消',444.21,0,1,1,NULL,NULL),(2,2,3,'待收货',235.71,4,1,1,'小Z专递','98765432123456'),(3,2,5,'已取消',494.31,0,1,1,NULL,NULL),(4,2,5,'已取消',494.31,0,1,1,NULL,NULL),(5,2,2,'待发货',1104.13,3,1,1,NULL,NULL);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -64,4 +64,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-21 11:43:49
+-- Dump completed on 2025-03-22 19:29:33
