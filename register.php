@@ -92,7 +92,7 @@ include "$rootlocation/connzmazon.php";
         </div>
         <div class="part5"><div class="text" onclick="location.href='login.php'">已拥有账户？</div></div>
         <div class="part6"></div>
-        <div class="part7">©2025 ZMAZON</div>
+        <div class="part7">©2025 ゼマゾン株式会社</div>
     </div>
 </div>
 </body>

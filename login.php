@@ -74,7 +74,7 @@ include "$rootlocation/connzmazon.php";
             <button onclick="location.href='register.php'">创建新的Z马逊账户</button>
         </div>
         <div class="part8"></div>
-        <div class="part9">©2025 ZMAZON</div>
+        <div class="part9">©2025 ゼマゾン株式会社</div>
     </div>
 </div>
 </body>

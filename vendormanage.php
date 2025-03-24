@@ -240,7 +240,7 @@ if($opt=="cdeliver"){ //确认发货订单
         <?php if($chosen==1){echo "<div class=\"itemwhite\">商品管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=1'\">商品管理</div>";} ?>
         <?php if($chosen==2){echo "<div class=\"itemwhite\">订单管理</div>";}else{echo "<div class=\"item\" onclick=\"location.href='vendormanage.php?usid=$usid&usr=$usr&veri=$veri&chosen=2'\">订单管理</div>";} ?>
         <?php if($chosen==3){echo "<div class=\"itemwhite\">退出登录</div>";}else{echo "<div class=\"item\" onclick=\"logout()\">退出登录</div>";} ?>
-        <div class="copyright">版权所有© ZMAZON</div>
+        <div class="copyright">版权所有© ゼマゾン株式会社</div>
     </div>
         <?php
         if($chosen==1){
