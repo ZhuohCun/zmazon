@@ -146,6 +146,10 @@ if($act=="add"){
         }
     }
 }elseif ($act=='buy'){
+    if($usid==-1){
+        header("location:login.php");
+        die;
+    }
     if($aid==-1){
         $buyaddress=-1;
         $buyaddressquery=mysqli_query($conn,"select id from usertoaddress where uid=$usid and isdefault=1 and valid=1 limit 1");
