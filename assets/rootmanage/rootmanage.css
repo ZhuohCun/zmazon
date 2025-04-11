@@ -197,6 +197,7 @@
     justify-content: left;
     align-items: center;
     flex-direction: column;
+    font-size: 0.9vw;
 }
 .container .right .goodsitem .upper .p2 .subname{
     display: flex;
@@ -207,6 +208,7 @@
     justify-content: left;
     align-items: center;
     flex-direction: column;
+    font-size: 0.9vw;
 }
 .container .right .goodsitem .upper .p3{
     display: flex;
@@ -246,6 +248,7 @@
     max-height: 3vh;
     justify-content: center;
     align-items: center;
+    font-size: 0.9vw;
 }
 .container .right .goodsitem .upper .p4{
     display: flex;
@@ -298,6 +301,7 @@
     max-height: 3vh;
     justify-content: center;
     align-items: center;
+    font-size: 0.9vw;
 }
 .container .right .goodsitem .upper .p4 .p4item .psbutton{
     display: flex;
@@ -488,6 +492,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 1.2vw;
 }
 .container .right1 .orderitem .subitem .p4 .importfee{
     display: flex;
@@ -498,6 +503,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 1.2vw;
 }
 .container .right1 .orderitem .subitem .p4 .transportfee{
     display: flex;
@@ -508,6 +514,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 1.2vw;
 }
 .container .right1 .orderitem .subitem .p5{
     display: flex;
@@ -517,6 +524,7 @@
     max-height: 19vh;
     justify-content: center;
     align-items: center;
+    font-size: 1.3vw;
 }
 .container .right1 .orderitem .lower{
     display: flex;
@@ -683,6 +691,7 @@
     align-items: center;
     padding: 1vw;
     left:20vw;
+    font-size: 1.2vw;
 }
 .container .panel .pcancel{
     min-width: 40vw;
@@ -700,6 +709,7 @@
     min-height: 5vh;
     justify-content: left;
     align-items: center;
+    font-size: 1.2vw;
 }
 .container .panel .p .pr{
     min-width: 20vw;
@@ -714,6 +724,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 1vw;
+    font-size: 1.2vw;
     border: none;
 }
 .container .panel .pb{
@@ -831,6 +842,7 @@
     max-height: 4vh;
     justify-content: left;
     align-items: center;
+    font-size: 1vw;
 }
 .container .right2 .useritem .upper .p1 .p1item .righter{
     display: flex;
@@ -840,6 +852,7 @@
     max-height: 4vh;
     justify-content: left;
     align-items: center;
+    font-size: 1vw;
 }
 .container .right2 .useritem .upper .p1 .p1item .righter .iptbox{
     display: flex;
@@ -850,6 +863,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 0.8vw;
+    font-size: 1vw;
 }
 .container .right2 .useritem .upper .p2{
     display: flex;
@@ -881,6 +895,7 @@
     max-height: 4vh;
     justify-content: left;
     align-items: center;
+    font-size: 1vw;
 }
 .container .right2 .useritem .upper .p2 .p2item .righter{
     display: flex;
@@ -891,6 +906,7 @@
     flex-direction: row;
     justify-content: left;
     align-items: center;
+    font-size: 1vw;
 }
 .container .right2 .useritem .upper .p2 .p2item .righter .l{
     display: flex;
@@ -919,6 +935,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 0.8vw;
+    font-size: 1vw;
 }
 .container .right2 .useritem .upper .p3{
     display: flex;
@@ -937,6 +954,7 @@
     max-height:15vh;
     justify-content: center;
     align-items: center;
+    font-size: 1.5vw;
     margin-left: -2vw;
 }
 .container .right2 .useritem .upper .p3 .ubtnbox .ubtn{
@@ -949,6 +967,7 @@
     align-items: center;
     border: none;
     border-radius: 1vw;
+    font-size: 1.5vw;
     background-color: #38CA73;
 }
 .container .right2 .useritem .upper .p3 .ubtnbox .ubtn:hover{
@@ -975,6 +994,7 @@
     color: white;
     border: none;
     border-radius: 1vw;
+    font-size: 1.5vw;
     background-color: #eb1845;
 }
 .container .right2 .useritem .upper .p3 .lbtnbox .lbtn:hover{
@@ -998,6 +1018,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 0.9vw;
 }
 .container .right2 .useritem .lower .sbmtbtnbox .sbmtbtn{
     min-width: 7vw;
@@ -1009,6 +1030,7 @@
     align-items: center;
     border: none;
     border-radius: 1vw;
+    font-size: 0.9vw;
     background-color: #38CA73;
 }
 .container .right2 .useritem .lower .sbmtbtnbox .sbmtbtn:hover{
